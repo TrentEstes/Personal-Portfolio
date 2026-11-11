@@ -35,8 +35,10 @@ P = [
             ["ginergy-cans.jpg","ginergy-window.jpg","ginergy-back.jpg"],
             {"h":"Shipper and unit load"},
             {"p":"Each shipper holds 12 cartons (48 cans). Pinwheel pallet pattern, stacked 3 high."},
-            ["ginergy-carton-structure.jpg","ginergy-shipper.jpg"],
-            ["ginergy-pallet-pattern.jpg","ginergy-pallet-load.jpg"],
+            ["ginergy-carton-structure.jpg"],
+            ["ginergy-shipper.jpg"],
+            ["ginergy-pallet-pattern.jpg"],
+            ["ginergy-pallet-load.jpg"],
             ["ginergy-truck-load.jpg"]]),
 
  dict(feature=True, slug="paige-bueckers-court", title="Paige Bueckers Court Design", sub="Lettering", year=2026, size="big",
