@@ -301,7 +301,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 <header class="top">
   <div class="in pad">
     <a class="mark" href="#top" aria-label="Trent Estes, home">Trent Estes</a>
-    <span class="status mono"><span class="dot" aria-hidden="true"></span>Blacksburg, VA <span id="clock"></span></span>
+    <span class="status mono"><span class="dot" aria-hidden="true"></span><span id="clock"></span></span>
     <nav class="tnav" aria-label="Main">
       <a href="#work">Work</a>
       <a href="#posters">Posters</a>
@@ -331,7 +331,6 @@ body.in-hall .top,body.in-hall .fcard{display:none}
    ============================================================ */
 const SITE = {
   name: "Trent Estes",
-  location: "Blacksburg, VA",
   email: "hello@trente.design",
   phone: "804-997-1613",
   linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
@@ -1150,7 +1149,7 @@ function home(){
   <section class="hero" id="top" aria-label="Introduction">
     <span class="g h" style="top:50%"></span>
     <span class="g v hide-m" style="left:clamp(16px,2.2vw,32px)"></span><span class="g v hide-m" style="right:clamp(16px,2.2vw,32px)"></span>
-    <div class="h-top pad mono"><span>Brand + packaging designer</span><span>Blacksburg, VA</span></div>
+    <div class="h-top pad mono"><span>Brand + packaging designer</span><span></span></div>
     <h1 class="h-word a">Trent</h1>
     <div class="h-frame">
       
@@ -1204,7 +1203,7 @@ function home(){
 
   <div class="pad">
     <section id="about">
-      <div class="sh"><h2>About</h2><span class="mono">Blacksburg, Virginia · Virginia Tech</span></div>
+      <div class="sh"><h2>About</h2><span class="mono">Virginia Tech</span></div>
       <div class="about">
         <figure class="a-photo">
           <img src="images-web/trent-portrait.jpg" alt="Trent Estes" width="1400" height="2100" loading="lazy">
@@ -1453,7 +1452,7 @@ addEventListener("keydown", e=>{
 route(); cardVis();
 (function clock(){ const el=$("#clock"); if(!el) return;
   const fmt=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"});
-  const tick=()=>{ el.textContent="· "+fmt.format(new Date())+" ET"; }; tick(); setInterval(tick,15000); })();
+  const tick=()=>{ el.textContent=fmt.format(new Date())+" ET"; }; tick(); setInterval(tick,15000); })();
 </script>
 </body>
 </html>
