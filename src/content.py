@@ -36,7 +36,7 @@ P = [
 
  dict(feature=True, slug="paige-bueckers-court", title="Paige Bueckers Court Design", sub="Lettering", year=2026, size="big",
       tags=["Type","Illustration"], kind="Lettering explorations for “A ball and a basket is all you need”",
-      cover="court-poster-7.jpg", fit="blur",
+      cover="court-cover.jpg",
       info="Lettering and poster explorations for the line “A ball and a basket is all you need,” for Paige Bueckers’ refurbished court at Blackstone Park in St. Louis Park, Minnesota.",
       rows=[["court-poster-floral.jpg"],
             {"h":"Sketches"},
@@ -65,7 +65,7 @@ P = [
             ["49a8f0e0","d072e12b"],
             ["3523bc9c","3c3347ca"]]),
 
- dict(feature=True, slug="hale-community-garden", title="Hale Community Garden", sub="Brand identity", year=2026, coverimg="b6708198", fit="blur",
+ dict(feature=True, slug="hale-community-garden", title="Hale Community Garden", sub="Brand identity", year=2026, coverimg="hale-cover.jpg",
       tags=["Identity","Print"], kind="Identity for a community garden in Blacksburg, VA",
       info="Branding for Hale Community Garden in Blacksburg, run by Live Work Eat Grow. It started with interviews with the garden coordinator and the land donor, plus time observing the space.",
       rows=[["0cf50797"],

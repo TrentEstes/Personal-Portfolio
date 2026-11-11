@@ -202,13 +202,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .p-meta dt{color:var(--muted)}.p-meta dd{margin:0;text-align:right}
 .p-body{display:flex;flex-direction:column;padding-bottom:clamp(64px,8vw,120px)}
 .p-hero{display:grid;gap:12px;margin-bottom:clamp(40px,5vw,72px)}
-.p-row{display:grid;gap:12px;grid-template-columns:1fr;align-items:stretch}
-@media (min-width:700px){.p-row.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.p-row.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.p-row figure{position:relative;margin:0;overflow:hidden;background:#ECECEA;border-radius:10px;aspect-ratio:var(--ar,4/3)}
-.p-row.c1 figure{--ar:16/10}.p-row.c3 figure{--ar:1/1}
-.p-row img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+/* rows are justified: every image keeps its own shape, heights match, widths fill the row */
+.p-row{display:flex;gap:12px;align-items:flex-start}
+.p-row figure{flex:var(--ar,1.5) 1 0;min-width:0;margin:0;overflow:hidden;border-radius:10px;aspect-ratio:var(--ar,1.5);background:#E6E6E3}
+.p-row figure.ok{background:transparent}
+.p-row.c1 figure{flex:none;width:min(100%,calc(var(--ar,1.5) * 92vh));margin-inline:auto}
+.p-row img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
 .p-row img.ok{opacity:1}
-.p-row img.fit{object-fit:contain;padding:4%}
+@media (max-width:699px){.p-row{flex-direction:column}.p-row figure{flex:none;width:100%}.p-row.c1 figure{width:min(100%,calc(var(--ar,1.5) * 75vh))}}
 .step{display:grid;grid-template-columns:1fr;gap:18px;padding-block:clamp(28px,3.5vw,48px) clamp(36px,5vw,72px);border-top:1px solid var(--line)}
 @media (min-width:900px){.step{grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:clamp(24px,3vw,48px)}.s-side{position:sticky;top:96px;align-self:start}}
 .s-side{display:flex;flex-direction:column;gap:12px}
@@ -441,8 +442,7 @@ const PROJECTS_ALL = [
 "Illustration"
 ],
 "kind": "Lettering explorations for “A ball and a basket is all you need”",
-"cover": "court-poster-7.jpg",
-"fit": "blur",
+"cover": "court-cover.jpg",
 "info": "Lettering and poster explorations for the line “A ball and a basket is all you need,” for Paige Bueckers’ refurbished court at Blackstone Park in St. Louis Park, Minnesota.",
 "rows": [
 [
@@ -550,7 +550,6 @@ const PROJECTS_ALL = [
 "title": "Hale Community Garden",
 "sub": "Brand identity",
 "year": 2026,
-"fit": "blur",
 "tags": [
 "Identity",
 "Print"
@@ -595,7 +594,7 @@ const PROJECTS_ALL = [
 ]
 ],
 "size": "small",
-"cover": "b6708198-2520-4954-abc7-995d7c291bf7_car_3x4.png?h=b1caf0f67f30b0575d46a6f078cdfdc1"
+"cover": "hale-cover.jpg"
 },
 {
 "feature": true,
@@ -1186,19 +1185,10 @@ function stopHall(){
   document.body.classList.remove("in-hall");
 }
 
-/* frames: every image row shares one shape; images that don't match it sit whole inside the frame */
 function fitRows(root){
-  root.querySelectorAll(".p-row").forEach(row=>{
-    const ims=[...row.querySelectorAll("img")], n=ims.length;
-    const lim=n===1?(row.closest(".p-hero")?[1.25,2.1]:[0.8,1.9]):n===2?[0.75,1.5]:[0.75,1.3];
-    const go=()=>{
-      const as=ims.filter(i=>i.naturalWidth).map(i=>i.naturalWidth/i.naturalHeight); if(as.length<n) return;
-      const ar=Math.min(lim[1],Math.max(lim[0],as.reduce((a,b)=>a+b,0)/n));
-      row.querySelectorAll("figure").forEach(f=>f.style.setProperty("--ar",ar.toFixed(3)));
-      ims.forEach((im,k)=>{ const fit=Math.abs(Math.log(as[k]/ar))>0.16; im.classList.toggle("fit",fit); im.classList.add("ok");
-        if(fit){ try{ const c=document.createElement("canvas"); c.width=c.height=4; const x=c.getContext("2d"); x.drawImage(im,0,0,4,4); const d=x.getImageData(0,0,1,1).data; im.parentNode.style.background=`rgb(${d[0]},${d[1]},${d[2]})`; }catch(e){} } });
-    };
-    ims.forEach(im=>{ if(im.complete&&im.naturalWidth) go(); else im.addEventListener("load",go); });
+  root.querySelectorAll(".p-row img").forEach(im=>{
+    const go=()=>{ if(!im.naturalWidth) return; const f=im.closest("figure"); f.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(4)); f.classList.add("ok"); im.classList.add("ok"); };
+    if(im.complete&&im.naturalWidth) go(); else im.addEventListener("load",go);
   });
 }
 /* ---------- behaviour ---------- */
