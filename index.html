@@ -154,13 +154,24 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .tbl .y{width:9%;color:var(--muted)}
 .tbl .go{text-align:right;width:40px}
 @media (max-width:640px){.tbl .hide{display:none}}
-.pp-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;padding-block:28px 26px}
-.pp-head p{margin:0;max-width:60ch;font-size:clamp(16px,1.3vw,19px);line-height:1.5}
+.spot{background:#111110;color:#F2F2F1;margin-top:clamp(72px,10vw,140px);padding-block:clamp(56px,7vw,110px);position:relative;overflow:hidden}
+.spot::before{content:"";position:absolute;inset:auto -10% -40% auto;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(closest-side,rgba(255,92,40,.22),transparent);pointer-events:none}
+.spot-in{position:relative}
+.spot-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.14)}
+.spot-tag{display:inline-flex;align-items:center;gap:10px;background:#FF5C28;color:#111;border-radius:99px;padding:8px 14px 8px 12px;text-transform:uppercase;letter-spacing:.06em}
+.spot-tag i{width:8px;height:8px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
+@keyframes spotblink{50%{opacity:.25}}
+.spot-meta{color:rgba(242,242,241,.55)}
+.spot-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px clamp(32px,5vw,80px);align-items:end;padding-block:clamp(28px,4vw,52px) clamp(24px,3vw,40px)}
+.spot-head h2{margin:0;font:600 clamp(64px,11vw,180px)/.82 var(--display);letter-spacing:-.04em;white-space:nowrap}
+.spot-copy p{margin:0 0 20px;max-width:56ch;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:rgba(242,242,241,.82)}
 .pp-links{display:flex;gap:10px;flex-wrap:wrap}
-.pp-frame{border-radius:18px;overflow:hidden;background:#e9e9e7}
+.spot-btn{background:#F2F2F1;color:#111;border-color:#F2F2F1}
+.spot-line{background:transparent;color:#F2F2F1;border:1px solid rgba(255,255,255,.35)}
+.pp-frame{border-radius:20px;overflow:hidden;background:#e9e9e7;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08)}
 .pp-frame iframe{display:block;width:100%;height:930px;border:0}
-.pp-note{color:var(--muted);margin:14px 0 0}
-@media (max-width:699px){.pp-head{grid-template-columns:1fr}.pp-frame iframe{height:1520px}}
+.pp-note{color:rgba(242,242,241,.5);margin:16px 0 0}
+@media (max-width:699px){.spot-head{grid-template-columns:1fr}.pp-frame iframe{height:1520px}}
 .peek{position:fixed;left:0;top:0;width:220px;aspect-ratio:4/3;pointer-events:none;z-index:25;overflow:hidden;background:var(--surface);opacity:0;border-radius:4px;transform:translate(18px,-50%) scale(.96);transition:opacity .15s,transform .15s;box-shadow:0 18px 30px -16px rgba(0,0,0,.4)}
 .peek.on{opacity:1;transform:translate(18px,-50%) scale(1)}
 .peek img{width:100%;height:100%;object-fit:cover}
@@ -569,6 +580,13 @@ const PROJECTS_ALL = [
 "solful-needs.jpg"
 ],
 [
+"solful-persona-day.jpg",
+"solful-caregiver.jpg"
+],
+[
+"solful-simply.jpg"
+],
+[
 "solful-deck-11.jpg"
 ],
 [
@@ -586,7 +604,10 @@ const PROJECTS_ALL = [
 "solful-logo.jpg"
 ],
 [
-"solful-tone.jpg",
+"solful-type.jpg",
+"solful-tone.jpg"
+],
+[
 "solful-mood.jpg"
 ],
 [
@@ -617,6 +638,9 @@ const PROJECTS_ALL = [
 "p": "Three products for three moments of the day: Good Warrior collagen bone broth cubes for the morning, Gatorade caffeine boba for the afternoon, and Pepsi Sizzle drink bombs for the night."
 },
 [
+"solful-wellness-gap.jpg"
+],
+[
 "solful-products.jpg"
 ],
 [
@@ -641,9 +665,7 @@ const PROJECTS_ALL = [
 "solful-solchella.jpg"
 ],
 [
-"solful-arch-shapes.jpg",
-"solful-arch-plan.jpg",
-"solful-arch-flow.jpg"
+"solful-solchella-architecture.jpg"
 ],
 [
 "solful-solchella-first-look.jpg"
@@ -652,12 +674,7 @@ const PROJECTS_ALL = [
 "solful-solchella-flow.jpg"
 ],
 [
-"solful-solchella-vibe-check.jpg",
-"solful-solchella-wall.jpg"
-],
-[
-"solful-solchella-firepit.jpg",
-"solful-solchella-lounge.jpg"
+"solful-solchella-launch.jpg"
 ],
 [
 "solful-mall.jpg",
@@ -1173,16 +1190,27 @@ function home(){
   </a>
 
   <div class="pad">
-    <section id="passion">
-      <div class="sh"><h2>Passion project</h2><span class="mono">BBX-01 · 2026</span></div>
-      <div class="pp-head">
-        <p>BBX-01 is a beatbox sampler I made that runs in your browser. Record yourself beatboxing and it cuts the take into slices at every hit, snaps them to the beat and loops them. Then reshape the sound and the rhythm.</p>
-        <div class="pp-links"><a class="btn line" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a><a class="btn line" href="https://github.com/TrentEstes/bbx-01" target="_blank" rel="noopener">Code <span class="ar">↗</span></a></div>
+  </div>
+
+  <section id="passion" class="spot">
+    <div class="pad spot-in">
+      <div class="spot-top">
+        <span class="spot-tag mono"><i></i>Passion project spotlight</span>
+        <span class="mono spot-meta">BBX-01 · 2026 · Try it below</span>
+      </div>
+      <div class="spot-head">
+        <h2>BBX&#8209;01</h2>
+        <div class="spot-copy">
+          <p>A beatbox sampler I made that runs in your browser. Record yourself beatboxing and it cuts the take into slices at every hit, snaps them to the beat and loops them. Then reshape the sound and the rhythm.</p>
+          <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a><a class="btn spot-line" href="https://github.com/TrentEstes/bbx-01" target="_blank" rel="noopener">Code <span class="ar">↗</span></a></div>
+        </div>
       </div>
       <div class="pp-frame"><iframe id="bbx" src="bbx-01/" title="BBX-01 beatbox sampler" allow="microphone; autoplay" loading="lazy"></iframe></div>
       <p class="pp-note mono">Press Demo to hear it without a mic. Recording asks for microphone access.</p>
-    </section>
+    </div>
+  </section>
 
+  <div class="pad">
     <section id="about">
       <div class="sh"><h2>About</h2><span class="mono">Blacksburg, Virginia · Virginia Tech</span></div>
       <div class="about">
