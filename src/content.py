@@ -120,8 +120,8 @@ P = [
             ["3523bc9c","3c3347ca"]]),
 
  dict(feature=True, slug="hale-community-garden", title="Hale Community Garden", sub="Brand identity", year=2026, coverimg="hale-cover.jpg",
-      tags=["Identity","Print"], kind="Identity for a community garden in Blacksburg, VA",
-      info="Branding for Hale Community Garden in Blacksburg, run by Live Work Eat Grow. It started with interviews with the garden coordinator and the land donor, plus time observing the space.",
+      tags=["Identity","Print"], kind="Identity for a local community garden",
+      info="Branding for Hale Community Garden, run by Live Work Eat Grow. It started with interviews with the garden coordinator and the land donor, plus time observing the space.",
       rows=[["0cf50797"],
             {"h":"Research"},
             ["f92615d7","f02503b9"],
