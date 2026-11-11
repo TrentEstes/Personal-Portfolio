@@ -304,6 +304,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
       <a href="#work">Work</a>
       <a href="#posters">Posters</a>
       <a class="hide-s" href="#about">About</a>
+      <a class="hide-s" href="Trent-Estes-Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
       <a class="hide-s" href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="cta" href="#contact">Contact</a>
     </nav>
@@ -333,7 +334,7 @@ const SITE = {
   phone: "804-997-1613",
   linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
   instagram: "",
-  resume: "",  // add "resume.pdf" here once the file is in the repo
+  resume: "Trent-Estes-Resume.pdf",
   featured: ["gatorade-banana","ginergy","paige-bueckers-court","solful","appalachian-folk-festival","olympic-branding","hale-community-garden","the-junction"],
 };
 const CDN = "https://cdn.myportfolio.com/b4959d68-b493-4a74-8c26-0cfab32fedbd/";
@@ -465,13 +466,13 @@ function footer(){
   return `
   <footer class="foot" id="contact">
     <div class="f-in pad">
-      <h2>Want to work together? <span>Send me a note.</span></h2>
+      <h2>Sow good seeds, <span>and enjoy your flowers.</span></h2>
       <ul class="mono">
         <li><a href="mailto:${esc(SITE.email)}"><span>Email</span><span>${esc(SITE.email)}</span></a></li>
         <li><a href="tel:${digits(SITE.phone)}"><span>Phone</span><span>${esc(SITE.phone)}</span></a></li>
         ${SITE.linkedin?`<li><a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span>↗</span></a></li>`:""}
         ${SITE.instagram?`<li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a></li>`:""}
-        ${SITE.resume?`<li><a href="${esc(SITE.resume)}"><span>Résumé</span><span>↗</span></a></li>`:""}
+        ${SITE.resume?`<li><a href="${esc(SITE.resume)}" target="_blank" rel="noopener"><span>Résumé</span><span>PDF ↗</span></a></li>`:""}
       </ul>
     </div>
     <div class="legal pad mono"><span>© ${new Date().getFullYear()} ${esc(SITE.name)}</span><span>Brand &amp; packaging design</span></div>
