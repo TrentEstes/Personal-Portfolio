@@ -151,27 +151,27 @@ P = [
             ["58451afd","63a8f738"],
             {"v":"Mk8xjx99vvg"}]),
 
- dict(slug="poster-library", title="Poster Library", sub="Posters", year=2025, cover="03ba7ac7",
+ dict(slug="poster-library", title="Poster Library", sub="Posters", year=2025, cover="poster-library.webp",
       tags=["Print"], kind="Poster collection",
       info="",
-      rows=[["37ce9a5f","1e0d873d"],["44673a3c","469755a0"],["4c40f712","df369f12"],["9a9d709a","2e269fe0"],["0e6edf7c"],
-            {"v":"8C4__iZJ5GW"},{"v":"TkCUfjiXhtE"}]),
+      rows=[["poster-library.webp","1e0d873d"],["44673a3c","469755a0"],["4c40f712","df369f12"],["9a9d709a","2e269fe0"],["0e6edf7c"],
+            ["motion-om-mani.mp4","motion-kung-jjak.mp4"]]),
 ]
 
 # Poster hall: (file or id prefix, title, note, project slug or "", width/height)
 POSTERS = [
  ("1d68f61c","Billy Strings","Appalachian Folk Festival","appalachian-folk-festival",0.667),
- ("eb6e27f9","Record Vault","Guarding music gold","record-vault",0.75),
- ("60c87e43","Berlin Olympics","Event identity","olympic-branding",0.75),
+  ("60c87e43","Berlin Olympics","Event identity","olympic-branding",0.75),
  ("df369f12","Lightnin' Fast","Billy Strings","",0.75),
  ("c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg","Hale Community Garden","Cultivating community","hale-community-garden",0.786),
  ("469755a0","Miss Modular","Stereolab","",0.647),
- ("court-poster-7.jpg","A Ball and a Basket","Paige Bueckers court","paige-bueckers-court",1.0),
  ("5d69892e","Arabic Typography","Typographic study","arabic-typography",0.75),
  ("4c40f712","Spring Rush 2025","Event poster","",0.8),
  ("9a9d709a","Fly!","Poster","",0.647),
  ("1e0d873d","The Crystal Coast","Poster","",0.75),
  ("44673a3c","Love","Poster","",0.75),
- ("37ce9a5f","Poster Library","Animated poster","",0.75),
+ ("poster-library.webp","Poster Library","Animated poster","",0.75),
+("motion-om-mani.mp4","Om Mani Padme Hum","Motion poster","",1.0),
+("motion-kung-jjak.mp4","Kung Jjak","Motion poster","",1.0),
  ("2e269fe0","Whiplash","Film poster study","",0.647),
 ]

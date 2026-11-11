@@ -134,7 +134,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(-360deg)}}
 @media (prefers-reduced-motion: reduce){.ring .sp{animation:none}}
 .ring figure{position:absolute;margin:0;height:clamp(96px,10vw,140px);backface-visibility:hidden;box-shadow:0 14px 20px -14px rgba(0,0,0,.45);background:#ddd}
-.ring img{height:100%;width:auto;max-width:none}
+.ring img,.ring video{height:100%;width:auto;max-width:none}
+video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .he-stage .gl{position:absolute;background:var(--line)}
 @media (max-width:979px){.he-stage{height:300px}}
 
@@ -203,8 +204,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .p-row figure{flex:var(--ar,1.5) 1 0;min-width:0;margin:0;overflow:hidden;border-radius:10px;aspect-ratio:var(--ar,1.5);background:#E6E6E3}
 .p-row figure.ok{background:transparent}
 .p-row.c1 figure{flex:none;width:min(100%,calc(var(--ar,1.5) * 92vh));margin-inline:auto}
-.p-row img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
-.p-row img.ok{opacity:1}
+.p-row img,.p-row video{display:block;width:100%;height:100%;object-fit:cover}
 @media (max-width:699px){.p-row{flex-direction:column}.p-row figure{flex:none;width:100%}.p-row.c1 figure{width:min(100%,calc(var(--ar,1.5) * 75vh))}}
 .step{display:grid;grid-template-columns:1fr;gap:18px;padding-block:clamp(28px,3.5vw,48px) clamp(36px,5vw,72px);border-top:1px solid var(--line)}
 @media (min-width:900px){.step{grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:clamp(24px,3vw,48px)}.s-side{position:sticky;top:96px;align-self:start}}
@@ -242,7 +242,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 .hc{position:absolute;left:0;top:0;transform-style:preserve-3d;cursor:pointer}
 .hc .fa,.hc .bk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .hc .fa{background:#ddd;box-shadow:0 1px 0 rgba(0,0,0,.06),0 36px 40px -30px rgba(0,0,0,.5)}
-.hc .fa img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hc .fa img,.hc .fa video{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .hc .fa i{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
 .hc .bk{transform:rotateY(180deg);background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);display:flex;align-items:flex-end;padding:10px;color:#B5B5B1}
 .hc .t1,.hc .t2{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;white-space:nowrap;font:400 10.5px/1 var(--mono)}
@@ -268,8 +268,8 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 @media (max-width:640px){.hud h1{display:none}.hnav{display:none}.hint{max-width:none;left:16px;right:16px;text-align:left;bottom:auto;top:calc(68px + env(safe-area-inset-top,0px))}}
 .lb{position:absolute;inset:0;z-index:5;background:rgba(242,242,241,.97);display:grid;grid-template-columns:1fr;place-items:center;padding:70px 16px 24px;cursor:default;animation:fade .3s both}
 @media (min-width:900px){.lb{grid-template-columns:minmax(0,1fr) 320px;gap:40px;padding:40px 60px}}
-.lb img{max-height:calc(100svh - 170px);max-width:100%;width:auto;box-shadow:0 30px 50px -30px rgba(0,0,0,.45)}
-@media (min-width:900px){.lb img{max-height:calc(100svh - 80px);justify-self:end}}
+.lb img,.lb video{max-height:calc(100svh - 170px);max-width:100%;width:auto;box-shadow:0 30px 50px -30px rgba(0,0,0,.45)}
+@media (min-width:900px){.lb img,.lb video{max-height:calc(100svh - 80px);justify-self:end}}
 .lb .meta{display:flex;flex-direction:column;gap:10px;justify-self:start;width:100%;max-width:420px}
 .lb .meta b{font:600 44px/.95 var(--display);letter-spacing:-.03em}
 .lb .meta .mono{color:var(--muted)}
@@ -332,6 +332,7 @@ const pad2 = n => String(n).padStart(2,"0");
 const srcs = f => { const n=f.split("?")[0]; const web="images-web/"+n.replace(/\.png$/i,".jpg"); return [...new Set([web, "images-web/"+n, "images/"+n, ...(f.includes("?")?[CDN+f]:[])])]; };
 function nextSrc(el){ const l=(el.dataset.fb||"").split("|").filter(Boolean); if(l.length){ el.dataset.fb=l.slice(1).join("|"); el.src=l[0]; } }
 function img(f, alt, lazy=true, style=""){
+  if(/\.mp4$/i.test(f)){ const v="images-web/"+f; return `<video class="mv" src="${v}" poster="${v.replace(/\.mp4$/i,".jpg")}" muted autoplay loop playsinline disablepictureinpicture preload="${lazy?"metadata":"auto"}" aria-label="${esc(alt)}" draggable="false" ${style?`style="${style}"`:""}></video>`; }
   const [a,...rest]=srcs(f);
   return `<img src="${a}" data-fb="${rest.join("|")}" alt="${esc(alt)}" ${lazy?'loading="lazy"':''} decoding="async" draggable="false" ${style?`style="${style}"`:""} onerror="nextSrc(this)">`;
 }
@@ -492,7 +493,6 @@ function project(p){
 
 /* ---------- the poster hall: posters on a turning spiral ---------- */
 function hallHTML(){
-  const vids=(HALL_SRC?HALL_SRC.rows.filter(r=>r.v):[]);
   const touch=matchMedia("(hover:none)").matches;
   return `
   <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster hall: posters arranged on a spiral">
@@ -513,7 +513,7 @@ function hallHTML(){
     </header>
     <div class="now" aria-live="polite"><span class="mono" id="nowN"></span><b id="nowT"></b><span class="mono" id="nowS"></span></div>
     <div class="hnav"><button type="button" id="hprev" aria-label="Previous poster">←</button><button type="button" id="hnext" aria-label="Next poster">→</button></div>
-    <div class="hint mono" id="hint">${touch?"Swipe to turn the spiral · tap a poster to open it":"Drag or scroll to turn the spiral · click a poster to open it"}${vids.length?`<br>Motion pieces: ${vids.map((v,k)=>`<a style="pointer-events:auto" href="https://www-ccv.adobe.io/v1/player/ccv/${v.v}/embed?api_key=BehancePro2View" target="_blank" rel="noopener">${k+1} ↗</a>`).join(" ")}`:""}</div>
+    <div class="hint mono" id="hint">${touch?"Swipe to turn the spiral · tap a poster to open it":"Drag or scroll to turn the spiral · click a poster to open it"}</div>
     <div class="lb" id="lb" hidden></div>
   </div>`;
 }
@@ -607,6 +607,7 @@ function stopHall(){
 }
 
 function fitRows(root){
+  root.querySelectorAll(".p-row video").forEach(v=>{ const go=()=>{ if(!v.videoWidth) return; const f=v.closest("figure"); f.style.setProperty("--ar",(v.videoWidth/v.videoHeight).toFixed(4)); f.classList.add("ok"); }; if(v.readyState>=1) go(); else v.addEventListener("loadedmetadata",go); });
   root.querySelectorAll(".p-row img").forEach(im=>{
     const go=()=>{ if(!im.naturalWidth) return; const f=im.closest("figure"); f.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(4)); f.classList.add("ok"); im.classList.add("ok"); };
     if(im.complete&&im.naturalWidth) go(); else im.addEventListener("load",go);

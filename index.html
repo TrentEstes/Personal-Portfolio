@@ -138,7 +138,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(-360deg)}}
 @media (prefers-reduced-motion: reduce){.ring .sp{animation:none}}
 .ring figure{position:absolute;margin:0;height:clamp(96px,10vw,140px);backface-visibility:hidden;box-shadow:0 14px 20px -14px rgba(0,0,0,.45);background:#ddd}
-.ring img{height:100%;width:auto;max-width:none}
+.ring img,.ring video{height:100%;width:auto;max-width:none}
+video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .he-stage .gl{position:absolute;background:var(--line)}
 @media (max-width:979px){.he-stage{height:300px}}
 
@@ -207,8 +208,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .p-row figure{flex:var(--ar,1.5) 1 0;min-width:0;margin:0;overflow:hidden;border-radius:10px;aspect-ratio:var(--ar,1.5);background:#E6E6E3}
 .p-row figure.ok{background:transparent}
 .p-row.c1 figure{flex:none;width:min(100%,calc(var(--ar,1.5) * 92vh));margin-inline:auto}
-.p-row img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
-.p-row img.ok{opacity:1}
+.p-row img,.p-row video{display:block;width:100%;height:100%;object-fit:cover}
 @media (max-width:699px){.p-row{flex-direction:column}.p-row figure{flex:none;width:100%}.p-row.c1 figure{width:min(100%,calc(var(--ar,1.5) * 75vh))}}
 .step{display:grid;grid-template-columns:1fr;gap:18px;padding-block:clamp(28px,3.5vw,48px) clamp(36px,5vw,72px);border-top:1px solid var(--line)}
 @media (min-width:900px){.step{grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:clamp(24px,3vw,48px)}.s-side{position:sticky;top:96px;align-self:start}}
@@ -246,7 +246,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 .hc{position:absolute;left:0;top:0;transform-style:preserve-3d;cursor:pointer}
 .hc .fa,.hc .bk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .hc .fa{background:#ddd;box-shadow:0 1px 0 rgba(0,0,0,.06),0 36px 40px -30px rgba(0,0,0,.5)}
-.hc .fa img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hc .fa img,.hc .fa video{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .hc .fa i{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
 .hc .bk{transform:rotateY(180deg);background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);display:flex;align-items:flex-end;padding:10px;color:#B5B5B1}
 .hc .t1,.hc .t2{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;white-space:nowrap;font:400 10.5px/1 var(--mono)}
@@ -272,8 +272,8 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 @media (max-width:640px){.hud h1{display:none}.hnav{display:none}.hint{max-width:none;left:16px;right:16px;text-align:left;bottom:auto;top:calc(68px + env(safe-area-inset-top,0px))}}
 .lb{position:absolute;inset:0;z-index:5;background:rgba(242,242,241,.97);display:grid;grid-template-columns:1fr;place-items:center;padding:70px 16px 24px;cursor:default;animation:fade .3s both}
 @media (min-width:900px){.lb{grid-template-columns:minmax(0,1fr) 320px;gap:40px;padding:40px 60px}}
-.lb img{max-height:calc(100svh - 170px);max-width:100%;width:auto;box-shadow:0 30px 50px -30px rgba(0,0,0,.45)}
-@media (min-width:900px){.lb img{max-height:calc(100svh - 80px);justify-self:end}}
+.lb img,.lb video{max-height:calc(100svh - 170px);max-width:100%;width:auto;box-shadow:0 30px 50px -30px rgba(0,0,0,.45)}
+@media (min-width:900px){.lb img,.lb video{max-height:calc(100svh - 80px);justify-self:end}}
 .lb .meta{display:flex;flex-direction:column;gap:10px;justify-self:start;width:100%;max-width:420px}
 .lb .meta b{font:600 44px/.95 var(--display);letter-spacing:-.03em}
 .lb .meta .mono{color:var(--muted)}
@@ -863,7 +863,7 @@ const PROJECTS_ALL = [
 "title": "Poster Library",
 "sub": "Posters",
 "year": 2025,
-"cover": "03ba7ac7-bec5-4db6-a655-da5c905cf9ba_car_3x4.gif?h=500c2bd45150f210b9d27369a84b07b9",
+"cover": "poster-library.webp",
 "tags": [
 "Print"
 ],
@@ -871,7 +871,7 @@ const PROJECTS_ALL = [
 "info": "",
 "rows": [
 [
-"37ce9a5f-2bfa-4980-b533-9f325c4e5727_rw_1200.gif?h=79fb97a527b8f8d6b442e057c0ee8c8f",
+"poster-library.webp",
 "1e0d873d-c2e0-4965-a156-67ca68ba3b82_rw_3840.jpg?h=81ff5a15c98e098ac4c26c45d567c874"
 ],
 [
@@ -889,17 +889,15 @@ const PROJECTS_ALL = [
 [
 "0e6edf7c-2302-4c86-80bd-cdadc7698445_rw_3840.png?h=31838a98aaf6307c8e2ee9b996fe9c77"
 ],
-{
-"v": "8C4__iZJ5GW"
-},
-{
-"v": "TkCUfjiXhtE"
-}
+[
+"motion-om-mani.mp4",
+"motion-kung-jjak.mp4"
+]
 ],
 "size": "small"
 }
 ];
-const POSTERS = [{"f": "1d68f61c-6f2f-4995-8903-1934ed105a4a_rw_3840.jpg?h=8b7f736ed9361eb6f3e74da26419df70", "t": "Billy Strings", "n": "Appalachian Folk Festival", "s": "appalachian-folk-festival", "ar": 0.667}, {"f": "eb6e27f9-298f-41d1-a5c6-9c18469ad7ea_rwc_1163x422x1292x1721x1292.jpg?h=a3d7756e2af3a2ad345a4f8c0361d494", "t": "Record Vault", "n": "Guarding music gold", "s": "record-vault", "ar": 0.75}, {"f": "60c87e43-7ee8-49c2-bca5-79524d77adb6_rwc_417x290x1081x1440x1081.jpg?h=ca7327c0c0b495e23fdbaef191076344", "t": "Berlin Olympics", "n": "Event identity", "s": "olympic-branding", "ar": 0.75}, {"f": "df369f12-ae17-4968-bbfd-72691aa25e21_rw_3840.jpg?h=15ffbc61089c6290eb179d828668d900", "t": "Lightnin' Fast", "n": "Billy Strings", "s": "", "ar": 0.75}, {"f": "c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg", "t": "Hale Community Garden", "n": "Cultivating community", "s": "hale-community-garden", "ar": 0.786}, {"f": "469755a0-02e0-42a0-83c4-89c8492ae55b_rw_1200.jpg?h=6eb684b2acbaa0c40a5ee76be11b2519", "t": "Miss Modular", "n": "Stereolab", "s": "", "ar": 0.647}, {"f": "court-poster-7.jpg", "t": "A Ball and a Basket", "n": "Paige Bueckers court", "s": "paige-bueckers-court", "ar": 1.0}, {"f": "5d69892e-e944-4dbc-8ad4-6881dbf6db96_car_3x4.jpg?h=7dc4a0a8a877ab630e7ac5a0f9161d7c", "t": "Arabic Typography", "n": "Typographic study", "s": "arabic-typography", "ar": 0.75}, {"f": "4c40f712-d852-43c9-b6d1-23986f6c9043_rw_1920.jpg?h=cb0c99f93a89fa484e834e743322c4f3", "t": "Spring Rush 2025", "n": "Event poster", "s": "", "ar": 0.8}, {"f": "9a9d709a-1bc5-47ba-b692-3c6b299e61c5_rw_1920.jpg?h=1a2bac2c140a5c0538b8b8ef48681c62", "t": "Fly!", "n": "Poster", "s": "", "ar": 0.647}, {"f": "1e0d873d-c2e0-4965-a156-67ca68ba3b82_rw_3840.jpg?h=81ff5a15c98e098ac4c26c45d567c874", "t": "The Crystal Coast", "n": "Poster", "s": "", "ar": 0.75}, {"f": "44673a3c-a210-423c-913e-20da5e979228_rw_3840.jpg?h=cb44b92509907c8baafa72f928a7a365", "t": "Love", "n": "Poster", "s": "", "ar": 0.75}, {"f": "37ce9a5f-2bfa-4980-b533-9f325c4e5727_rw_1200.gif?h=79fb97a527b8f8d6b442e057c0ee8c8f", "t": "Poster Library", "n": "Animated poster", "s": "", "ar": 0.75}, {"f": "2e269fe0-51c8-4fdc-bb4a-4b3eb6643a19_rw_1920.jpg?h=e3ae87b875aab359cccd6992aad8728b", "t": "Whiplash", "n": "Film poster study", "s": "", "ar": 0.647}];
+const POSTERS = [{"f": "1d68f61c-6f2f-4995-8903-1934ed105a4a_rw_3840.jpg?h=8b7f736ed9361eb6f3e74da26419df70", "t": "Billy Strings", "n": "Appalachian Folk Festival", "s": "appalachian-folk-festival", "ar": 0.667}, {"f": "60c87e43-7ee8-49c2-bca5-79524d77adb6_rwc_417x290x1081x1440x1081.jpg?h=ca7327c0c0b495e23fdbaef191076344", "t": "Berlin Olympics", "n": "Event identity", "s": "olympic-branding", "ar": 0.75}, {"f": "df369f12-ae17-4968-bbfd-72691aa25e21_rw_3840.jpg?h=15ffbc61089c6290eb179d828668d900", "t": "Lightnin' Fast", "n": "Billy Strings", "s": "", "ar": 0.75}, {"f": "c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg", "t": "Hale Community Garden", "n": "Cultivating community", "s": "hale-community-garden", "ar": 0.786}, {"f": "469755a0-02e0-42a0-83c4-89c8492ae55b_rw_1200.jpg?h=6eb684b2acbaa0c40a5ee76be11b2519", "t": "Miss Modular", "n": "Stereolab", "s": "", "ar": 0.647}, {"f": "5d69892e-e944-4dbc-8ad4-6881dbf6db96_car_3x4.jpg?h=7dc4a0a8a877ab630e7ac5a0f9161d7c", "t": "Arabic Typography", "n": "Typographic study", "s": "arabic-typography", "ar": 0.75}, {"f": "4c40f712-d852-43c9-b6d1-23986f6c9043_rw_1920.jpg?h=cb0c99f93a89fa484e834e743322c4f3", "t": "Spring Rush 2025", "n": "Event poster", "s": "", "ar": 0.8}, {"f": "9a9d709a-1bc5-47ba-b692-3c6b299e61c5_rw_1920.jpg?h=1a2bac2c140a5c0538b8b8ef48681c62", "t": "Fly!", "n": "Poster", "s": "", "ar": 0.647}, {"f": "1e0d873d-c2e0-4965-a156-67ca68ba3b82_rw_3840.jpg?h=81ff5a15c98e098ac4c26c45d567c874", "t": "The Crystal Coast", "n": "Poster", "s": "", "ar": 0.75}, {"f": "44673a3c-a210-423c-913e-20da5e979228_rw_3840.jpg?h=cb44b92509907c8baafa72f928a7a365", "t": "Love", "n": "Poster", "s": "", "ar": 0.75}, {"f": "poster-library.webp", "t": "Poster Library", "n": "Animated poster", "s": "", "ar": 0.75}, {"f": "motion-om-mani.mp4", "t": "Om Mani Padme Hum", "n": "Motion poster", "s": "", "ar": 1.0}, {"f": "motion-kung-jjak.mp4", "t": "Kung Jjak", "n": "Motion poster", "s": "", "ar": 1.0}, {"f": "2e269fe0-51c8-4fdc-bb4a-4b3eb6643a19_rw_1920.jpg?h=e3ae87b875aab359cccd6992aad8728b", "t": "Whiplash", "n": "Film poster study", "s": "", "ar": 0.647}];
 const HALL_SLUG = "poster-library";
 const HALL_SRC = PROJECTS_ALL.find(p=>p.slug===HALL_SLUG);
 const PROJECTS = PROJECTS_ALL.filter(p=>p.slug!==HALL_SLUG);
@@ -911,6 +909,7 @@ const pad2 = n => String(n).padStart(2,"0");
 const srcs = f => { const n=f.split("?")[0]; const web="images-web/"+n.replace(/\.png$/i,".jpg"); return [...new Set([web, "images-web/"+n, "images/"+n, ...(f.includes("?")?[CDN+f]:[])])]; };
 function nextSrc(el){ const l=(el.dataset.fb||"").split("|").filter(Boolean); if(l.length){ el.dataset.fb=l.slice(1).join("|"); el.src=l[0]; } }
 function img(f, alt, lazy=true, style=""){
+  if(/\.mp4$/i.test(f)){ const v="images-web/"+f; return `<video class="mv" src="${v}" poster="${v.replace(/\.mp4$/i,".jpg")}" muted autoplay loop playsinline disablepictureinpicture preload="${lazy?"metadata":"auto"}" aria-label="${esc(alt)}" draggable="false" ${style?`style="${style}"`:""}></video>`; }
   const [a,...rest]=srcs(f);
   return `<img src="${a}" data-fb="${rest.join("|")}" alt="${esc(alt)}" ${lazy?'loading="lazy"':''} decoding="async" draggable="false" ${style?`style="${style}"`:""} onerror="nextSrc(this)">`;
 }
@@ -1071,7 +1070,6 @@ function project(p){
 
 /* ---------- the poster hall: posters on a turning spiral ---------- */
 function hallHTML(){
-  const vids=(HALL_SRC?HALL_SRC.rows.filter(r=>r.v):[]);
   const touch=matchMedia("(hover:none)").matches;
   return `
   <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster hall: posters arranged on a spiral">
@@ -1092,7 +1090,7 @@ function hallHTML(){
     </header>
     <div class="now" aria-live="polite"><span class="mono" id="nowN"></span><b id="nowT"></b><span class="mono" id="nowS"></span></div>
     <div class="hnav"><button type="button" id="hprev" aria-label="Previous poster">←</button><button type="button" id="hnext" aria-label="Next poster">→</button></div>
-    <div class="hint mono" id="hint">${touch?"Swipe to turn the spiral · tap a poster to open it":"Drag or scroll to turn the spiral · click a poster to open it"}${vids.length?`<br>Motion pieces: ${vids.map((v,k)=>`<a style="pointer-events:auto" href="https://www-ccv.adobe.io/v1/player/ccv/${v.v}/embed?api_key=BehancePro2View" target="_blank" rel="noopener">${k+1} ↗</a>`).join(" ")}`:""}</div>
+    <div class="hint mono" id="hint">${touch?"Swipe to turn the spiral · tap a poster to open it":"Drag or scroll to turn the spiral · click a poster to open it"}</div>
     <div class="lb" id="lb" hidden></div>
   </div>`;
 }
@@ -1186,6 +1184,7 @@ function stopHall(){
 }
 
 function fitRows(root){
+  root.querySelectorAll(".p-row video").forEach(v=>{ const go=()=>{ if(!v.videoWidth) return; const f=v.closest("figure"); f.style.setProperty("--ar",(v.videoWidth/v.videoHeight).toFixed(4)); f.classList.add("ok"); }; if(v.readyState>=1) go(); else v.addEventListener("loadedmetadata",go); });
   root.querySelectorAll(".p-row img").forEach(im=>{
     const go=()=>{ if(!im.naturalWidth) return; const f=im.closest("figure"); f.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(4)); f.classList.add("ok"); im.classList.add("ok"); };
     if(im.complete&&im.naturalWidth) go(); else im.addEventListener("load",go);
