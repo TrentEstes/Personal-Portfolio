@@ -1163,12 +1163,12 @@ function home(){
     <p class="h-word b" aria-hidden="true">Estes</p>
     <div class="h-bot pad">
       <p>Hi, I'm Trent. I design brands and packaging, usually pulling from old music, the outdoors and anything retro.</p>
-      <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster hall <span class="ar">→</span></a></div>
+      <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster gallery <span class="ar">→</span></a></div>
     </div>
   </section>
   <div class="m-intro pad">
     <p>Hi, I'm Trent. I design brands and packaging, usually pulling from old music, the outdoors and anything retro.</p>
-    <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster hall <span class="ar">→</span></a></div>
+    <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster gallery <span class="ar">→</span></a></div>
   </div>
 
   <div class="pad">
@@ -1178,11 +1178,11 @@ function home(){
     </section>
   </div>
 
-  <a class="hentry" href="#posters" aria-label="Enter the poster hall">
+  <a class="hentry" href="#posters" aria-label="Enter the poster gallery">
     <div class="he-in pad">
       <div class="he-text">
         <span class="mono">${POSTERS.length} posters</span>
-        <h2>Poster hall</h2>
+        <h2>Poster gallery</h2>
         <p>The posters, set on a spiral you can turn. Drag or scroll to move through it.</p>
         <span class="btn ink">Enter <span class="ar">→</span></span>
       </div>
@@ -1294,7 +1294,7 @@ function project(p){
 function hallHTML(){
   const touch=matchMedia("(hover:none)").matches;
   return `
-  <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster hall: posters arranged on a spiral">
+  <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster gallery: posters arranged on a spiral">
     <span class="g h" style="top:42%"></span><span class="g v" style="left:50%"></span>
     <div class="stage"><div class="cam" id="cam"><div class="helix" id="helix">
       <div class="floor" id="floor"></div>
@@ -1307,7 +1307,7 @@ function hallHTML(){
     </div></div></div>
     <header class="hud">
       <a class="back mono" href="#work">← Back</a>
-      <h1>Poster hall</h1>
+      <h1>Poster gallery</h1>
       <span class="cnt mono" id="hcount">01 / ${pad2(POSTERS.length)}</span>
     </header>
     <div class="now" aria-live="polite"><span class="mono" id="nowN"></span><b id="nowT"></b><span class="mono" id="nowS"></span></div>
@@ -1428,7 +1428,7 @@ function route(){
   if(mode==="hall" && h!=="posters") stopHall();
   if(h==="posters"){
     if(mode!=="hall"){ $("#app").innerHTML=hallHTML(); mode="hall"; document.body.classList.add("in-hall"); startHall(); $("#hall").focus({preventScroll:true}); }
-    document.title=`Poster hall · ${SITE.name}`;
+    document.title=`Poster gallery · ${SITE.name}`;
   } else if(p){
     $("#app").innerHTML=project(p); mode="project"; cardVis(); fitRows($("#pbody"));
     document.title=`${p.title} · ${SITE.name}`; window.scrollTo(0,0);
