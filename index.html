@@ -154,6 +154,13 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .tbl .y{width:9%;color:var(--muted)}
 .tbl .go{text-align:right;width:40px}
 @media (max-width:640px){.tbl .hide{display:none}}
+.pp-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end;padding-block:28px 26px}
+.pp-head p{margin:0;max-width:60ch;font-size:clamp(16px,1.3vw,19px);line-height:1.5}
+.pp-links{display:flex;gap:10px;flex-wrap:wrap}
+.pp-frame{border-radius:18px;overflow:hidden;background:#e9e9e7}
+.pp-frame iframe{display:block;width:100%;height:930px;border:0}
+.pp-note{color:var(--muted);margin:14px 0 0}
+@media (max-width:699px){.pp-head{grid-template-columns:1fr}.pp-frame iframe{height:1520px}}
 .peek{position:fixed;left:0;top:0;width:220px;aspect-ratio:4/3;pointer-events:none;z-index:25;overflow:hidden;background:var(--surface);opacity:0;border-radius:4px;transform:translate(18px,-50%) scale(.96);transition:opacity .15s,transform .15s;box-shadow:0 18px 30px -16px rgba(0,0,0,.4)}
 .peek.on{opacity:1;transform:translate(18px,-50%) scale(1)}
 .peek img{width:100%;height:100%;object-fit:cover}
@@ -316,12 +323,12 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 const SITE = {
   name: "Trent Estes",
   location: "Blacksburg, VA",
-  email: "trent.estes@yahoo.com",
+  email: "hello@trente.design",
   phone: "804-997-1613",
   linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
   instagram: "",
   resume: "",  // add "resume.pdf" here once the file is in the repo
-  featured: ["gatorade-banana","ginergy","paige-bueckers-court","solful","appalachian-folk-festival","hale-community-garden","the-junction"],
+  featured: ["gatorade-banana","ginergy","paige-bueckers-court","solful","appalachian-folk-festival","olympic-branding","hale-community-garden","the-junction"],
 };
 const CDN = "https://cdn.myportfolio.com/b4959d68-b493-4a74-8c26-0cfab32fedbd/";
 const PROJECTS_ALL = [
@@ -535,27 +542,32 @@ const PROJECTS_ALL = [
 "feature": true,
 "slug": "solful",
 "title": "Solful",
-"sub": "Brand + platform",
+"sub": "Brand + experience",
 "year": 2026,
 "size": "big",
 "tags": [
+"Strategy",
 "Identity",
-"Retail",
-"Product"
+"Product",
+"Retail"
 ],
 "kind": "Wellness platform, PepsiCo design intern cohort",
-"cover": "solful-retail.jpg",
-"info": "A wellness platform for Gen Z and young Millennials, made as a group project with the PepsiCo design intern cohort, summer 2026. Solful turns quick check-ins on energy, stress, sleep and hydration into a personalized snack plan.",
+"cover": "solful-hero.jpg",
+"info": "Solful is a wellness companion that helps Gen Z cut through decision fatigue, built around PepsiCo's better-for-you portfolio. A group project with the PepsiCo design intern cohort, summer 2026. I worked on the research and strategy behind the brand identity, product concepting, and the experience design for the retail immersion.",
 "rows": [
 [
-"solful-retail.jpg"
+"solful-hero.jpg"
 ],
 {
-"h": "Research"
+"h": "Research and strategy"
 },
 {
-"p": "Personas, three visual territories, and a survey to choose the direction."
+"p": "Gen Z is shaping a $2 trillion wellness market, but many find it overwhelming. Personas, a day-in-the-life study and visual territories set the brand values: authentic, grounded, encouraging, self-assured."
 },
+[
+"solful-brief.jpg",
+"solful-needs.jpg"
+],
 [
 "solful-deck-11.jpg"
 ],
@@ -564,65 +576,109 @@ const PROJECTS_ALL = [
 "solful-deck-18.jpg"
 ],
 {
-"h": "Identity"
+"h": "Brand identity"
 },
 {
-"p": "Sol is Latin for sun. The mark's circles and dashed half-ring stand for the cycle of the day and the calendar."
+"p": "Sol is Latin for sun, a symbol of the daily cycle; -ful is fulfillment. The mark draws on cave-painting suns."
 },
-[
-"solful-deck-21.jpg"
-],
 [
 "solful-logo-sketch.jpg",
-"solful-deck-23.jpg"
+"solful-logo.jpg"
 ],
 [
-"solful-deck-24.jpg"
+"solful-tone.jpg",
+"solful-mood.jpg"
 ],
 [
-"solful-fn-24.jpg",
-"solful-fn-25.jpg",
-"solful-fn-26.jpg"
-],
-[
-"solful-poster.jpg",
-"solful-motion.mp4",
-"solful-sign.jpg"
+"solful-ooh.jpg",
+"solful-social.jpg"
 ],
 {
-"h": "Platform and products"
+"h": "Digital experience"
 },
 {
-"p": "The app splits the day into Prepare, Sustain and Relax, each fed by a PepsiCo brand: Good Warrior, Gatorade and Pepsi."
+"p": "An app that turns quick check-ins into a snack plan, a calendar and a shoppable feed."
 },
 [
-"solful-deck-26.jpg"
+"solful-app-hero.jpg"
 ],
 [
-"solful-deck-28.jpg"
+"solful-app-shop.jpg",
+"solful-app-calendar.jpg"
 ],
 [
-"solful-deck-29.jpg",
-"solful-deck-30.jpg"
-],
-[
-"solful-deck-31.jpg"
+"solful-app-hand.jpg",
+"solful-app-flow.jpg"
 ],
 {
-"h": "Retail"
+"h": "Product concepts"
 },
 {
-"p": "An in-store Solful display for Target, from 3D model to rendered concept."
+"p": "Three products for three moments of the day: Good Warrior collagen bone broth cubes for the morning, Gatorade caffeine boba for the afternoon, and Pepsi Sizzle drink bombs for the night."
 },
+[
+"solful-products.jpg"
+],
+[
+"solful-warrior.jpg",
+"solful-warrior-scene.jpg"
+],
+[
+"solful-gatorade.jpg",
+"solful-gatorade-scene.jpg"
+],
+[
+"solful-pepsi.jpg",
+"solful-pepsi-scene.jpg"
+],
+{
+"h": "Retail immersion"
+},
+{
+"p": "Solchella, a festival activation built from the logo's shapes. Guests check in at a vibe-check kiosk, then move through zones to relax, energize and sustain. The same system scales down to an outdoor mall and a Target display."
+},
+[
+"solful-solchella.jpg"
+],
+[
+"solful-arch-shapes.jpg",
+"solful-arch-plan.jpg",
+"solful-arch-flow.jpg"
+],
+[
+"solful-solchella-first-look.jpg"
+],
+[
+"solful-solchella-flow.jpg"
+],
+[
+"solful-solchella-vibe-check.jpg",
+"solful-solchella-wall.jpg"
+],
+[
+"solful-solchella-firepit.jpg",
+"solful-solchella-lounge.jpg"
+],
+[
+"solful-mall.jpg",
+"solful-mall-kiosk.jpg"
+],
+[
+"solful-target.jpg"
+],
 [
 "solful-display-model.jpg",
 "solful-display-arches.jpg"
 ],
+{
+"cap": "Early display studies."
+},
+{
+"h": "Launch"
+},
 [
-"solful-display-graphics.jpg"
-],
-[
-"solful-display.jpg"
+"solful-launch-app.jpg",
+"solful-influencer-kit.jpg"
 ]
 ]
 },
@@ -1117,12 +1173,14 @@ function home(){
   </a>
 
   <div class="pad">
-    <section id="archive">
-      <div class="sh"><h2>More work</h2><span class="mono">${ARCHIVE.length} projects</span></div>
-      <table class="tbl">
-        <thead><tr class="mono"><th class="y">Year</th><th>Project</th><th class="hide">Type</th><th class="go"></th></tr></thead>
-        <tbody>${ARCHIVE.map(p=>`<tr data-slug="${p.slug}" data-cover="${p.cover||""}"><td class="y mono">${p.year}</td><td class="t"><a href="#${p.slug}">${esc(p.title)}</a></td><td class="hide mono muted">${esc(p.sub)}</td><td class="go">→</td></tr>`).join("")}</tbody>
-      </table>
+    <section id="passion">
+      <div class="sh"><h2>Passion project</h2><span class="mono">BBX-01 · 2026</span></div>
+      <div class="pp-head">
+        <p>BBX-01 is a beatbox sampler I made that runs in your browser. Record yourself beatboxing and it cuts the take into slices at every hit, snaps them to the beat and loops them. Then reshape the sound and the rhythm.</p>
+        <div class="pp-links"><a class="btn line" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a><a class="btn line" href="https://github.com/TrentEstes/bbx-01" target="_blank" rel="noopener">Code <span class="ar">↗</span></a></div>
+      </div>
+      <div class="pp-frame"><iframe id="bbx" src="bbx-01/" title="BBX-01 beatbox sampler" allow="microphone; autoplay" loading="lazy"></iframe></div>
+      <p class="pp-note mono">Press Demo to hear it without a mic. Recording asks for microphone access.</p>
     </section>
 
     <section id="about">
@@ -1327,14 +1385,10 @@ function fitRows(root){
 }
 /* ---------- behaviour ---------- */
 function bindHome(){
-  const peek=$("#peek"), pim=peek.querySelector("img"), tb=document.querySelector(".tbl tbody");
-  tb.addEventListener("mousemove", e=>{
-    const tr=e.target.closest("tr"); if(!tr||!tr.dataset.cover){peek.classList.remove("on");return;}
-    if(pim.dataset.f!==tr.dataset.cover){ pim.dataset.f=tr.dataset.cover; setImg(pim,tr.dataset.cover); }
-    peek.style.left=e.clientX+"px"; peek.style.top=e.clientY+"px"; peek.classList.add("on");
-  });
-  tb.addEventListener("mouseleave", ()=>peek.classList.remove("on"));
-  tb.addEventListener("click", e=>{ const tr=e.target.closest("tr"); if(tr && !e.target.closest("a")) location.hash=tr.dataset.slug; });
+  const f=$("#bbx"); if(!f) return;
+  const fit=()=>{ try{ const d=f.contentDocument; if(!d||!d.body) return; const h=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight); if(h>200) f.style.height=h+"px"; }catch(e){} };
+  f.addEventListener("load",()=>{ fit(); try{ new ResizeObserver(fit).observe(f.contentDocument.body); }catch(e){} });
+  addEventListener("resize",fit);
 }
 let mode=null;
 function route(){
