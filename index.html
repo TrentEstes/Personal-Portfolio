@@ -119,7 +119,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .pl-row .ar{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);font-size:13px;transition:background .25s,color .25s,border-color .25s,transform .25s}
 .plate:hover .pl-row .ar{background:var(--fg);border-color:var(--fg);color:#fff;transform:translateX(3px)}
 .pl-k{margin:0;font-size:15px;color:#666;max-width:34ch}
-.pl-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pl-sub{color:var(--muted)}
 .pl-tags span{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:#666;background:var(--card)}
 @media (prefers-reduced-motion: reduce){.pl-img img{transition:none}}
 
@@ -159,14 +159,14 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .spot-in{position:relative;display:grid;gap:28px}
 @media (min-width:900px){.spot-in{grid-template-columns:minmax(260px,.85fr) 2fr;gap:clamp(32px,4vw,64px);align-items:center}}
 .spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
-.spot-tag{display:inline-flex;align-items:center;gap:10px;background:#FF5C28;color:#111;border-radius:99px;padding:7px 13px 7px 11px;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.spot-tag{display:inline-block;background:#FF5C28;color:#111;border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
 .spot-tag i{width:7px;height:7px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
 @keyframes spotblink{50%{opacity:.25}}
 .spot-side h2{margin:4px 0 0;font:600 clamp(52px,6.4vw,104px)/.85 var(--display);letter-spacing:-.04em;white-space:nowrap}
 .spot-side p{margin:0;max-width:44ch;font-size:clamp(15px,1.15vw,17px);line-height:1.5;color:rgba(242,242,241,.8)}
 .pp-links{display:flex;gap:10px;flex-wrap:wrap}
 .spot-btn{background:#F2F2F1;color:#111;border-color:#F2F2F1}
-.pp-note{color:rgba(242,242,241,.5)!important;font-size:11px!important}
+.pp-note{color:rgba(242,242,241,.6)!important;font-size:13px!important}
 .pp-frame{position:relative;width:100%;max-width:780px;justify-self:end;border-radius:16px;overflow:hidden;background:#e4e4e2;height:640px;box-shadow:0 34px 70px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.08)}
 .pp-frame iframe{position:absolute;left:0;top:0;width:1100px;height:930px;border:0;transform-origin:0 0}
 .peek{position:fixed;left:0;top:0;width:220px;aspect-ratio:4/3;pointer-events:none;z-index:25;overflow:hidden;background:var(--surface);opacity:0;border-radius:4px;transform:translate(18px,-50%) scale(.96);transition:opacity .15s,transform .15s;box-shadow:0 18px 30px -16px rgba(0,0,0,.4)}
@@ -301,7 +301,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 <header class="top">
   <div class="in pad">
     <a class="mark" href="#top" aria-label="Trent Estes, home">Trent Estes</a>
-    <span class="status mono"><span class="dot" aria-hidden="true"></span><span id="clock"></span></span>
+    <span class="status mono"><span id="clock"></span></span>
     <nav class="tnav" aria-label="Main">
       <a href="#work">Work</a>
       <a href="#posters">Posters</a>
@@ -315,12 +315,6 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 
 <div id="app"></div>
 
-<aside class="fcard" id="fcard" aria-label="Contact Trent">
-  <button class="x" type="button" id="fclose" aria-label="Hide contact card">×</button>
-  <b>Trent Estes</b>
-  <span class="mono">Brand + packaging designer</span>
-  <div class="row"><a class="go" href="#contact">Say hi →</a><a class="mono" href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
-</aside>
 
 <div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
 
@@ -1137,9 +1131,9 @@ function home(){
     <a class="plate" href="#${p.slug}">
       <span class="pl-num mono">${pad2(i+1)}</span>
       <div class="pl-text">
-        <div class="pl-row"><h3 class="pl-t">${esc(p.title)}</h3><span class="ar" aria-hidden="true">→</span></div>
+        <div class="pl-row"><h3 class="pl-t">${esc(p.title)}</h3></div>
         <p class="pl-k">${esc(p.kind)}</p>
-        <div class="pl-tags mono">${[...new Set([p.sub,...p.tags])].map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+        <span class="pl-sub mono">${esc(p.sub)}</span>
       </div>
       ${cover(p, i>1)}
     </a>`).join("");
@@ -1157,18 +1151,18 @@ function home(){
     </div>
     <p class="h-word b" aria-hidden="true">Estes</p>
     <div class="h-bot pad">
-      <p>Hi, I'm Trent. Here to be creative and solve problems. I do what I do.</p>
-      <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster gallery <span class="ar">→</span></a></div>
+      <p>Here to be creative and solve problems. I do what I do.</p>
+      <div class="h-btns"><a class="btn ink" href="#work">Work</a><a class="btn line" href="#posters">Posters</a></div>
     </div>
   </section>
   <div class="m-intro pad">
-    <p>Hi, I'm Trent. Here to be creative and solve problems. I do what I do.</p>
-    <div class="h-btns"><a class="btn ink" href="#work">See the work <span class="ar">↓</span></a><a class="btn line" href="#posters">Poster gallery <span class="ar">→</span></a></div>
+    <p>Here to be creative and solve problems. I do what I do.</p>
+    <div class="h-btns"><a class="btn ink" href="#work">Work</a><a class="btn line" href="#posters">Posters</a></div>
   </div>
 
   <div class="pad">
     <section id="work">
-      <div class="sh"><h2>Selected work</h2><span class="mono">${FEATURED.length} projects</span></div>
+      <div class="sh"><h2>Selected work</h2></div>
       <div class="plates">${plates}</div>
     </section>
   </div>
@@ -1176,10 +1170,9 @@ function home(){
   <a class="hentry" href="#posters" aria-label="Enter the poster gallery">
     <div class="he-in pad">
       <div class="he-text">
-        <span class="mono">${POSTERS.length} posters</span>
         <h2>Poster gallery</h2>
-        <p>The posters, set on a spiral you can turn. Drag or scroll to move through it.</p>
-        <span class="btn ink">Enter <span class="ar">→</span></span>
+        <p>Gig posters, type experiments and a few things in motion. Drag or scroll to spin through them.</p>
+        <span class="btn ink">Take a look</span>
       </div>
       <div class="he-stage" aria-hidden="true"><div class="ring"><div class="sp">${ring}</div></div></div>
     </div>
@@ -1191,11 +1184,11 @@ function home(){
   <section id="passion" class="spot">
     <div class="pad spot-in">
       <div class="spot-side">
-        <span class="spot-tag mono"><i></i>Passion project spotlight</span>
+        <span class="spot-tag">Passion project spotlight</span>
         <h2>BBX&#8209;01</h2>
-        <p>A beatbox sampler I made that runs in your browser. Record yourself beatboxing and it cuts the take into slices at every hit, snaps them to the beat and loops them. Then reshape the sound and the rhythm.</p>
+        <p>A beatbox sampler I made that runs right in the browser. Beatbox into it and it chops every hit, locks it to the beat and loops it. Then you can mess with the sound and the groove as much as you want.</p>
         <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a></div>
-        <p class="pp-note mono">Press Demo to hear it without a mic. Recording asks for microphone access.</p>
+        <p class="pp-note mono">No mic? Hit Demo.</p>
       </div>
       <div class="pp-frame" id="ppf"><iframe id="bbx" src="bbx-01/" title="BBX-01 beatbox sampler" allow="microphone; autoplay" loading="lazy"></iframe></div>
     </div>
@@ -1212,7 +1205,7 @@ function home(){
         <div class="a-body">
           <p>I'm a graphic and packaging designer with a bold eye and a love of the analog and natural world. Vintage design, a deep respect for the environment and a lifelong connection to music shape most of what I make.</p>
           <p>I treat every project as a problem worth solving, and I care about the details that make something stick. Passionate about everything, always willing to learn.</p>
-          <div class="a-tags mono"><span>Vintage design</span><span>The outdoors</span><span>Music</span></div>
+          
         </div>
       </div>
     </section>
@@ -1258,7 +1251,7 @@ function project(p){
   }
   const rows = (hero.length?`<div class="p-hero">${hero.join("")}</div>`:"") + steps.map((st,k)=>`
     <section class="step">
-      <div class="s-side"><span class="mono">${pad2(k+1)}</span>${st.h?`<h2>${esc(st.h)}</h2>`:""}${st.t.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
+      <div class="s-side">${st.h?`<h2>${esc(st.h)}</h2>`:""}${st.t.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
       <div class="s-main">${st.m.join("")}</div>
     </section>`).join("");
   return `
@@ -1438,10 +1431,7 @@ function route(){
     requestAnimationFrame(cardVis);
   }
 }
-$("#fclose").addEventListener("click",()=>{ $("#fcard").hidden=true; try{sessionStorage.setItem("te-card","off")}catch(e){} });
-try{ if(sessionStorage.getItem("te-card")==="off") $("#fcard").hidden=true; }catch(e){}
-function cardVis(){ $("#fcard").classList.toggle("away", mode==="home" && scrollY < innerHeight*.7); }
-addEventListener("scroll", cardVis, {passive:true});
+function cardVis(){}
 addEventListener("hashchange", route);
 addEventListener("keydown", e=>{
   if(mode!=="project") return;
