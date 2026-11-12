@@ -216,18 +216,18 @@ P = [
 
 # Poster hall: (file or id prefix, title, note, project slug or "", width/height)
 POSTERS = [
- ("1d68f61c","Appalachian Folk Festival poster","","appalachian-folk-festival",0.667),
+ ("1d68f61c","Appalachian Folk Festival Poster","","appalachian-folk-festival",0.667),
  ("60c87e43","Berlin Olympics","","olympic-branding",0.75),
- ("df369f12","Billy Strings poster","","",0.75),
- ("c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg","Hale Community Garden poster","","hale-community-garden",0.786),
- ("6062a009","Hale Community Garden poster","","hale-community-garden",0.786),
- ("469755a0","Miss Modular poster","","",0.647),
+ ("df369f12","Billy Strings Poster","","",0.75),
+ ("c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg","Hale Community Garden Poster","","hale-community-garden",0.786),
+ ("6062a009","Hale Community Garden Poster","","hale-community-garden",0.786),
+ ("469755a0","Miss Modular Poster","","",0.647),
  ("4c40f712","Spring Rush 2025","","",0.8),
  ("9a9d709a","Fly!","","",0.647),
- ("1e0d873d","Emerald Isle poster","","",0.75),
+ ("1e0d873d","Emerald Isle Poster","","",0.75),
  ("44673a3c","Love","","",0.75),
- ("poster-library.webp","Basel Mural Walk poster","","",0.75),
- ("motion-om-mani.mp4","Tibetan typography motion exploration","","",1.0),
- ("motion-kung-jjak.mp4","Expressive Korean typography poster","","",1.0),
- ("2e269fe0","Whiplash poster","","",0.647),
+ ("poster-library.webp","Basel Mural Walk Poster","","",0.75),
+ ("motion-om-mani.mp4","Tibetan Typography Motion Exploration","","",1.0),
+ ("motion-kung-jjak.mp4","Expressive Korean Typography Poster","","",1.0),
+ ("2e269fe0","Whiplash Poster","","",0.647),
 ]

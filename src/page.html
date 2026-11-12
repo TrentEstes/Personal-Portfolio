@@ -2,6 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Trent Estes, brand and packaging designer.">
 <style>
+@font-face{font-family:"Martian Mono";font-weight:100 800;font-stretch:75% 112.5%;font-style:normal;font-display:swap;src:url(fonts/martian-mono-var.woff2) format("woff2")}
 @font-face{font-family:"OCR-B";font-weight:100 900;font-style:normal;font-display:swap;src:url(fonts/ocr-b.woff2) format("woff2")}
 @font-face{font-family:"Roboto Slab";font-weight:100 900;font-style:normal;font-display:swap;src:url(fonts/roboto-slab-var.woff2) format("woff2")}
 @font-face{font-family:"Wendyville";font-weight:100 900;font-style:normal;font-display:swap;src:url(fonts/wendyville.woff2) format("woff2")}
@@ -19,10 +20,10 @@
   --fg:#0E0E0E;
   --muted:#8A8A86;
   --line:#DCDCD9;
-  --sans:"OCR-B",ui-monospace,Menlo,Consolas,monospace;
+  --sans:"Martian Mono",ui-monospace,Menlo,Consolas,monospace;
   --display:"Roboto Slab",Rockwell,Georgia,serif;
   --print:"Roboto Slab",Rockwell,Georgia,serif;
-  --mono:"OCR-B",ui-monospace,Menlo,Consolas,monospace;
+  --mono:"Martian Mono",ui-monospace,Menlo,Consolas,monospace;
   --green:#3f9b49;--red:#E1352B;--blue:#2D4BDB;--sun:#F4D23A;
   /* spacing scale: 4/8 base, fluid at the large end */
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;
@@ -34,7 +35,7 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 h1,h2,h3,b,.pl-t{font-kerning:normal;font-feature-settings:"kern" 1;text-rendering:optimizeLegibility}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.45 var(--sans);letter-spacing:-.075em;word-spacing:-.12em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--fg);font:380 17px/1.38 var(--sans);font-stretch:75%;letter-spacing:-.045em;word-spacing:-.08em;font-kerning:normal;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
 img{max-width:100%;display:block}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
@@ -42,9 +43,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 :root{--gut:16px}
 @media (min-width:800px){:root{--gut:clamp(40px,6vw,120px)}}
 .pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
-.mono{font:400 13px/1.3 var(--mono);letter-spacing:-.05em}
+.mono{font:450 12px/1.3 var(--mono);font-stretch:75%;letter-spacing:.01em;text-transform:uppercase}
 .muted{color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:var(--s2);height:48px;padding:0 var(--s5);border-radius:999px;font:500 15.5px/1 var(--sans);text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.btn{display:inline-flex;align-items:center;gap:var(--s2);height:48px;padding:0 var(--s5);border-radius:999px;font:500 15.5px/1 var(--sans);font-stretch:75%;text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
 .btn.ink{background:var(--fg);color:#fff}
 .btn.ink:hover{background:#3a3a3a}
 .btn.line{border:1px solid var(--line);background:var(--card)}
@@ -63,7 +64,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,168,83,.45)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
 @media (prefers-reduced-motion: reduce){.dot{animation:none}}
 .tnav{display:flex;align-items:center;gap:clamp(18px,2.6vw,38px)}
-.tnav a{text-decoration:none;font:400 15px/1 var(--sans);color:#555}
+.tnav a{text-decoration:none;font:400 15px/1 var(--sans);font-stretch:75%;color:#555}
 .tnav a:hover{color:var(--fg)}
 .tnav .cta{background:var(--fg);color:#fff;padding:10px 14px;border-radius:999px}
 .tnav .cta:hover{background:#3a3a3a;color:#fff}
@@ -89,7 +90,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .h-top,.h-bot{position:absolute;z-index:3;left:0;right:0;display:flex;justify-content:space-between;gap:16px;align-items:flex-end}
 .h-top{top:18px;align-items:flex-start;color:var(--muted)}
 .h-bot{bottom:var(--s8);flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;gap:var(--s5)}
-.h-bot p{margin:0;max-width:min(560px,86vw);text-wrap:balance;font:400 clamp(17px,1.4vw,21px)/1.3 var(--sans);letter-spacing:-.07em}
+.h-bot p{margin:0;max-width:min(560px,86vw);text-wrap:balance;font:400 clamp(17px,1.4vw,21px)/1.3 var(--sans);font-stretch:75%;letter-spacing:-.045em}
 .h-btns{display:flex;gap:8px;flex-wrap:wrap}
 .h-down{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--fg);color:#fff;text-decoration:none;transition:transform .25s,background .2s}
 .h-down svg{animation:nudge 1.8s ease-in-out infinite}
@@ -153,7 +154,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .plate:hover .pl-row .ar{background:var(--fg);border-color:var(--fg);color:#fff;transform:translateX(3px)}
 .pl-k{margin:var(--s4) 0 0;font-size:clamp(16px,1.3vw,19px);line-height:1.35;color:#2a2a28;max-width:30ch}
 .pl-sub{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line);max-width:30ch}
-.pl-sub i{font-style:normal;font:400 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#4a4a47;border:1px solid #BDBDB8;border-radius:3px;padding:6px 8px 5px;transition:border-color .25s,color .25s}
+.pl-sub i{font-style:normal;font:500 11.5px/1 var(--mono);font-stretch:75%;letter-spacing:.04em;text-transform:uppercase;color:#4a4a47;border:1px solid #BDBDB8;border-radius:3px;padding:6px 8px 5px;transition:border-color .25s,color .25s}
 .plate:hover .pl-sub i{border-color:var(--fg);color:var(--fg)}
 .pl-sub i::before{content:"\2731\00a0";color:var(--green);font-size:10px}
 .pl-tags span{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:#666;background:var(--card)}
@@ -217,7 +218,7 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .a-photo{margin:0;max-width:400px}
 .a-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%;border-radius:10px}
 .a-photo figcaption{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)}
-.a-body p{margin:0 0 var(--s5);font:400 clamp(19px,1.7vw,26px)/1.35 var(--sans);letter-spacing:-.07em;max-width:38em}
+.a-body p{margin:0 0 var(--s5);font:400 clamp(19px,1.7vw,26px)/1.35 var(--sans);font-stretch:75%;letter-spacing:-.045em;max-width:38em}
 .a-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:26px}
 .a-tags span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
 
@@ -232,6 +233,7 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .foot li a{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #2A2A28;text-decoration:none;font-size:13px}
 .foot li a:hover{color:#fff}
 .foot li a span:first-child{color:#7A7A76}
+.foot li a span:last-child{text-transform:none}
 .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s2);padding-block:var(--s5) var(--s6);border-top:1px solid #2A2A28;color:#6A6A66}
 
 /* ---------- floating card ---------- */
@@ -240,7 +242,7 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .fcard b{display:block;font:700 18px/1.1 var(--display);letter-spacing:-.025em;word-spacing:normal}
 .fcard span{display:block;margin-top:4px;color:var(--muted)}
 .fcard .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
-.fcard .go{display:inline-flex;align-items:center;gap:6px;background:var(--fg);color:#fff;border-radius:999px;padding:8px 13px;font:500 13px/1 var(--sans);text-decoration:none}
+.fcard .go{display:inline-flex;align-items:center;gap:6px;background:var(--fg);color:#fff;border-radius:999px;padding:8px 13px;font:500 13px/1 var(--sans);font-stretch:75%;text-decoration:none}
 .fcard .x{position:absolute;top:6px;right:9px;font-size:16px;line-height:1;padding:4px;color:var(--muted)}
 @media (max-width:640px){.fcard{width:auto;padding:9px 34px 10px 12px}.fcard span,.fcard .row a+a{display:none}.fcard b{font-size:16px}.fcard .row{margin-top:8px}}
 
@@ -250,7 +252,7 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .p-head h1{margin:22px 0 0;font:700 clamp(46px,7vw,118px)/.95 var(--display);letter-spacing:-.025em;word-spacing:normal;text-wrap:balance}
 .p-sub{display:grid;grid-template-columns:1fr;gap:var(--s5);margin-top:var(--s7);padding-top:var(--s5);border-top:1px solid var(--line)}
 @media (min-width:900px){.p-sub{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
-.p-info{margin:0;font:400 clamp(14px,1.1vw,16px)/1.6 var(--sans);letter-spacing:-.07em;max-width:48ch}
+.p-info{margin:0;font:400 clamp(14px,1.1vw,16px)/1.6 var(--sans);font-stretch:75%;letter-spacing:-.045em;max-width:48ch}
 .p-meta{margin:0;display:grid;align-content:start;border-top:1px solid var(--line)}
 .p-meta div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .p-meta dt{color:var(--muted)}.p-meta dd{margin:0;text-align:right}
@@ -273,11 +275,11 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .p-cap{margin:2px 0 0;color:var(--muted)}
 .p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 24px;margin:4px 0 clamp(20px,3vw,36px);border-top:1px solid var(--line)}
 .p-facts div{padding:14px 0;border-bottom:1px solid var(--line)}
-.p-facts dt{font:400 11.5px/1.3 var(--mono);color:var(--muted);margin-bottom:4px}
+.p-facts dt{font:400 11.5px/1.3 var(--mono);font-stretch:75%;color:var(--muted);margin-bottom:4px}
 .p-facts dd{margin:0;font-size:14.5px}
 .p-list{list-style:none;margin:0 0 clamp(20px,3vw,36px);padding:0;max-width:62ch;border-top:1px solid var(--line);counter-reset:li}
 .p-list li{display:grid;grid-template-columns:3em 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;counter-increment:li}
-.p-list li::before{content:counter(li,decimal-leading-zero);font:400 12px/1.9 var(--mono);color:var(--muted)}
+.p-list li::before{content:counter(li,decimal-leading-zero);font:400 12px/1.9 var(--mono);font-stretch:75%;color:var(--muted)}
 .vid{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);background:var(--card);border-radius:6px;padding:16px 18px;text-decoration:none}
 .vid:hover{border-color:var(--fg)}
 .nextp{display:grid;grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s6) var(--s10);border-top:1px solid var(--line);text-decoration:none}
@@ -302,7 +304,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
 .hc .fa img,.hc .fa video{width:100%;height:100%;object-fit:cover;pointer-events:none}
 .hc .fa i{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
 .hc .bk{transform:rotateY(180deg);background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);display:flex;align-items:flex-end;padding:10px;color:#B5B5B1}
-.hc .t1,.hc .t2{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;white-space:nowrap;font:400 10.5px/1 var(--mono)}
+.hc .t1,.hc .t2{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;white-space:nowrap;font:400 10.5px/1 var(--mono);font-stretch:75%}
 .hc .t1{bottom:100%;margin-bottom:7px}
 .hc .t2{top:100%;margin-top:8px}
 .hc .t2 b{font-weight:400;color:#444;overflow:hidden;text-overflow:ellipsis}
@@ -341,7 +343,7 @@ body.in-hall .top,body.in-hall .fcard{display:none}
     <span class="status mono"><span id="clock"></span></span>
     <nav class="tnav" aria-label="Main">
       <a class="hide-s" href="#work">Work</a>
-      <a href="#posters">Poster gallery</a>
+      <a href="#posters">Poster Gallery</a>
       <a class="hide-s" href="#about">About</a>
       <a class="hide-s" href="Trent-Estes-Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
       <a class="hide-s" href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -457,10 +459,10 @@ function home(){
     </section>
   </div>
 
-  <a class="hentry" href="#posters" aria-label="Enter the poster gallery">
+  <a class="hentry" href="#posters" aria-label="Enter the Poster Gallery">
     <div class="he-in pad">
       <div class="he-text">
-        <h2>Poster gallery</h2>
+        <h2>Poster Gallery</h2>
         <p>Posters I made for projects and fun, along with some motion work as well.</p>
         <span class="btn ink">Check it out</span>
       </div>
@@ -567,7 +569,7 @@ function project(p){
 function hallHTML(){
   const touch=matchMedia("(hover:none)").matches;
   return `
-  <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster gallery: posters arranged on a spiral">
+  <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster Gallery: posters arranged on a spiral">
     <span class="g h" style="top:42%"></span><span class="g v" style="left:50%"></span>
     <div class="stage"><div class="cam" id="cam"><div class="helix" id="helix">
       <div class="floor" id="floor"></div>
@@ -579,7 +581,7 @@ function hallHTML(){
     </div></div></div>
     <header class="hud">
       <a class="back mono" href="#work">← Back</a>
-      <h1>Poster gallery</h1>
+      <h1>Poster Gallery</h1>
       <span class="cnt mono" id="hcount">01 / ${pad2(POSTERS.length)}</span>
     </header>
     <div class="now" aria-live="polite"><span class="mono" id="nowN"></span><b id="nowT"></b><span class="mono" id="nowS"></span></div>
@@ -709,7 +711,7 @@ function route(){
   if(mode==="hall" && h!=="posters") stopHall();
   if(h==="posters"){
     if(mode!=="hall"){ $("#app").innerHTML=hallHTML(); mode="hall"; document.body.classList.add("in-hall"); startHall(); $("#hall").focus({preventScroll:true}); }
-    document.title=`Poster gallery · ${SITE.name}`;
+    document.title=`Poster Gallery · ${SITE.name}`;
   } else if(p){
     $("#app").innerHTML=project(p); mode="project"; cardVis(); fitRows($("#pbody"));
     document.title=`${p.title} · ${SITE.name}`; window.scrollTo(0,0);
