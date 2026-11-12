@@ -203,10 +203,20 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 @media (max-width:640px){.tbl .hide{display:none}}
 .spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s10);position:relative;overflow:hidden}
 .spot-in{position:relative;display:grid;gap:var(--s8)}
-@media (min-width:900px){.spot-in{grid-template-columns:minmax(0,880px);justify-content:center;justify-items:center;gap:var(--s8)}.spot-side{align-items:center!important;text-align:center}.spot-side p{max-width:46ch}.pp-frame{max-width:880px!important}}
+/* spotlight: device in the middle, smaller; title on its left, copy on its right */
+.spot-in{justify-items:center;text-align:center;row-gap:var(--s5)!important}.spot-in .pp-frame{margin-top:var(--s6)}.spot-tag{white-space:nowrap}.spot-side{align-items:center!important}.spot-l{gap:var(--s5)}.spot-r p{max-width:40ch}
+@media (min-width:1100px){
+  .spot-in{grid-template-columns:minmax(0,1fr) minmax(0,600px) minmax(0,1fr);grid-template-areas:"l dev r";align-items:center;gap:var(--s7);text-align:left}
+  .spot-l{grid-area:l;justify-self:end;align-items:flex-end!important;text-align:right}
+  .spot-r{grid-area:r;justify-self:start;align-items:flex-start!important}
+  .spot-in .pp-frame{grid-area:dev;max-width:600px!important;margin-top:0}
+  .spot-l .spot-tag{font-size:15px;padding:9px 14px 10px}
+  .spot-side h2{font-size:clamp(48px,4.6vw,80px)!important}
+  .spot-r p{max-width:26ch}
+}
 .spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s6)}
 .spot-side .spot-tag{margin-bottom:var(--s3)}
-.spot-side .btn{margin-top:var(--s4)!important}
+.spot-side .btn{margin-top:var(--s2)!important}
 .spot-tag{display:inline-block;background:#FF5C28;color:var(--fg);border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
 .spot-tag i{width:7px;height:7px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
 @keyframes spotblink{50%{opacity:.25}}
@@ -1252,9 +1262,11 @@ function home(){
 
   <section id="passion" class="spot">
     <div class="pad spot-in">
-      <div class="spot-side">
+      <div class="spot-side spot-l">
         <span class="spot-tag">Passion Project Spotlight</span>
         <h2>BBX&#8209;01</h2>
+      </div>
+      <div class="spot-side spot-r">
         <p>A beatbox machine that records you and chops the take into samples, which you can then mess with using the knobs.</p>
         <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a></div>
       </div>
@@ -1470,7 +1482,7 @@ function bindHome(){
   const BW=1100, BH=930, CX=36, CY=32, CW=1028, CH=866;
   const fit=()=>{
     const cw=w.clientWidth;
-    if(cw<700){ let h=1520; try{ const d=f.contentDocument; if(d&&d.body) h=Math.max(h,d.documentElement.scrollHeight);}catch(e){}
+    if(innerWidth<900){ let h=1520; try{ const d=f.contentDocument; if(d&&d.body) h=Math.max(h,d.documentElement.scrollHeight);}catch(e){}
       f.style.width=cw+"px"; f.style.height=h+"px"; f.style.transform=""; w.style.height=h+"px"; return; }
     const sc=cw/CW;
     f.style.width=BW+"px"; f.style.height=BH+"px";
