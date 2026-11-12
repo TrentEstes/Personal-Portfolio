@@ -110,7 +110,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* ---------- printed / dot-matrix layer ---------- */
 body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.glyphs{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+.ridge{position:absolute;left:0;right:0;bottom:0;z-index:0;width:100%;height:62%;object-fit:cover;object-position:50% 100%;opacity:.2;pointer-events:none;user-select:none}
+@media (max-width:760px){.ridge{height:40%;opacity:.16}}
 .stitch{display:block;overflow:visible}
 .stitch path{fill:currentColor}
 .pl-num{color:#B4AEA2;transition:color .3s}.pl-num .stitch{height:38px;width:auto}
@@ -1189,7 +1190,7 @@ function home(){
   const ring = POSTERS.slice(0,RN).map((q,i)=>`<figure style="transform:translate(-50%,-50%) rotateY(${i*360/RN}deg) translateZ(var(--rr)) translateY(${(i-RN/2)*9}px)">${img(q.f,"",true)}</figure>`).join("");
   return `
   <section class="hero" id="top" aria-label="Introduction">
-    <canvas class="glyphs" aria-hidden="true"></canvas>
+    <img class="ridge" src="images-web/blue-ridge.svg" alt="" aria-hidden="true" decoding="async">
     <span class="g h" style="top:50%"></span>
     <span class="g v hide-m" style="left:calc(var(--gut) * .5)"></span><span class="g v hide-m" style="right:calc(var(--gut) * .5)"></span>
     <h1 class="h-word a">Trent</h1>
@@ -1508,26 +1509,6 @@ function heroFx(){
 }
 
 function astr(ctx,cx,cy,a){ ctx.beginPath(); for(const [ux,uy] of AST){ ctx.moveTo(cx,cy); ctx.lineTo(cx+ux*a,cy+uy*a); } ctx.stroke(); }
-/* hero: a faint grid of stitch marks shows up around the cursor, like the grid the TE monogram sits on */
-function glyphField(){
-  const hero=document.getElementById("top"), cv=hero&&hero.querySelector(".glyphs"); if(!cv) return;
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches || !matchMedia("(hover: hover)").matches){ cv.remove(); return; }
-  const ctx=cv.getContext("2d"); let W,H,C=22,cols,rows,cur,dpr,mx=-1e4,my=-1e4,raf=0;
-  const build=()=>{ dpr=Math.min(2,devicePixelRatio||1); W=hero.clientWidth; H=hero.clientHeight; cv.width=W*dpr; cv.height=H*dpr; cols=Math.ceil(W/C); rows=Math.ceil(H/C); cur=new Float32Array(cols*rows); };
-  const draw=()=>{ raf=0; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H); ctx.lineCap="round"; ctx.lineWidth=1.3;
-    const R=200; let live=false;
-    for(let y=0;y<rows;y++) for(let x=0;x<cols;x++){ const i=y*cols+x, cx=x*C+C/2, cy=y*C+C/2;
-      const d=Math.hypot(cx-mx,cy-my), t=d<R?(1-d/R):0; if(t===0&&cur[i]<.005) continue;
-      cur[i]+=(t-cur[i])*.1; if(Math.abs(t-cur[i])>.005) live=true; const v=cur[i]; if(v<.01) continue;
-      const g=(x*7+y*13)%11===0, k=2.2+v*1.6;
-      ctx.strokeStyle=g?`rgba(63,155,73,${v*.55})`:`rgba(60,56,48,${v*.22})`;
-      astr(ctx,cx,cy,k); }
-    if(live) raf=requestAnimationFrame(draw); };
-  build(); addEventListener("resize",()=>{ if(cv.isConnected){ build(); draw(); } });
-  hero.addEventListener("pointermove",e=>{ const r=hero.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; if(!raf) raf=requestAnimationFrame(draw); });
-  hero.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(draw); });
-}
-
 /* about portrait: hovering re-draws the photo in cross-stitch */
 function asciiPortrait(){
   const fig=document.querySelector(".a-photo"), img=fig&&fig.querySelector("img"); if(!img) return;
@@ -1560,7 +1541,7 @@ function asciiPortrait(){
     addEventListener("resize",()=>{ if(fig.isConnected){ prep(); draw(); } }); };
   if(img.complete&&img.naturalWidth) go(); else img.addEventListener("load",go,{once:true});
 }
-function homeFx(){ heroFx(); glyphField(); asciiPortrait(); }
+function homeFx(){ heroFx(); asciiPortrait(); }
 
 (function clock(){ const el=$("#clock"); if(!el) return;
   const fmt=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"});
