@@ -207,11 +207,13 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s10);position:relative;overflow:hidden}
 .spot-in{position:relative;display:grid;gap:var(--s8)}
 @media (min-width:900px){.spot-in{grid-template-columns:minmax(280px,.9fr) 2fr;gap:var(--s9);align-items:center}}
-.spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s5)}
-.spot-tag{display:inline-block;background:#FF5C28;color:var(--fg);border-radius:2px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
+.spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s6)}
+.spot-side .spot-tag{margin-bottom:var(--s3)}
+.spot-side .btn{margin-top:var(--s4)!important}
+.spot-tag{display:inline-block;background:#FF5C28;color:var(--fg);border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
 .spot-tag i{width:7px;height:7px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
 @keyframes spotblink{50%{opacity:.25}}
-.spot-side h2{margin:4px 0 0;white-space:nowrap;font:600 clamp(52px,6.4vw,104px)/.85 var(--display);letter-spacing:-.04em}
+.spot-side h2{margin:0;white-space:nowrap;font:600 clamp(52px,6.4vw,104px)/.85 var(--display);letter-spacing:-.04em}
 .spot-side p{margin:0;max-width:44ch;color:rgba(246,246,243,.82);font-size:clamp(15px,1.15vw,17px);line-height:1.5}
 .pp-links{display:flex;gap:10px;flex-wrap:wrap}
 .spot-btn{background:#F6F6F3;color:var(--fg);border-color:#F6F6F3}
@@ -487,7 +489,7 @@ function home(){
   <section id="passion" class="spot">
     <div class="pad spot-in">
       <div class="spot-side">
-        <span class="spot-tag">Passion project spotlight</span>
+        <span class="spot-tag">Passion Project Spotlight</span>
         <h2>BBX&#8209;01</h2>
         <p>A beatbox machine that records you and chops the take into samples, which you can then mess with using the knobs.</p>
         <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a></div>
