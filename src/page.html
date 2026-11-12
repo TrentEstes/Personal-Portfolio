@@ -197,7 +197,7 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .tbl .y{width:9%;color:var(--muted)}
 .tbl .go{text-align:right;width:40px}
 @media (max-width:640px){.tbl .hide{display:none}}
-.spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s10);position:relative;overflow:hidden}
+.spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s7);position:relative;overflow:hidden}
 .spot-in{position:relative;display:grid;gap:var(--s8)}
 /* spotlight: device in the middle, smaller; title on its left, copy on its right */
 .spot-in{justify-items:center;text-align:center;row-gap:var(--s5)!important}.spot-in .pp-frame{margin-top:var(--s6)}.spot-tag{white-space:nowrap}.spot-side{align-items:center!important}.spot-l{gap:var(--s5)}.spot-r p{max-width:40ch}
@@ -807,20 +807,23 @@ function asciiPortrait(){
 function coverBend(){
   if(!matchMedia("(hover: hover)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const els=[...document.querySelectorAll(".plates .pl-img")]; if(!els.length) return;
-  const R=8, REACH=420;
+  const R=8, REACH=560;
   const st=els.map((el,k)=>{ const r=n=>{ const x=Math.sin((k+1)*12.9898+n*78.233)*43758.5453; return x-Math.floor(x); };
-    return {el, a:[0,1,2,3].map(n=>.05+r(n)*.09), b:[0,1,2,3].map(n=>.12+r(n+4)*.16), cur:new Float32Array(8), t:0}; });
+    return {el, a:[0,1,2,3].map(n=>.05+r(n)*.09), b:[0,1,2,3].map(n=>.12+r(n+4)*.16), cur:new Float32Array(8), v:new Float32Array(8), ph:r(9)*6.28, t:0}; });
   let mx=-1e5,my=-1e5,raf=0;
-  const frame=()=>{ raf=0; let live=false;
+  const frame=(now=performance.now())=>{ raf=0; let live=false;
     for(const s of st){ const b=s.el.getBoundingClientRect(); if(b.bottom<-200||b.top>innerHeight+200) continue;
       const dx=Math.max(b.left-mx,0,mx-b.right), dy=Math.max(b.top-my,0,my-b.bottom), d=Math.hypot(dx,dy);
-      const t=Math.max(0,1-d/REACH); const e=t*t*(3-2*t);
+      const t=Math.max(0,1-d/REACH); const e=t*t*t*(t*(t*6-15)+10);
       // which corner the cursor is nearest pulls a little more
       const fx=Math.min(1,Math.max(0,(mx-b.left)/b.width)), fy=Math.min(1,Math.max(0,(my-b.top)/b.height));
       const pull=[(1-fx)*(1-fy),fx*(1-fy),fx*fy,(1-fx)*fy];
-      const tgt=[]; for(let i=0;i<4;i++){ const k=e*(.7+.6*pull[i]); tgt.push(R+k*b.width*s.a[i]); }
-      for(let i=0;i<4;i++){ const k=e*(.7+.6*pull[i]); tgt.push(R+k*b.height*s.b[i]); }
-      for(let i=0;i<8;i++){ const d0=tgt[i]-s.cur[i]; if(Math.abs(d0)>.15) live=true; s.cur[i]+=d0*.09; }
+      // slow breathing drift, only while the cursor is near, so the shape never sits still
+      const tm=now/1000, tgt=[];
+      for(let i=0;i<4;i++){ const w=1+.22*Math.sin(tm*.55+i*1.7+s.ph); const k=e*(.7+.6*pull[i])*w; tgt.push(R+k*b.width*s.a[i]); }
+      for(let i=0;i<4;i++){ const w=1+.22*Math.sin(tm*.47+i*2.3+s.ph); const k=e*(.7+.6*pull[i])*w; tgt.push(R+k*b.height*s.b[i]); }
+      if(e>.01) live=true;
+      for(let i=0;i<8;i++){ const d0=tgt[i]-s.cur[i]; if(Math.abs(d0)>.08) live=true; s.v[i]=s.v[i]*.86+d0*.012; s.cur[i]+=s.v[i]; }
       const c=s.cur; s.el.style.borderRadius=`${c[0].toFixed(1)}px ${c[1].toFixed(1)}px ${c[2].toFixed(1)}px ${c[3].toFixed(1)}px / ${c[4].toFixed(1)}px ${c[5].toFixed(1)}px ${c[6].toFixed(1)}px ${c[7].toFixed(1)}px`; }
     if(live) raf=requestAnimationFrame(frame); };
   st.forEach(s=>s.cur.fill(R));
