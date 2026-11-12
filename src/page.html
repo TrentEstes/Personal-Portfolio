@@ -6,11 +6,12 @@
 @font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"IBM Plex Sans";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Doto";font-weight:100 900;font-style:normal;font-display:swap;src:url(fonts/doto-var.woff2) format("woff2")}
 @font-face{font-family:"IBM Plex Mono";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"IBM Plex Mono";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2")}
 /* Neutral studio look: light grey ground, white cards, black type, hairline guides, small grey mono labels. */
 :root{
-  --bg:#F2F2F1;
+  --bg:#F1EFE9;
   --surface:#E8E8E6;
   --card:#FFFFFF;
   --fg:#0E0E0E;
@@ -19,6 +20,8 @@
   --sans:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
   --display:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --dot:"Doto","IBM Plex Mono",ui-monospace,monospace;
+  --green:#3f9b49;--red:#E1352B;--blue:#2D4BDB;--sun:#F4D23A;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -103,11 +106,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .sh h2{margin:0;font:600 clamp(44px,6vw,96px)/.9 var(--display);letter-spacing:-.03em}
 .sh .mono{color:var(--muted);padding-bottom:6px}
 
+/* ---------- printed / dot-matrix layer ---------- */
+body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.glyphs{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+#clock{font:800 13px/1 var(--dot);letter-spacing:.04em;color:var(--fg)}
+.pl-num{font:800 30px/1 var(--dot);letter-spacing:-.02em;color:#A39F95;transition:color .3s}
+.plate:hover .pl-num{color:var(--green)}
+.sh .dt{font:800 clamp(20px,2vw,28px)/1 var(--dot);color:#B9B6AE;padding-bottom:8px}
+.a-photo{position:relative}
+.a-photo canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;border-radius:inherit}
+.a-photo figcaption{margin-top:10px;color:var(--muted)}
+.wordmark{display:block;font:900 clamp(34px,11.5vw,214px)/.9 var(--dot);letter-spacing:-.02em;color:#2A2A27;white-space:nowrap;overflow:hidden;padding-block:clamp(40px,6vw,90px) clamp(10px,1.4vw,22px);user-select:none}
+.wordmark b{font-weight:inherit;color:var(--green)}
+
 /* ---------- selected work ---------- */
 .plates{display:flex;flex-direction:column;padding-block:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px)}
 .plate{display:grid;grid-template-columns:1fr;gap:14px;padding-block:clamp(14px,1.6vw,20px);border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
 .plate:last-child{border-bottom:0}
-@media (min-width:820px){.plate{grid-template-columns:48px minmax(0,1fr) minmax(0,1.1fr);column-gap:clamp(18px,2.4vw,40px);align-items:center}}
+@media (min-width:820px){.plate{grid-template-columns:64px minmax(0,1fr) minmax(0,1.1fr);column-gap:clamp(18px,2.4vw,40px);align-items:center}}
 .pl-img{position:relative;overflow:hidden;aspect-ratio:2/1;background:var(--surface);border-radius:10px}
 @media (max-width:819px){.pl-img{aspect-ratio:16/9}}
 .pl-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
@@ -117,7 +133,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .pl-img.blur .bgi img{width:100%;height:100%;object-fit:cover;filter:blur(28px) saturate(1.1) brightness(.92)}
 .plate:hover .pl-img.blur .bgi img{transform:none}
 .plate:hover .pl-img img{transform:scale(1.035)}
-.pl-num{color:var(--muted);align-self:start;padding-top:6px}
+.pl-num{align-self:start;padding-top:4px}
 @media (max-width:819px){.pl-num{order:2;padding:0}.pl-img{order:1}.pl-text{order:3}}
 .pl-text{display:flex;flex-direction:column;gap:10px;min-width:0}
 .pl-row{display:flex;align-items:center;gap:14px}
@@ -373,7 +389,7 @@ function cover(p, lazy=true){
 function home(){
   const plates = FEATURED.map((p,i)=>`
     <a class="plate" href="#${p.slug}">
-      <span class="pl-num mono">${pad2(i+1)}</span>
+      <span class="pl-num">${pad2(i+1)}</span>
       <div class="pl-text">
         <div class="pl-row"><h3 class="pl-t">${esc(p.title)}</h3></div>
         <p class="pl-k">${esc(p.kind)}</p>
@@ -385,6 +401,7 @@ function home(){
   const ring = POSTERS.slice(0,RN).map((q,i)=>`<figure style="transform:translate(-50%,-50%) rotateY(${i*360/RN}deg) translateZ(var(--rr)) translateY(${(i-RN/2)*9}px)">${img(q.f,"",true)}</figure>`).join("");
   return `
   <section class="hero" id="top" aria-label="Introduction">
+    <canvas class="glyphs" aria-hidden="true"></canvas>
     <span class="g h" style="top:50%"></span>
     <span class="g v hide-m" style="left:calc(var(--gut) * .5)"></span><span class="g v hide-m" style="right:calc(var(--gut) * .5)"></span>
     <h1 class="h-word a">Trent</h1>
@@ -405,7 +422,7 @@ function home(){
 
   <div class="pad">
     <section id="work">
-      <div class="sh"><h2>Selected work</h2></div>
+      <div class="sh"><h2>Selected work</h2><span class="dt">(${pad2(PROJECTS.length)})</span></div>
       <div class="plates">${plates}</div>
     </section>
   </div>
@@ -467,6 +484,7 @@ function footer(){
         ${SITE.resume?`<li><a href="${esc(SITE.resume)}" target="_blank" rel="noopener"><span>Résumé</span><span>PDF ↗</span></a></li>`:""}
       </ul>
     </div>
+    <div class="pad" aria-hidden="true"><span class="wordmark">trente<b>.</b>design</span></div>
     <div class="legal pad mono"><span>© ${new Date().getFullYear()} ${esc(SITE.name)}</span><span>Brand &amp; packaging design</span></div>
   </footer>`;
 }
@@ -666,7 +684,7 @@ function route(){
     $("#app").innerHTML=project(p); mode="project"; cardVis(); fitRows($("#pbody"));
     document.title=`${p.title} · ${SITE.name}`; window.scrollTo(0,0);
   } else {
-    if(mode!=="home"){ $("#app").innerHTML=home(); bindHome(); mode="home"; }
+    if(mode!=="home"){ $("#app").innerHTML=home(); bindHome(); mode="home"; if(typeof homeFx==="function") homeFx(); }
     document.title=`${SITE.name} · Brand & packaging designer`;
     const el=h&&h!=="top"?document.getElementById(h):null;
     if(el) requestAnimationFrame(()=>el.scrollIntoView()); else window.scrollTo(0,0);
@@ -682,7 +700,7 @@ addEventListener("keydown", e=>{
   if(e.key==="ArrowLeft") location.hash=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length].slug;
 });
 route(); cardVis();
-(function heroFx(){
+function heroFx(){
   const hero=document.getElementById("top"); if(!hero) return;
   const words=[...hero.querySelectorAll(".h-word")]; let k=0;
   words.forEach(w=>{ const t=w.textContent.trim(); w.setAttribute("aria-label",t);
@@ -699,7 +717,84 @@ route(); cardVis();
     const r=hero.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
     if(pic) pic.style.transform=`perspective(1000px) rotateY(${(px*12).toFixed(2)}deg) rotateX(${(-py*9).toFixed(2)}deg)`; });
   hero.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(step); if(pic) pic.style.transform=""; });
-})();
+}
+
+/* letter field behind the hero: faint type texture, letters near the cursor print darker, some become ink blocks */
+function glyphField(){
+  const hero=document.getElementById("top"), cv=hero&&hero.querySelector(".glyphs"); if(!cv) return;
+  const ctx=cv.getContext("2d"), SRC="TRENTESTESLOOKDEEPINTONATURE";
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches || !matchMedia("(hover: hover)").matches;
+  let W,H,C,cols,rows,cells,base,dpr,mx=-1e4,my=-1e4,raf=0,t=0;
+  const rnd=a=>a[(Math.random()*a.length)|0];
+  const build=()=>{
+    dpr=Math.min(2,devicePixelRatio||1); W=hero.clientWidth; H=hero.clientHeight; C=W<760?11:14;
+    cv.width=W*dpr; cv.height=H*dpr; cols=Math.ceil(W/C); rows=Math.ceil(H/C);
+    const hr=hero.getBoundingClientRect(), keep=[...hero.querySelectorAll(".h-bot p,.h-down")].map(e=>{const r=e.getBoundingClientRect(); return [r.left-hr.left-28,r.top-hr.top-18,r.right-hr.left+28,r.bottom-hr.top+18];});
+    const clear=(x,y)=>keep.some(k=>x*C+C>k[0]&&x*C<k[2]&&y*C+C>k[1]&&y*C<k[3]);
+    cells=[]; for(let y=0;y<rows;y++) for(let x=0;x<cols;x++){
+      // sparse drifting bands, so the texture reads like a worn print rather than wallpaper
+      const n=Math.sin(x*.11+y*.07)+Math.sin(y*.19-x*.05)*.8+Math.sin((x+y)*.03)*.6;
+      cells.push({x,y,ch:SRC[(x+y*7)%SRC.length],on:n>1.15&&!clear(x,y),v:0,blk:Math.random()<.12}); }
+    base=document.createElement("canvas"); base.width=cv.width; base.height=cv.height;
+    const b=base.getContext("2d"); b.scale(dpr,dpr); b.font=`500 ${C*.78}px "IBM Plex Mono",monospace`; b.textAlign="center"; b.textBaseline="middle"; b.fillStyle="rgba(14,14,14,.075)";
+    cells.forEach(c=>{ if(c.on) b.fillText(c.ch,c.x*C+C/2,c.y*C+C/2); });
+    draw();
+  };
+  const draw=()=>{
+    raf=0; t++; ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(base,0,0);
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.font=`600 ${C*.8}px "IBM Plex Mono",monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+    const R=170, x0=Math.max(0,((mx-R)/C)|0), x1=Math.min(cols-1,((mx+R)/C)|0), y0=Math.max(0,((my-R)/C)|0), y1=Math.min(rows-1,((my+R)/C)|0);
+    let live=false;
+    for(const c of cells){ if(c.v<.01 && (c.x<x0||c.x>x1||c.y<y0||c.y>y1)) continue;
+      const d=Math.hypot(c.x*C+C/2-mx,c.y*C+C/2-my), tgt=d<R?Math.pow(1-d/R,1.4):0;
+      c.v+=(tgt-c.v)*.12; if(Math.abs(tgt-c.v)>.01) live=true; if(c.v<.02) continue;
+      if(tgt>0 && Math.random()<.04) c.ch=rnd(SRC);
+      const px=c.x*C, py=c.y*C;
+      if(c.blk && c.v>.35){ ctx.fillStyle=c.y%3?`rgba(63,155,73,${c.v})`:`rgba(225,53,43,${c.v*.9})`; ctx.fillRect(px+1,py+1,C-2,C-2); }
+      else { ctx.fillStyle=`rgba(14,14,14,${c.v*.75})`; ctx.fillText(c.ch,px+C/2,py+C/2); } }
+    if(live) raf=requestAnimationFrame(draw);
+  };
+  build(); (document.fonts?document.fonts.ready:Promise.resolve()).then(build);
+  let rt; addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(()=>{ if(cv.isConnected) build(); },150); });
+  if(still) return;
+  hero.addEventListener("pointermove",e=>{ const r=hero.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; if(!raf) raf=requestAnimationFrame(draw); });
+  hero.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(draw); });
+}
+
+/* about portrait: hovering turns the photo into type, built from the letters of my name */
+function asciiPortrait(){
+  const fig=document.querySelector(".a-photo"), img=fig&&fig.querySelector("img"); if(!img) return;
+  if(!matchMedia("(hover: hover)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const cv=document.createElement("canvas"); cv.setAttribute("aria-hidden","true"); fig.appendChild(cv);
+  const ctx=cv.getContext("2d"), SRC="TRENTESTES"; let lum=null,W,H,C=7,cols,rows,dpr,mx=-1e4,my=-1e4,raf=0,amt=0,cur=[];
+  const prep=()=>{
+    W=img.clientWidth; H=img.clientHeight; if(!W) return; dpr=Math.min(2,devicePixelRatio||1);
+    cv.width=W*dpr; cv.height=H*dpr; cols=Math.ceil(W/C); rows=Math.ceil(H/C);
+    const o=document.createElement("canvas"); o.width=cols; o.height=rows; const g=o.getContext("2d");
+    try{ g.drawImage(img,0,0,cols,rows); const d=g.getImageData(0,0,cols,rows).data; lum=new Float32Array(cols*rows);
+      for(let i=0;i<cols*rows;i++) lum[i]=(d[i*4]*.3+d[i*4+1]*.59+d[i*4+2]*.11)/255; }catch(e){ lum=null; }
+    cur=new Float32Array(cols*rows);
+  };
+  const draw=()=>{
+    raf=0; if(!lum) return; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+    ctx.font=`600 ${C*1.05}px "IBM Plex Mono",monospace`; ctx.textAlign="center"; ctx.textBaseline="middle";
+    const R=Math.max(W,H)*.32; let live=false;
+    for(let y=0;y<rows;y++) for(let x=0;x<cols;x++){ const i=y*cols+x;
+      const d=Math.hypot(x*C+C/2-mx,y*C+C/2-my), tgt=d<R?Math.min(1,(1-d/R)*1.8):0;
+      cur[i]+=(tgt-cur[i])*.14; if(Math.abs(tgt-cur[i])>.01) live=true; const v=cur[i]; if(v<.02) continue;
+      const px=x*C, py=y*C; ctx.globalAlpha=Math.min(1,v); ctx.fillStyle="#F1EFE9"; ctx.fillRect(px,py,C,C);
+      const k=1-lum[i]; if(k<.12) continue;
+      ctx.fillStyle=k>.78&&((x+y)%9===0)?"#3f9b49":"#141412"; ctx.globalAlpha=Math.min(1,v)*Math.min(1,k*1.7+.1);
+      ctx.fillText(SRC[(x+y*3)%SRC.length],px+C/2,py+C/2); }
+    ctx.globalAlpha=1; if(live) raf=requestAnimationFrame(draw);
+  };
+  const go=()=>{ prep(); fig.addEventListener("pointermove",e=>{ const r=img.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; if(!raf) raf=requestAnimationFrame(draw); });
+    fig.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(draw); });
+    addEventListener("resize",()=>{ if(fig.isConnected){ prep(); draw(); } }); };
+  if(img.complete&&img.naturalWidth) go(); else img.addEventListener("load",go,{once:true});
+}
+function homeFx(){ heroFx(); glyphField(); asciiPortrait(); }
+
 (function clock(){ const el=$("#clock"); if(!el) return;
   const fmt=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"});
   let skew=0; const tick=()=>{ el.textContent=fmt.format(new Date(Date.now()+skew))+" ET"; }; tick();
