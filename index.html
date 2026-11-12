@@ -1473,7 +1473,8 @@ route(); cardVis();
 })();
 (function clock(){ const el=$("#clock"); if(!el) return;
   const fmt=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"});
-  const tick=()=>{ el.textContent=fmt.format(new Date())+" ET"; }; tick(); setInterval(tick,15000); })();
+  let skew=0; const tick=()=>{ el.textContent=fmt.format(new Date(Date.now()+skew))+" ET"; }; tick();
+  fetch(location.pathname,{method:"HEAD",cache:"no-store"}).then(r=>{ const d=Date.parse(r.headers.get("date")||""); if(d){ skew=d-Date.now(); tick(); } }).catch(()=>{}); setInterval(tick,15000); })();
 </script>
 </body>
 </html>
