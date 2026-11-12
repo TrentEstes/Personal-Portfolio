@@ -139,17 +139,16 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .plate{display:grid;grid-template-columns:1fr;gap:var(--s5);padding-block:var(--s8);border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
 .plate:last-child{border-bottom:0}
 @media (min-width:820px){.plate{grid-template-columns:64px minmax(0,1fr) minmax(0,1.1fr);column-gap:var(--s7);align-items:center}}
-@property --notch{syntax:"<length>";inherits:false;initial-value:0px}
-.pl-img{position:relative;overflow:hidden;aspect-ratio:2/1;background:var(--surface);border-radius:8px;--notch:0px;
-  -webkit-mask:radial-gradient(circle var(--notch) at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--notch) at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
-          mask:radial-gradient(circle var(--notch) at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle var(--notch) at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
-  transition:--notch .45s cubic-bezier(.3,1.4,.5,1),transform .55s cubic-bezier(.3,1.3,.5,1)}
-/* hover: the cover turns into a ticket stub (notched sides, tear line, tilt) */
-.pl-img::after{content:"";position:absolute;top:10%;bottom:10%;right:22%;border-left:2px dashed rgba(255,255,255,.85);mix-blend-mode:difference;opacity:0;transform:scaleY(.2);transition:opacity .3s,transform .45s cubic-bezier(.3,1.3,.5,1);pointer-events:none;z-index:2}
-.plate:hover .pl-img{--notch:20px;transform:rotate(-1.2deg) translateY(-4px)}
-.plate:nth-child(even):hover .pl-img{transform:rotate(1.2deg) translateY(-4px)}
-.plate:hover .pl-img::after{opacity:.9;transform:none}
-.nextp .pl-img::after{display:none}
+.pl-img{position:relative;overflow:hidden;aspect-ratio:2/1;background:var(--surface);border-radius:8px;
+  transition:border-radius .7s cubic-bezier(.3,1.25,.4,1),transform .6s cubic-bezier(.3,1.25,.4,1)}
+/* hover: the cover loosens into a soft, river-stone shape and keeps slowly shifting */
+.plate:hover .pl-img{border-radius:34% 22% 30% 18% / 46% 34% 52% 40%;transform:rotate(-1deg);animation:pebble 6s ease-in-out .7s infinite alternate}
+.plate:nth-child(3n+2):hover .pl-img{border-radius:20% 36% 18% 32% / 38% 50% 34% 48%;transform:rotate(1deg);animation-name:pebble2}
+.plate:nth-child(3n):hover .pl-img{border-radius:28% 30% 36% 16% / 52% 38% 44% 36%;transform:rotate(-.6deg);animation-name:pebble3}
+@keyframes pebble{to{border-radius:24% 32% 20% 30% / 38% 48% 40% 50%}}
+@keyframes pebble2{to{border-radius:32% 20% 34% 22% / 48% 36% 50% 38%}}
+@keyframes pebble3{to{border-radius:18% 34% 26% 30% / 40% 50% 36% 46%}}
+.nextp .pl-img{transform:none!important;animation:none!important}
 @media (max-width:819px){.pl-img{aspect-ratio:16/9}}
 .pl-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
 .pl-img.white{background:#fff}.pl-img.white img{object-fit:contain}
@@ -171,7 +170,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .plate:hover .pl-sub i{font-style:normal;font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .pl-sub i+i::before{content:"/";margin:0 8px;color:#B0B0AB}
 .pl-tags span{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--ink-2);background:var(--card)}
-@media (prefers-reduced-motion: reduce){.pl-img img{transition:none}.pl-img{transition:none}.plate:hover .pl-img,.plate:nth-child(even):hover .pl-img{transform:none}}
+@media (prefers-reduced-motion: reduce){.pl-img img{transition:none}.pl-img{transition:none}.plate:hover .pl-img{transform:none!important;animation:none!important}}
 
 /* ---------- poster hall entry ---------- */
 .hentry{display:block;position:relative;background:var(--card);text-decoration:none;overflow:hidden;border-block:1px solid var(--line);margin-top:var(--s9)}
