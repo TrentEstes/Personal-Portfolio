@@ -43,7 +43,7 @@ P = [
 
  dict(feature=True, slug="paige-bueckers-court", title="Paige Bueckers Court Design", sub="Lettering", year=2026, size="big",
       tags=["Type","Illustration"], kind="Lettering explorations for “A ball and a basket is all you need”",
-      cover="court-cover.jpg",
+      cover="court-cover.jpg", fit="contain",
       info="Lettering and poster explorations for the line “A ball and a basket is all you need,” for Paige Bueckers’ refurbished court at Blackstone Park in St. Louis Park, Minnesota.",
       rows=[["court-poster-floral.jpg"],
             {"h":"Sketches"},
