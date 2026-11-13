@@ -408,7 +408,7 @@ const SITE = {
   name: "Trent Estes",
   // contact details are stored scrambled and assembled in the browser on click,
   // so they are not sitting in the page source for harvesters to read
-  c: { e: "V1pTU1B/S01aUUtaEVtaTFZYUQ==", p: "Bw8LEgYGCBIOCQ4M" },
+  c: { e: "V1pTU1B/S01aUUtaEVtaTFZYUQ==" },
   linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
   instagram: "",
   resume: "Trent-Estes-Resume.pdf",
@@ -1216,7 +1216,7 @@ document.addEventListener("click", e => {
   e.preventDefault();
   const k = a.dataset.rv, v = unmask(SITE.c[k]);
   a.lastElementChild.textContent = v;
-  a.href = k === "e" ? "mailto:"+v : "tel:"+digits(v);
+  a.href = "mailto:"+v;
   a.classList.remove("rv"); a.removeAttribute("data-rv");
 });
 const by = slug => PROJECTS.find(p=>p.slug===slug);
@@ -1340,7 +1340,6 @@ function footer(){
       <figure class="fq"><blockquote><h2>“Look deep into nature, <span>and then you will understand everything better.”</span></h2></blockquote><figcaption class="mono">Albert Einstein</figcaption></figure>
       <ul class="mono">
         <li><a class="rv" href="#contact" data-rv="e" rel="nofollow"><span>Email</span><span>Click to show</span></a></li>
-        <li><a class="rv" href="#contact" data-rv="p" rel="nofollow"><span>Phone</span><span>Click to show</span></a></li>
         ${SITE.linkedin?`<li><a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span>↗</span></a></li>`:""}
         ${SITE.instagram?`<li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a></li>`:""}
         ${SITE.resume?`<li><a href="${esc(SITE.resume)}" target="_blank" rel="noopener"><span>Résumé</span><span>PDF ↗</span></a></li>`:""}
