@@ -200,26 +200,34 @@ video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
 .spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s7);position:relative;overflow:hidden}
 .spot-in{position:relative;display:grid;gap:var(--s8)}
 /* spotlight: device in the middle, smaller; title on its left, copy on its right */
-.spot-in{justify-items:center;text-align:center;row-gap:var(--s5)!important}.spot-in .pp-frame{margin-top:var(--s6)}.spot-tag{white-space:nowrap}.spot-side{align-items:center!important}.spot-l{gap:var(--s5)}.spot-r p{max-width:40ch}
+.spot-in{justify-items:center;text-align:center;row-gap:var(--s5)!important}.spot-in .pp-frame{margin-top:var(--s6)}.spot-tag{white-space:nowrap}.spot-side{align-items:center!important}.spot-l{gap:0}.spot-l p{max-width:46ch}
 @media (min-width:1100px){
   .spot-in{grid-template-columns:minmax(0,1fr) minmax(0,600px) minmax(0,1fr);grid-template-areas:"l dev r";align-items:center;gap:var(--s7);text-align:left}
-  .spot-l{grid-area:l;justify-self:end;align-items:flex-end!important;text-align:right}
+  .spot-l{grid-area:l;justify-self:end;align-items:flex-start!important;text-align:left;max-width:30ch}
   .spot-r{grid-area:r;justify-self:start;align-items:flex-start!important}
   .spot-in .pp-frame{grid-area:dev;max-width:600px!important;margin-top:0}
   .spot-l .spot-tag{font-size:15px;padding:9px 14px 10px}
   .spot-side h2{font-size:clamp(48px,4.6vw,80px)!important}
-  .spot-r p{max-width:26ch}
+  .spot-l p{max-width:32ch}
 }
+/* hierarchy: label, then name, then the one-liner */
+.spot-l .spot-tag{margin-bottom:var(--s5)}
+.spot-l h2+p{margin-top:var(--s5)}
 .spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s6)}
 .spot-side .spot-tag{margin-bottom:var(--s3)}
 .spot-side .btn{margin-top:var(--s2)!important}
-.spot-tag{display:inline-block;background:#FF5C28;color:var(--fg);border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
-.spot-tag i{width:7px;height:7px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
-@keyframes spotblink{50%{opacity:.25}}
+.spot-tag{display:inline-flex;align-items:center;gap:9px;background:#FF5C28;color:var(--fg);border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
+.spot-tag i{flex:none;width:7px;height:7px;border-radius:50%;background:#1A1A18;animation:spotblink 2.8s ease-in-out infinite}
+@keyframes spotblink{0%,100%{opacity:1}50%{opacity:.22}}
+@media (prefers-reduced-motion: reduce){.spot-tag i{animation:none}.spot-btn::before,.spot-btn .ar{transition:none}}
 .spot-side h2{margin:0;white-space:nowrap;font:600 clamp(52px,6.4vw,104px)/.85 var(--display);letter-spacing:-.04em}
 .spot-side p{margin:0;max-width:44ch;color:rgba(246,246,243,.82);font-size:clamp(15px,1.15vw,17px);line-height:1.5}
 .pp-links{display:flex;gap:10px;flex-wrap:wrap}
-.spot-btn{background:#F6F6F3;color:var(--fg);border-color:#F6F6F3}
+.spot-btn{background:#F6F6F3;color:var(--fg);border-color:#F6F6F3;position:relative;overflow:hidden;isolation:isolate;height:54px;padding:0 var(--s6);font-size:15px}
+.spot-btn::before{content:"";position:absolute;inset:0;z-index:-1;background:#FF5C28;transform:translateX(-101%);transition:transform .5s cubic-bezier(.22,.7,.2,1)}
+.spot-btn:hover::before,.spot-btn:focus-visible::before{transform:translateX(0)}
+.spot-btn .ar{display:inline-block;transition:transform .4s cubic-bezier(.22,.7,.2,1)}
+.spot-btn:hover .ar,.spot-btn:focus-visible .ar{transform:translate(3px,-3px)}
 .pp-note{color:rgba(246,246,243,.6)!important;font-size:13px!important}
 .pp-frame{position:relative;width:100%;max-width:780px;justify-self:center;border-radius:12px;overflow:hidden;background:#e4e4e2;height:640px;box-shadow:0 34px 70px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.08)}
 .pp-frame iframe{position:absolute;left:0;top:0;width:1100px;height:930px;border:0;transform-origin:0 0}
@@ -503,11 +511,11 @@ function home(){
   <section id="passion" class="spot">
     <div class="pad spot-in">
       <div class="spot-side spot-l">
-        <span class="spot-tag">Passion Project Spotlight</span>
+        <span class="spot-tag"><i></i>Passion Project Spotlight</span>
         <h2>BBX&#8209;01</h2>
+        <p>A beatbox machine that records you and chops the take into samples, which you can then mess with using the knobs.</p>
       </div>
       <div class="spot-side spot-r">
-        <p>A beatbox machine that records you and chops the take into samples, which you can then mess with using the knobs.</p>
         <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a></div>
       </div>
       <div class="pp-frame" id="ppf"><iframe id="bbx" src="bbx-01/" title="BBX-01 beatbox sampler" allow="microphone; autoplay" loading="lazy"></iframe></div>
