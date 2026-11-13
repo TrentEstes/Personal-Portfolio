@@ -13,7 +13,33 @@ for p in P:
     q['rows']=[[res(x) for x in r] if isinstance(r,list) else r for r in p['rows']]
     out.append(q)
 pos=[dict(f=res(f),t=t,n=n,s=s,ar=ar) for f,t,n,s,ar in POSTERS]
-src=open('src/page.html').read().replace('/*__PROJECTS__*/[]', json.dumps(out,ensure_ascii=False,indent=0)).replace('/*__POSTERS__*/[]', json.dumps(pos,ensure_ascii=False))
+# ---- structured data (schema.org) + sitemap -------------------------------
+import datetime
+SU="https://trente.design/"
+person={"@type":"Person","@id":SU+"#trent","name":"Trent Estes","url":SU,
+        "jobTitle":"Brand and Packaging Designer",
+        "description":"Brand and packaging designer working in brand identity, packaging systems, lettering and poster design.",
+        "email":"mailto:hello@trente.design",
+        "address":{"@type":"PostalAddress","addressRegion":"VA","addressCountry":"US"},
+        "sameAs":["https://www.linkedin.com/in/trent-estes-0a538b300/"],
+        "knowsAbout":["Brand identity","Packaging design","Typography","Lettering","Art direction","Poster design","Consumer packaged goods"]}
+website={"@type":"WebSite","@id":SU+"#site","name":"Trent Estes","url":SU,
+         "inLanguage":"en","author":{"@id":SU+"#trent"},"publisher":{"@id":SU+"#trent"}}
+items=[{"@type":"ListItem","position":i+1,"item":{"@type":"CreativeWork","name":q["title"],
+        "description":q.get("kind") or q.get("sub") or "","url":SU+"#"+q["slug"],
+        "creator":{"@id":SU+"#trent"},"isPartOf":{"@id":SU+"#site"}}}
+       for i,q in enumerate(out) if q.get("slug")]
+graph={"@context":"https://schema.org","@graph":[person,website,
+       {"@type":"ItemList","name":"Selected work","itemListElement":items}]}
+jsonld=json.dumps(graph,ensure_ascii=False,separators=(",",":")).replace("</","<\\/")
+today=datetime.date.today().isoformat()
+urls=[(SU,"weekly","1.0"),(SU+"bbx-01/","monthly","0.6")]
+sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+for u,cf,pr in urls:
+    sm+=f'  <url><loc>{u}</loc><lastmod>{today}</lastmod><changefreq>{cf}</changefreq><priority>{pr}</priority></url>\n'
+sm+='</urlset>\n'
+open('sitemap.xml','w').write(sm)
+src=open('src/page.html').read().replace('/*__PROJECTS__*/[]', json.dumps(out,ensure_ascii=False,indent=0)).replace('/*__POSTERS__*/[]', json.dumps(pos,ensure_ascii=False)).replace('/*__JSONLD__*/', jsonld)
 open('src/artifact.html','w').write(src)
 head_end=src.index('</style>')+len('</style>')
 head,body=src[:head_end],src[head_end:]
