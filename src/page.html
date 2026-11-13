@@ -122,7 +122,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 @media (max-width:760px){.ridge{height:40%;opacity:.16}}
 .stitch{display:block;overflow:visible}
 .stitch path{fill:currentColor}
-.pl-num{color:#ABABA6;transition:color .3s}.pl-num .stitch{height:38px;width:auto}
+.pl-num{color:#ABABA6;transition:color .3s}.pl-num .stitch{height:24px;width:auto}
 .plate:hover .pl-num{color:var(--green)}
 .sh .dt{color:#ABABA6;padding-bottom:8px}.sh .dt .stitch{height:clamp(18px,1.8vw,24px);width:auto}
 .a-photo{position:relative}
@@ -135,11 +135,11 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .h-tags span::before{content:"+ ";color:var(--green)}
 
 /* ---------- selected work ---------- */
-.plates{display:flex;flex-direction:column;padding-block:var(--s5) 0}
-.plate{display:grid;grid-template-columns:1fr;gap:var(--s5);padding-block:var(--s8);border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
+.plates{display:flex;flex-direction:column;padding-block:var(--s3) 0}
+.plate{display:grid;grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s5);border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
 .plate:last-child{border-bottom:0}
-@media (min-width:820px){.plate{grid-template-columns:64px minmax(0,1fr) minmax(0,1.1fr);column-gap:var(--s7);align-items:center}}
-.pl-img{position:relative;overflow:hidden;aspect-ratio:2/1;background:var(--surface);border-radius:8px;
+@media (min-width:820px){.plate{grid-template-columns:48px minmax(0,1fr) minmax(0,.5fr);column-gap:var(--s6);align-items:center}}
+.pl-img{position:relative;overflow:hidden;aspect-ratio:2.4/1;background:var(--surface);border-radius:8px;
   will-change:border-radius}
 .nextp .pl-img{transform:none!important;animation:none!important}
 @media (max-width:819px){.pl-img{aspect-ratio:16/9}}
@@ -150,15 +150,15 @@ body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;o
 .pl-img.blur .bgi img{width:100%;height:100%;object-fit:cover;filter:blur(28px) saturate(1.1) brightness(.92)}
 .plate:hover .pl-img.blur .bgi img{transform:none}
 .plate:hover .pl-img img{transform:scale(1.035)}
-.pl-num{align-self:start;padding-top:6px}
+.pl-num{align-self:center;padding-top:0}
 @media (max-width:819px){.pl-num{order:2;padding:0}.pl-img{order:1}.pl-text{order:3}}
 .pl-text{display:flex;flex-direction:column;gap:0;min-width:0}
 .pl-row{display:flex;align-items:center;gap:14px}
 .pl-t{margin:0;font-size:clamp(26px,2.4vw,36px)!important;font:600 clamp(22px,2vw,30px)/1.05 var(--display);letter-spacing:-.03em}
 .pl-row .ar{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);transition:background .25s,color .25s,border-color .25s,transform .25s;font-size:13px}
 .plate:hover .pl-row .ar{background:var(--fg);border-color:var(--fg);color:var(--on-dark);transform:translateX(3px)}
-.pl-k{margin:var(--s5) 0 0;color:var(--ink-2);max-width:32ch;font-size:15px}
-.pl-sub{display:flex;flex-wrap:wrap;gap:0;margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--line);max-width:32ch}
+.pl-k{margin:var(--s2) 0 0;color:var(--ink-2);max-width:46ch;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.pl-sub{display:flex;flex-wrap:wrap;gap:0;margin-top:var(--s3)}
 .pl-sub i{font-style:normal;font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .plate:hover .pl-sub i{font-style:normal;font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .pl-sub i+i::before{content:"/";margin:0 8px;color:#B0B0AB}
@@ -874,29 +874,50 @@ function asciiPortrait(){
 }
 /* work covers: the closer the cursor, the more each cover softens into a loose, organic shape.
    Driven by distance (not hover), eased every frame, so it never snaps back. */
+/* work covers: as the cursor nears, the cover's edge behaves like a thick, sticky oil.
+   The edge pulls in everywhere except where it clings toward the cursor, and slow waves
+   travel along it. Motion is overdamped (pure viscous drag), so nothing ever rebounds. */
 function coverBend(){
   if(!matchMedia("(hover: hover)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(!CSS.supports("clip-path",'path("M0 0L1 0L1 1Z")')) return;
   const els=[...document.querySelectorAll(".plates .pl-img")]; if(!els.length) return;
-  const R=8, REACH=560;
-  const st=els.map((el,k)=>{ const r=n=>{ const x=Math.sin((k+1)*12.9898+n*78.233)*43758.5453; return x-Math.floor(x); };
-    return {el, a:[0,1,2,3].map(n=>.05+r(n)*.09), b:[0,1,2,3].map(n=>.12+r(n+4)*.16), cur:new Float32Array(8), v:new Float32Array(8), ph:r(9)*6.28, t:0}; });
+  const N=96, RAD=8, REACH=460, MAXIN=20;
+  const st=els.map((el,k)=>({el, cur:new Float32Array(N), seed:k*2.39+1.1, on:false, e:0}));
   let mx=-1e5,my=-1e5,raf=0;
-  const frame=(now=performance.now())=>{ raf=0; let live=false;
-    for(const s of st){ const b=s.el.getBoundingClientRect(); if(b.bottom<-200||b.top>innerHeight+200) continue;
-      const dx=Math.max(b.left-mx,0,mx-b.right), dy=Math.max(b.top-my,0,my-b.bottom), d=Math.hypot(dx,dy);
-      const t=Math.max(0,1-d/REACH); const e=t*t*t*(t*(t*6-15)+10);
-      // which corner the cursor is nearest pulls a little more
-      const fx=Math.min(1,Math.max(0,(mx-b.left)/b.width)), fy=Math.min(1,Math.max(0,(my-b.top)/b.height));
-      const pull=[(1-fx)*(1-fy),fx*(1-fy),fx*fy,(1-fx)*fy];
-      // slow breathing drift, only while the cursor is near, so the shape never sits still
-      const tm=now/1000, tgt=[];
-      for(let i=0;i<4;i++){ const w=1+.22*Math.sin(tm*.55+i*1.7+s.ph); const k=e*(.7+.6*pull[i])*w; tgt.push(R+k*b.width*s.a[i]); }
-      for(let i=0;i<4;i++){ const w=1+.22*Math.sin(tm*.47+i*2.3+s.ph); const k=e*(.7+.6*pull[i])*w; tgt.push(R+k*b.height*s.b[i]); }
-      if(e>.01) live=true;
-      for(let i=0;i<8;i++){ const d0=tgt[i]-s.cur[i]; if(Math.abs(d0)>.08) live=true; s.v[i]=s.v[i]*.86+d0*.012; s.cur[i]+=s.v[i]; }
-      const c=s.cur; s.el.style.borderRadius=`${c[0].toFixed(1)}px ${c[1].toFixed(1)}px ${c[2].toFixed(1)}px ${c[3].toFixed(1)}px / ${c[4].toFixed(1)}px ${c[5].toFixed(1)}px ${c[6].toFixed(1)}px ${c[7].toFixed(1)}px`; }
+  // a point and outward normal at fraction u of a rounded rect's perimeter
+  function perim(w,h,u,rad){
+    const r=Math.min(rad,w/2,h/2), sw=w-2*r, sh=h-2*r, arc=Math.PI*r/2, L=2*sw+2*sh+4*arc; let d=u*L;
+    const seg=[[sw,(t)=>[r+t,0,0,-1]],[arc,(t)=>{const a=-Math.PI/2+t/r;return [w-r+Math.cos(a)*r,r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sh,(t)=>[w,r+t,1,0]],[arc,(t)=>{const a=t/r;return [w-r+Math.cos(a)*r,h-r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sw,(t)=>[w-r-t,h,0,1]],[arc,(t)=>{const a=Math.PI/2+t/r;return [r+Math.cos(a)*r,h-r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sh,(t)=>[0,h-r-t,-1,0]],[arc,(t)=>{const a=Math.PI+t/r;return [r+Math.cos(a)*r,r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}]];
+    for(const [len,f] of seg){ if(d<=len) return f(d); d-=len; } return seg[0][1](0);
+  }
+  const frame=(now=performance.now())=>{ raf=0; let live=false; const tm=now/1000;
+    for(const s of st){ const b=s.el.getBoundingClientRect(); if(b.bottom<-100||b.top>innerHeight+100) continue;
+      const dx=Math.max(b.left-mx,0,mx-b.right), dy=Math.max(b.top-my,0,my-b.bottom);
+      const t=Math.max(0,1-Math.hypot(dx,dy)/REACH), e=t*t*(3-2*t); s.e+=(e-s.e)*.03; if(Math.abs(e-s.e)>.002) live=true;
+      const lx=mx-b.left, ly=my-b.top, sig=Math.max(b.width,b.height)*.55;
+      const P=[], tgt=new Float32Array(N);
+      const rad=RAD+s.e*30; for(let i=0;i<N;i++){ const q=perim(b.width,b.height,i/N,rad); P.push(q);
+        // edge stays stuck out toward the cursor, sags inward elsewhere
+        const g=Math.exp(-((q[0]-lx)**2+(q[1]-ly)**2)/(2*sig*sig));
+        const u=i/N*6.283, wave=.62+.2*Math.sin(u*2+tm*.32+s.seed)+.18*Math.sin(u*3-tm*.21+s.seed*1.7);
+        tgt[i]=e*MAXIN*wave*(1-.92*g); }
+      for(let i=0;i<N;i++) tgt[i]=Math.min(tgt[i], rad*.9+s.e*2);
+      // viscous: slow first-order follow (no velocity, no overshoot) + neighbour smoothing
+      const c=s.cur, k=.03;
+      for(let i=0;i<N;i++){ const d0=tgt[i]-c[i]; if(Math.abs(d0)>.02) live=true; c[i]+=d0*k; }
+      for(let pass=0;pass<3;pass++){ const sm=new Float32Array(N); for(let i=0;i<N;i++) sm[i]=c[i]*.5+(c[(i+N-1)%N]+c[(i+1)%N])*.25; c.set(sm); }
+      let mxIn=0; for(let i=0;i<N;i++) mxIn=Math.max(mxIn,c[i]);
+      if(mxIn<.05){ if(s.on){ s.el.style.clipPath=""; s.on=false; } continue; }
+      // Catmull-Rom through displaced points -> smooth closed bezier path
+      const X=P.map((q,i)=>[q[0]-q[2]*c[i], q[1]-q[3]*c[i]]);
+      let d=`M${X[0][0].toFixed(1)} ${X[0][1].toFixed(1)}`;
+      for(let i=0;i<N;i++){ const p0=X[(i+N-1)%N],p1=X[i],p2=X[(i+1)%N],p3=X[(i+2)%N];
+        d+=`C${(p1[0]+(p2[0]-p0[0])/6).toFixed(1)} ${(p1[1]+(p2[1]-p0[1])/6).toFixed(1)} ${(p2[0]-(p3[0]-p1[0])/6).toFixed(1)} ${(p2[1]-(p3[1]-p1[1])/6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`; }
+      s.el.style.clipPath=`path("${d}Z")`; s.on=true; if(e>.01) live=true; }
     if(live) raf=requestAnimationFrame(frame); };
-  st.forEach(s=>s.cur.fill(R));
   const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame); };
   addEventListener("pointermove",e=>{ mx=e.clientX; my=e.clientY; kick(); },{passive:true});
   addEventListener("scroll",kick,{passive:true});
