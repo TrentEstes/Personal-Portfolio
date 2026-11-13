@@ -1,0 +1,406 @@
+<title>Trent Estes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Trent Estes, brand and packaging designer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Patrick+Hand&display=swap">
+<style>
+/* Layout: soft grey gallery. Status bar, a rounded full-bleed hero with a statement, three serif "convictions",
+   a staggered selection of featured work, a scrolling availability banner, an archive table, a floating yellow contact card.
+   Single theme on purpose (light), like the reference. */
+:root{
+  --bg:#F1F1EF;
+  --surface:#E6E5E1;
+  --fg:#111111;
+  --muted:#77756F;
+  --faint:#BDBBB5;
+  --line:#DCDAD4;
+  --green:#2FB45A;
+  --card:#F6C34C;
+  --sans:"Instrument Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:"Instrument Serif","Times New Roman",Georgia,serif;
+  --hand:"Patrick Hand","Comic Neue","Chalkboard SE",cursive;
+  --r:6px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:800px){.pad{padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}}
+.label{display:inline-flex;align-items:center;gap:8px;font:500 11.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase}
+.label::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.small{font-size:13px}
+.muted{color:var(--muted)}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.top .in{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding-block:14px}
+@media (min-width:860px){.top .in{grid-template-columns:120px 1fr auto auto;gap:24px}}
+.mono{font:400 22px/1 var(--serif);text-decoration:none;letter-spacing:-.01em}
+.status{display:none;align-items:center;gap:28px;font-size:13px}
+@media (min-width:860px){.status{display:flex}}
+.status .avail{display:inline-flex;align-items:center;gap:8px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(47,180,90,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion: reduce){.dot{animation:none}}
+.tnav{display:flex;gap:18px;font-size:13px}
+.tnav a,.tcontact{text-decoration:none;color:var(--muted)}
+.tnav a:hover,.tcontact:hover,.tnav a[aria-current="true"]{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+.tcontact{display:none}
+@media (min-width:860px){.tcontact{display:inline}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;margin-top:6px;border-radius:var(--r);overflow:hidden;min-height:clamp(480px,74vh,760px);display:flex;flex-direction:column;justify-content:flex-end;background:#24301f}
+@media (min-width:860px){.hero{justify-content:center}.hero .stmt{margin-bottom:0}}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.04);filter:saturate(.85)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.72))}
+@media (min-width:860px){.hero img{width:150%;left:-6%;max-width:none}.hero::after{background:linear-gradient(90deg,rgba(0,0,0,.62),rgba(0,0,0,.25) 45%,rgba(0,0,0,0) 70%)}}
+.hero .stmt{position:relative;z-index:1;color:#fff;max-width:26ch;margin:0 0 54px clamp(0px,5vw,96px);padding:clamp(18px,3vw,32px);font:400 clamp(22px,2.4vw,34px)/1.22 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.hero .stmt em{font:italic 400 1.12em/1 var(--serif)}
+.hero.banner{min-height:0;justify-content:flex-end}
+.hero.banner img{transform:none;filter:none;object-position:50% 50%}
+.hero.banner .stmt{font-size:clamp(18px,1.8vw,28px);margin-bottom:clamp(14px,2vw,28px)}
+@media (max-width:860px){.hero.banner{aspect-ratio:auto!important;min-height:340px}}
+.hero .who{position:absolute;z-index:1;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,28px);color:#fff;font-size:13px;line-height:1.35}
+
+/* ---------- convictions ---------- */
+.conv{display:grid;grid-template-columns:1fr;gap:28px;padding-block:clamp(80px,12vw,180px)}
+@media (min-width:900px){.conv{grid-template-columns:200px minmax(0,1fr)}}
+.conv-list{display:flex;flex-direction:column;gap:clamp(48px,7vw,96px)}
+.cv{display:grid;grid-template-columns:1fr;gap:14px 48px;align-items:start}
+@media (min-width:900px){.cv{grid-template-columns:minmax(0,.9fr) minmax(0,1fr)}}
+.cv h3{margin:0;font:400 clamp(54px,8vw,120px)/.9 var(--serif);letter-spacing:-.02em;color:var(--faint);transition:color .8s ease}
+.cv p{margin:0;max-width:44ch;font-size:16px;line-height:1.55;color:var(--faint);transition:color .8s ease .1s;padding-top:.6em}
+.cv.on h3,.cv.on p{color:var(--fg)}
+@media (prefers-reduced-motion: reduce){.cv h3,.cv p{color:var(--fg);transition:none}}
+.conv-end{margin:clamp(40px,6vw,80px) 0 0;max-width:46ch;font-size:16px}
+
+/* ---------- selected work ---------- */
+.sel-head{padding-bottom:28px}
+.sel{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,2vw,24px);row-gap:clamp(56px,8vw,120px)}
+.w{grid-column:1/-1;display:flex;flex-direction:column;gap:10px;text-decoration:none;min-width:0}
+.w .img{position:relative;overflow:hidden;border-radius:var(--r);background:var(--surface);aspect-ratio:4/3;max-width:100%}
+.w.tall .img{aspect-ratio:4/5}
+.w .img.white{background:#fff}
+.w img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.w .img.white img{object-fit:contain}
+.w:hover img{transform:scale(1.035)}
+.chip{position:absolute;top:10px;left:10px;z-index:1;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:3px;padding:4px 7px;font-size:11.5px}
+.w .t{font-size:14px;font-weight:500}
+.w .d{font-size:13px;color:var(--muted);margin-top:-6px}
+.ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:italic 400 26px/1.2 var(--serif);text-align:center;padding:20px}
+@media (min-width:860px){
+  .w.s1{grid-column:3/10}
+  .w.s2{grid-column:9/13;margin-top:-28%}
+  .w.s3{grid-column:2/6}
+  .w.s4{grid-column:7/12;margin-top:18%}
+  .w.s5{grid-column:3/9}
+  .w.s6{grid-column:9/13;margin-top:-30%}
+  .interlude{grid-column:6/11 !important}
+}
+@media (prefers-reduced-motion: reduce){.w img{transition:none}}
+.interlude{grid-column:1/-1;align-self:center;margin:0;font:400 clamp(20px,2vw,26px)/1.3 var(--sans);letter-spacing:-.01em;text-wrap:balance}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;padding-block:clamp(60px,9vw,140px);white-space:nowrap}
+.marquee .tr{display:inline-flex;gap:.5em;font:400 clamp(64px,11vw,190px)/1 var(--sans);letter-spacing:-.04em;animation:mq 38s linear infinite}
+.marquee .tr span em{font:italic 400 1em/1 var(--serif);letter-spacing:-.01em}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.marquee .tr{animation:none}}
+
+/* ---------- archive ---------- */
+.arch-head{padding-bottom:18px}
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{text-align:left;font-weight:500;color:var(--muted);padding:0 10px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:18px 10px;border-bottom:1px solid var(--line);vertical-align:baseline}
+.tbl tbody tr{cursor:pointer;transition:background .2s}
+.tbl tbody tr:hover{background:var(--surface)}
+.tbl td a{text-decoration:none}
+.tbl .y{width:9%;font-variant-numeric:tabular-nums}
+@media (max-width:640px){.tbl .hide{display:none}}
+.peek{position:fixed;left:0;top:0;width:200px;aspect-ratio:4/3;pointer-events:none;z-index:15;border-radius:var(--r);overflow:hidden;background:var(--surface);opacity:0;transform:translate(16px,-50%) scale(.95);transition:opacity .15s,transform .15s}
+.peek.on{opacity:1;transform:translate(16px,-50%) scale(1)}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media (hover:none){.peek{display:none}}
+
+/* ---------- footer ---------- */
+.foot{display:grid;grid-template-columns:1fr;gap:28px;padding-block:clamp(80px,10vw,140px) 40px}
+@media (min-width:860px){.foot{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
+.foot h2{margin:0;font:400 clamp(36px,5vw,72px)/1.02 var(--sans);letter-spacing:-.035em}
+.foot h2 em{font:italic 400 1.05em/1 var(--serif)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px;align-content:end}
+.foot ul a{text-decoration:none}
+.foot ul a:hover{text-decoration:underline;text-underline-offset:3px}
+.about{display:grid;grid-template-columns:1fr;gap:20px;padding-block:clamp(72px,10vw,150px)}
+@media (min-width:900px){.about{grid-template-columns:200px minmax(0,1fr)}}
+.about-wrap{display:grid;grid-template-columns:1fr;gap:28px 48px;align-items:start}
+@media (min-width:760px){.about-wrap{grid-template-columns:200px minmax(0,1fr)}}
+.me{width:min(200px,50vw);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.about-body .small-loc{font-size:15px!important;color:var(--muted)}
+.about-body{max-width:40em}
+.about-body p{margin:0 0 1em;font:400 clamp(20px,2vw,27px)/1.4 var(--sans);letter-spacing:-.01em}
+.about-body .note{margin-top:1.6em;font:400 21px/1.4 var(--hand);color:var(--muted);transform:rotate(-1deg);display:inline-block}
+.sel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.hint{font:400 18px/1 var(--hand);color:var(--muted)}
+.p-cap{margin:-2px 0 clamp(14px,2vw,24px);font:400 18px/1.35 var(--hand);color:var(--muted);max-width:60ch}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-block:18px 26px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* ---------- floating card ---------- */
+.fcard{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:25;width:250px;background:var(--card);color:#1E1A12;padding:16px 16px 14px;border-radius:3px;transform:rotate(-3deg);box-shadow:0 18px 34px -16px rgba(60,40,0,.55);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.fcard:hover{transform:rotate(0)}
+.fcard b{display:block;font:400 26px/1 var(--serif)}
+.fcard span{font-family:var(--hand)!important;font-size:16px!important}
+.fcard span{display:block;font-size:12.5px;margin-top:4px}
+.fcard .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.fcard .btn{display:inline-flex;align-items:center;gap:6px;background:#1E1A12;color:#F6C34C;border-radius:999px;padding:7px 12px;font-size:12.5px;text-decoration:none}
+.fcard .btn:hover{background:#000}
+.fcard .x{position:absolute;top:6px;right:8px;font-size:16px;line-height:1;padding:4px}
+@media (max-width:640px){.fcard{width:auto;padding:10px 34px 10px 12px;transform:rotate(-2deg)}.fcard span,.fcard .row a+a{display:none}.fcard b{font-size:20px}.fcard .row{margin-top:8px}}
+
+/* ---------- project page ---------- */
+.p-head{display:grid;grid-template-columns:1fr;gap:22px;padding-block:clamp(36px,6vw,80px) clamp(28px,4vw,48px)}
+@media (min-width:900px){.p-head{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:end}}
+.p-head .back{font-size:13px;color:var(--muted);text-decoration:none}
+.p-head .back:hover{color:var(--fg)}
+.p-head h1{margin:14px 0 0;font:400 clamp(44px,7vw,108px)/.95 var(--sans);letter-spacing:-.045em;text-wrap:balance}
+.p-head h1 em{font:italic 400 1.04em/1 var(--serif);letter-spacing:-.01em}
+.p-info{margin:0;font-size:17px;line-height:1.55;max-width:46ch}
+.p-info.empty{color:var(--muted);font:italic 400 20px/1.3 var(--serif)}
+.p-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:13px}
+.p-meta dt{color:var(--muted);margin-bottom:2px}
+.p-meta dd{margin:0}
+.p-body{display:flex;flex-direction:column;gap:clamp(8px,1.2vw,14px);padding-bottom:clamp(64px,8vw,120px)}
+.p-row{display:grid;gap:clamp(8px,1.2vw,14px);grid-template-columns:1fr;align-items:start}
+@media (min-width:700px){.p-row.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.p-row.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.p-row figure{margin:0;border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.p-row img{width:100%;height:auto}
+.p-row.c1 img{max-height:92vh;object-fit:contain}
+.p-h{display:flex;align-items:baseline;gap:20px;margin:clamp(40px,6vw,80px) 0 8px}
+.p-h b{font:italic 400 clamp(34px,4vw,56px)/1 var(--serif)}
+.p-text{margin:clamp(20px,3vw,40px) 0;max-width:52ch;font-size:17px;line-height:1.55}
+.p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 24px;margin:4px 0 clamp(20px,3vw,36px);border-top:1px solid var(--line)}
+.p-facts div{padding:14px 0;border-bottom:1px solid var(--line)}
+.p-facts dt{font-size:12.5px;color:var(--muted);margin-bottom:4px}
+.p-facts dd{margin:0;font-size:16px}
+.p-list{list-style:none;margin:0 0 clamp(20px,3vw,36px);padding:0;max-width:62ch;border-top:1px solid var(--line)}
+.p-list li{display:grid;grid-template-columns:2.4em 1fr;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px;counter-increment:li}
+.p-list li::before{content:counter(li,decimal-leading-zero);font:italic 400 18px/1.3 var(--serif);color:var(--muted)}
+.p-list{counter-reset:li}
+.vid{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;text-decoration:none;background:#fff}
+.vid:hover{border-color:var(--fg)}
+.nextp{display:grid;grid-template-columns:1fr;gap:16px;padding-block:28px clamp(80px,10vw,120px);border-top:1px solid var(--line);text-decoration:none}
+@media (min-width:760px){.nextp{grid-template-columns:minmax(0,1fr) 300px;align-items:end}}
+.nextp .t{display:block;margin-top:8px;font:400 clamp(36px,5vw,76px)/1 var(--sans);letter-spacing:-.04em;transition:transform .35s}
+.nextp:hover .t{transform:translateX(8px)}
+.nextp .img{position:relative;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.nextp .img img{width:100%;height:100%;object-fit:cover}
+.nextp .img.white{background:#fff}.nextp .img.white img{object-fit:contain}
+</style>
+
+<header class="top">
+  <div class="in pad">
+    <a class="mono" href="#" aria-label="Trent Estes, home">Trent Estes</a>
+    <div class="status"><span id="loc">Blacksburg, VA</span><span class="avail"><span class="dot" aria-hidden="true"></span>Open to brand &amp; packaging roles</span></div>
+    <nav class="tnav" aria-label="Main"><a href="#work">Work</a><a href="#about">About</a><a href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener">LinkedIn ↗</a></nav>
+    <a class="tcontact" href="#contact">Contact</a>
+  </div>
+</header>
+
+<div id="app"></div>
+
+<aside class="fcard" id="fcard" aria-label="Contact Trent">
+  <button class="x" type="button" id="fclose" aria-label="Hide contact card">×</button>
+  <b>Trent Estes</b>
+  <span>brand + packaging designer</span>
+  <div class="row"><a class="btn" href="#contact">Say hi →</a><a href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener" style="font-size:12.5px">LinkedIn ↗</a></div>
+</aside>
+
+<div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
+
+<script>
+/* ============================================================
+   EDIT HERE — your details. Projects are in PROJECTS below.
+   ============================================================ */
+const SITE = {
+  name: "Trent Estes",
+  location: "Blacksburg, VA",
+  timezone: "America/New_York",
+  email: "trent.estes@yahoo.com",
+  phone: "804-997-1613",
+  linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
+  instagram: "",
+  resume: "resume.pdf",
+  hero: "1d68f61c-6f2f-4995-8903-1934ed105a4a_rw_3840.jpg?h=8b7f736ed9361eb6f3e74da26419df70",
+  featured: ["gatorade-banana","ginergy","paige-bueckers-court","appalachian-folk-festival","hale-community-garden","the-junction"],
+};
+const CDN = "https://cdn.myportfolio.com/b4959d68-b493-4a74-8c26-0cfab32fedbd/";
+const PROJECTS = /*__PROJECTS__*/[];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const srcs = f => { const n=f.split("?")[0]; const web="images-web/"+n.replace(/\.png$/i,".jpg"); return [...new Set([web, "images-web/"+n, "images/"+n, ...(f.includes("?")?[CDN+f]:[])])]; };
+function nextSrc(el){ const l=(el.dataset.fb||"").split("|").filter(Boolean); if(l.length){ el.dataset.fb=l.slice(1).join("|"); el.src=l[0]; } }
+function img(f, alt, lazy=true, style=""){
+  const [a,...rest]=srcs(f);
+  return `<img src="${a}" data-fb="${rest.join("|")}" alt="${esc(alt)}" ${lazy?'loading="lazy"':''} decoding="async" ${style?`style="${style}"`:""} onerror="nextSrc(this)">`;
+}
+function heroFit(el){ if(!/linkedin-banner/.test(el.src)) return; const h=el.closest('.hero'); h.classList.add('banner'); h.style.aspectRatio=(el.naturalWidth/el.naturalHeight).toFixed(3); }
+function setImg(el, f){ const [a,...rest]=srcs(f); el.dataset.fb=rest.join("|"); el.onerror=()=>nextSrc(el); el.src=a; }
+const digits = s => s.replace(/[^0-9+]/g,"");
+const by = slug => PROJECTS.find(p=>p.slug===slug);
+const FEATURED = SITE.featured.map(by).filter(Boolean);
+const ARCHIVE = PROJECTS.filter(p=>!FEATURED.includes(p));
+const info = p => p.info || (p.rows.find(r=>r.p)||{}).p || "";
+function cover(p, lazy=true){
+  const white = p.fit==="contain" ? " white" : "";
+  const inner = p.cover ? img(p.cover, p.title, lazy, p.pos?`object-position:${p.pos}`:"") : `<span class="ph">${esc(p.title)}<br>coming soon</span>`;
+  return `<div class="img${white}">${inner}</div>`;
+}
+
+/* ---------- home ---------- */
+function home(){
+  const slots=["s1","s2 tall","s3 tall","s4","s5","s6 tall"];
+  const feat = FEATURED.map((p,i)=>`
+    <a class="w ${slots[i%slots.length]}" href="#${p.slug}">
+      <div style="position:relative">${cover(p, i>1)}</div>
+      <span class="t">${esc(p.title)}</span>
+      <span class="d">${esc(p.kind)}</span>
+    </a>`).join("");
+  return `
+  <div class="pad">
+    <section class="hero" id="top" aria-label="Introduction">
+      <img id="hero-img" src="images-web/linkedin-banner.jpg" alt="" decoding="async" onload="heroFit(this)" onerror="this.onerror=null;this.src='images-web/'+SITE.hero.split('?')[0]">
+      <p class="stmt">Hi, I'm Trent. I design brands and packaging, usually pulling from old music, the outdoors and anything <em>retro.</em></p>
+      <span class="who">${esc(SITE.name)}<br>Brand &amp; Packaging Designer</span>
+    </section>
+
+    <section class="about" id="about">
+      <span class="label">About</span>
+      <div class="about-wrap">
+      <img class="me" src="images-web/trent-photo.jpg" alt="Trent Estes" width="900" height="900" loading="lazy">
+      <div class="about-body">
+        <p>I'm a graphic and packaging designer with a bold eye and a love of the analog and natural world. Vintage design, a deep respect for the environment and a lifelong connection to music shape most of what I make.</p>
+        <p>I treat every project as a problem worth solving, and I care about the details that make something stick. Passionate about everything, always willing to learn.</p>
+        <p class="muted small-loc">Blacksburg, Virginia · Virginia Tech</p>
+      </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="sel-head"><span class="label">Selected work</span></div>
+      <div class="sel">${feat}</div>
+    </section>
+  </div>
+
+
+  <div class="pad">
+    <section id="archive">
+      <div class="arch-head"><span class="label">More work</span></div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th class="y">Year</th><th>Project</th><th>Type</th><th class="hide">Discipline</th></tr></thead>
+        <tbody>${ARCHIVE.map(p=>`<tr data-slug="${p.slug}" data-cover="${p.cover||""}"><td class="y">${p.year}</td><td><a href="#${p.slug}">${esc(p.title)}</a></td><td>${esc(p.sub)}</td><td class="hide">${esc(p.tags.join(", "))}</td></tr>`).join("")}</tbody>
+      </table></div>
+    </section>
+    ${footer()}
+  </div>`;
+}
+function footer(){
+  return `
+  <section class="foot" id="contact">
+    <h2>Want to work together? <em>Send me a note.</em></h2>
+    <ul>
+      <li><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>
+      <li><a href="tel:${digits(SITE.phone)}">${esc(SITE.phone)}</a></li>
+      ${SITE.linkedin?`<li><a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a></li>`:""}
+      ${SITE.instagram?`<li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener">Instagram ↗</a></li>`:""}
+      ${SITE.resume?`<li><a href="${esc(SITE.resume)}">Résumé ↗</a></li>`:""}
+    </ul>
+  </section>
+  <div class="legal"><span>© ${new Date().getFullYear()} ${esc(SITE.name)}</span><span>Brand &amp; packaging design</span></div>`;
+}
+
+/* ---------- project page ---------- */
+function project(p){
+  const i=PROJECTS.indexOf(p), next=PROJECTS[(i+1)%PROJECTS.length];
+  const text=info(p); let first=true;
+  const rows=p.rows.map(r=>{
+    if(Array.isArray(r)) return `<div class="p-row c${r.length}">${r.map(f=>{const h=`<figure>${img(f,p.title,!first)}</figure>`; first=false; return h;}).join("")}</div>`;
+    if(r.h) return `<h2 class="p-h"><b>${esc(r.h)}</b></h2>`;
+    if(r.p) return r.p===text ? "" : `<p class="p-text">${esc(r.p)}</p>`;
+    if(r.cap) return `<p class="p-cap">${esc(r.cap)}</p>`;
+    if(r.facts) return `<dl class="p-facts">${r.facts.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
+    if(r.list) return `<ul class="p-list">${r.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+    if(r.v) return `<a class="vid" href="https://www-ccv.adobe.io/v1/player/ccv/${r.v}/embed?api_key=BehancePro2View" target="_blank" rel="noopener"><span>Motion piece</span><span>Watch ↗</span></a>`;
+    return "";
+  }).join("");
+  return `
+  <div class="pad">
+    <section class="p-head">
+      <div><a class="back" href="#work">← Back to work</a><h1>${esc(p.title)}</h1></div>
+      <div>
+        ${text?`<p class="p-info">${esc(text)}</p>`:""}
+        <dl class="p-meta"><div><dt>Year</dt><dd>${p.year}</dd></div><div><dt>Type</dt><dd>${esc(p.sub)}</dd></div><div><dt>Discipline</dt><dd>${esc(p.tags.join(", "))}</dd></div></dl>
+      </div>
+    </section>
+    <section class="p-body">${rows || (p.cover?`<div class="p-row c1"><figure>${img(p.cover,p.title,false)}</figure></div>`:"")}</section>
+    <a class="nextp" href="#${next.slug}">
+      <div><span class="label">Next project</span><span class="t">${esc(next.title)} →</span></div>
+      ${cover(next)}
+    </a>
+    ${footer()}
+  </div>`;
+}
+
+/* ---------- behaviour ---------- */
+let io=null;
+function bindHome(){
+  if(io) io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("on"); }),{rootMargin:"0px 0px -30% 0px"});
+  document.querySelectorAll(".cv").forEach(el=>io.observe(el));
+  const peek=$("#peek"), pim=peek.querySelector("img"), tb=document.querySelector(".tbl tbody");
+  tb.addEventListener("mousemove", e=>{
+    const tr=e.target.closest("tr"); if(!tr||!tr.dataset.cover){peek.classList.remove("on");return;}
+    if(pim.dataset.f!==tr.dataset.cover){ pim.dataset.f=tr.dataset.cover; setImg(pim,tr.dataset.cover); }
+    peek.style.left=e.clientX+"px"; peek.style.top=e.clientY+"px"; peek.classList.add("on");
+  });
+  tb.addEventListener("mouseleave", ()=>peek.classList.remove("on"));
+  tb.addEventListener("click", e=>{ const tr=e.target.closest("tr"); if(tr && !e.target.closest("a")) location.hash=tr.dataset.slug; });
+}
+let mode=null;
+function route(){
+  const h=location.hash.slice(1), p=by(h);
+  $("#peek").classList.remove("on");
+  if(p){
+    $("#app").innerHTML=project(p); mode="project";
+    document.title=`${p.title} · ${SITE.name}`; window.scrollTo(0,0);
+  } else {
+    if(mode!=="home"){ $("#app").innerHTML=home(); bindHome(); mode="home"; }
+    document.title=SITE.name;
+    const el=h?document.getElementById(h):null;
+    if(el) requestAnimationFrame(()=>el.scrollIntoView()); else window.scrollTo(0,0);
+  }
+}
+function tick(){
+  try{ $("#clock").textContent=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",second:"2-digit",timeZone:SITE.timezone}).format(new Date()); }catch(e){}
+}
+$("#fclose").addEventListener("click",()=>{ $("#fcard").hidden=true; try{sessionStorage.setItem("te-card","off")}catch(e){} });
+try{ if(sessionStorage.getItem("te-card")==="off") $("#fcard").hidden=true; }catch(e){}
+addEventListener("hashchange", route);
+addEventListener("keydown", e=>{
+  if(mode!=="project") return;
+  const i=PROJECTS.findIndex(x=>x.slug===location.hash.slice(1)); if(i<0) return;
+  if(e.key==="ArrowRight") location.hash=PROJECTS[(i+1)%PROJECTS.length].slug;
+  if(e.key==="ArrowLeft") location.hash=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length].slug;
+});
+route();
+</script>

@@ -1,0 +1,220 @@
+<title>Trent Estes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Trent Estes, experiential brand and packaging designer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&family=Patrick+Hand&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: Trent's own comp. A tilted yellow index card with name and contact pinned top-left, a hand-lettered WORK heading,
+   then one centered column of big project images with small underlined captions, followed by smaller pairs.
+   Single theme on purpose: white page, like the comp. */
+:root{
+  --bg:#FFFFFF;
+  --ink:#141414;
+  --muted:#6C6C6C;
+  --card:#F6C34C;       /* index-card yellow */
+  --card-ink:#1E1A12;
+  --soft:#F2F1EE;
+  --line:#E5E3DE;
+  --slab:"Ultra","Rockwell Extra Bold","Rockwell",Georgia,serif;
+  --hand:"Patrick Hand","Comic Neue","Chalkboard SE","Segoe Print",cursive;
+  --marker:"Permanent Marker","Marker Felt","Segoe Print",cursive;
+  --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --col:min(880px,100%);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.page{position:relative;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.col{width:var(--col);margin:0 auto}
+
+/* ---------- index card ---------- */
+.card{position:relative;z-index:2;width:min(380px,88vw);background:var(--card);color:var(--card-ink);padding:30px 30px 34px 40px;transform:rotate(-11deg);transform-origin:30% 40%;
+  box-shadow:0 2px 0 rgba(0,0,0,.05),0 18px 30px -14px rgba(60,40,0,.45);margin:44px 0 0 -12px;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:rotate(-8deg) translateY(-3px)}
+@media (prefers-reduced-motion: reduce){.card{transition:none}.card:hover{transform:rotate(-11deg)}}
+.card::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 27px,rgba(30,26,18,.10) 27px 28px);background-position:0 70px;pointer-events:none}
+.card h1{margin:0 0 14px;font:400 clamp(30px,3.4vw,40px)/1 var(--slab);letter-spacing:.01em;text-transform:uppercase;white-space:nowrap}
+.card .c{display:block;font:400 19px/1.25 var(--hand);text-decoration:none;width:max-content;max-width:100%;border-bottom:1px solid rgba(30,26,18,.45);margin-bottom:4px}
+.card .c:hover{border-bottom-color:currentColor}
+.card p{margin:14px 0 0;font:400 16.5px/1.45 var(--hand);max-width:30ch}
+@media (min-width:1100px){.card{position:absolute;left:-14px;top:0;margin:0}}
+
+/* ---------- WORK ---------- */
+.work-h{margin:clamp(48px,7vw,40px) 0 clamp(44px,6vw,80px);text-align:center;font:400 clamp(30px,3vw,40px)/1 var(--marker);letter-spacing:.04em;transform:skewX(-6deg)}
+@media (min-width:1100px){.work-h{margin-top:280px}}
+
+/* ---------- project tiles ---------- */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(56px,8vw,130px) clamp(20px,5.5%,48px)}
+.tile{display:flex;flex-direction:column;gap:12px;text-decoration:none;min-width:0}
+.tile.big{grid-column:1/-1}
+.tile .img{position:relative;aspect-ratio:1.4/1;max-width:100%;overflow:hidden;background:var(--soft)}
+.tile .img.contain{background:var(--bg)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.tile .img.contain img{object-fit:contain}
+.tile:hover img{transform:scale(1.025)}
+.tile .img.contain:hover img,.tile:hover .img.contain img{transform:scale(1.04) rotate(-1.5deg)}
+.tile .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;font:400 22px/1.3 var(--hand);color:var(--muted);border:1.5px dashed #cfccc5}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:12.5px;letter-spacing:.01em}
+.cap u{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.cap .go{font:400 15px/1 var(--hand);opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s;white-space:nowrap}
+.tile:hover .go,.tile:focus-visible .go{opacity:1;transform:none}
+@media (hover:none){.cap .go{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.tile img,.cap .go{transition:none}}
+@media (max-width:520px){.tiles{grid-template-columns:1fr}.tile.big{grid-column:auto}}
+
+/* ---------- footer ---------- */
+.foot{margin-top:clamp(80px,10vw,150px);padding-top:28px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font:400 18px/1.4 var(--hand)}
+.foot a{text-decoration:none;border-bottom:1px solid var(--line)}
+.foot a:hover{border-color:var(--ink)}
+.foot small{font:400 12px/1.6 var(--sans);color:var(--muted)}
+
+/* ---------- project page ---------- */
+.tag{display:inline-block;position:relative;z-index:2;margin:26px 0 0 -4px;background:var(--card);color:var(--card-ink);padding:10px 18px 12px;font:400 22px/1 var(--slab);text-transform:uppercase;text-decoration:none;transform:rotate(-6deg);box-shadow:0 12px 22px -12px rgba(60,40,0,.5);transition:transform .35s}
+.tag:hover{transform:rotate(-3deg) translateY(-2px)}
+.back{display:inline-block;margin-top:clamp(36px,5vw,64px);font:400 20px/1 var(--hand);text-decoration:none;border-bottom:1px solid var(--line)}
+.back:hover{border-color:var(--ink)}
+.p-title{margin:22px 0 0;font:400 clamp(38px,6vw,72px)/1 var(--slab);text-transform:uppercase;text-wrap:balance}
+.p-cap{margin-top:12px}
+.p-info{margin:28px 0 0;max-width:60ch;font-size:17px;line-height:1.65}
+.p-info.empty{font:400 19px/1.45 var(--hand);color:var(--muted);border:1.5px dashed #cfccc5;padding:14px 16px}
+.p-body{display:flex;flex-direction:column;gap:clamp(10px,1.4vw,16px);margin-top:clamp(40px,6vw,72px)}
+.p-row{display:grid;gap:clamp(10px,1.4vw,16px);grid-template-columns:1fr}
+@media (min-width:640px){.p-row.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.p-row.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.p-row figure{margin:0;background:var(--soft)}
+.p-row img{width:100%;height:auto}
+.p-h{margin:clamp(40px,6vw,72px) 0 8px;text-align:center;font:400 clamp(26px,2.6vw,34px)/1 var(--marker);letter-spacing:.04em;transform:skewX(-6deg);text-transform:uppercase}
+.p-text{margin:clamp(16px,3vw,32px) 0;max-width:60ch;font-size:17px;line-height:1.65}
+.vid{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--ink);padding:16px 18px;text-decoration:none;font-size:14px}
+.vid:hover{background:var(--ink);color:var(--bg)}
+.next{display:grid;grid-template-columns:1fr;gap:14px;margin-top:clamp(64px,9vw,120px);padding-top:28px;border-top:1px solid var(--line);text-decoration:none}
+@media (min-width:640px){.next{grid-template-columns:minmax(0,1fr) 220px;align-items:end}}
+.next .k{font:400 20px/1 var(--hand);color:var(--muted)}
+.next .t{display:block;margin-top:10px;font:400 clamp(30px,4.4vw,52px)/1 var(--slab);text-transform:uppercase;transition:transform .3s}
+.next:hover .t{transform:translateX(6px)}
+.next .img{position:relative;aspect-ratio:1.4/1;overflow:hidden;background:var(--soft)}
+.next .img img{width:100%;height:100%;object-fit:cover}
+.next .img.contain{background:var(--bg)}.next .img.contain img{object-fit:contain}
+</style>
+
+<div class="page" id="app"></div>
+
+<script>
+/* ============================================================
+   EDIT HERE — your details. Projects are in PROJECTS below.
+   size:"big" = full-width image on the home page, otherwise a smaller pair.
+   info = the paragraph on the project page.
+   ============================================================ */
+const SITE = {
+  name: "Trent Estes",
+  email: "trent.estes@yahoo.com",
+  phone: "804-997-1613",
+  bio: "Experiential brand and packaging designer inspired by the analog world, nature, and retro design. Passionate about everything and always willing to learn. Here to solve problems.",
+  linkedin: "",          // optional, e.g. "https://www.linkedin.com/in/…"
+  resume: "resume.pdf",  // drop resume.pdf next to index.html
+};
+const CDN = "https://cdn.myportfolio.com/b4959d68-b493-4a74-8c26-0cfab32fedbd/";
+const PROJECTS = /*__PROJECTS__*/[];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+/* Image sources, tried in order: web-sized copy (images-web), full-size original (images), Adobe Portfolio. */
+const srcs = f => { const n=f.split("?")[0]; const web="images-web/"+n.replace(/\.png$/i,".jpg"); return [...new Set([web, "images-web/"+n, "images/"+n, ...(f.includes("?")?[CDN+f]:[])])]; };
+function nextSrc(el){ const l=(el.dataset.fb||"").split("|").filter(Boolean); if(l.length){ el.dataset.fb=l.slice(1).join("|"); el.src=l[0]; } }
+function img(f, alt, lazy=true, style=""){
+  const [a,...rest]=srcs(f);
+  return `<img src="${a}" data-fb="${rest.join("|")}" alt="${esc(alt)}" ${lazy?'loading="lazy"':''} decoding="async" ${style?`style="${style}"`:""} onerror="nextSrc(this)">`;
+}
+const digits = s => s.replace(/[^0-9+]/g,"");
+
+function coverBox(p, lazy=true){
+  const cls = "img" + (p.fit==="contain" ? " contain" : "");
+  const inner = p.cover ? img(p.cover, p.title, lazy, p.pos?`object-position:${p.pos}`:"") : `<span class="ph">${esc(p.title)}<br>image coming soon</span>`;
+  return `<div class="${cls}">${inner}</div>`;
+}
+
+/* ---------- home ---------- */
+function home(){
+  return `
+  <aside class="card" aria-label="About Trent">
+    <h1>${esc(SITE.name)}</h1>
+    <a class="c" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>
+    <a class="c" href="tel:${digits(SITE.phone)}">${esc(SITE.phone)}</a>
+    <p>${esc(SITE.bio)}</p>
+  </aside>
+  <main class="col">
+    <h2 class="work-h" id="work">WORK</h2>
+    <div class="tiles">${PROJECTS.map((p,i)=>`
+      <a class="tile ${p.size==="big"?"big":""}" href="#${p.slug}">
+        ${coverBox(p, i>1)}
+        <span class="cap"><u>${esc(p.title)} / ${p.year}</u><span class="go">view project →</span></span>
+      </a>`).join("")}</div>
+    ${footer()}
+  </main>`;
+}
+function footer(){
+  return `<footer class="foot">
+    <span><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a> · <a href="tel:${digits(SITE.phone)}">${esc(SITE.phone)}</a>${SITE.linkedin?` · <a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`:""}${SITE.resume?` · <a href="${esc(SITE.resume)}">Résumé</a>`:""}</span>
+    <small>© ${new Date().getFullYear()} ${esc(SITE.name)}</small>
+  </footer>`;
+}
+
+/* ---------- project page ---------- */
+function project(p){
+  const i=PROJECTS.indexOf(p), next=PROJECTS[(i+1)%PROJECTS.length];
+  let first=true;
+  const info = p.info || (p.rows.find(r=>r.p)||{}).p || "";
+  const rows = p.rows.map(r=>{
+    if(Array.isArray(r)) return `<div class="p-row c${r.length}">${r.map(f=>{const h=`<figure>${img(f,p.title,!first)}</figure>`; first=false; return h;}).join("")}</div>`;
+    if(r.h) return `<h2 class="p-h">${esc(r.h)}</h2>`;
+    if(r.p) return r.p===info ? "" : `<p class="p-text">${esc(r.p)}</p>`;
+    if(r.v) return `<a class="vid" href="https://www-ccv.adobe.io/v1/player/ccv/${r.v}/embed?api_key=BehancePro2View" target="_blank" rel="noopener"><span>Motion piece</span><span>Watch ↗</span></a>`;
+    return "";
+  }).join("");
+  return `
+  <a class="tag" href="#" aria-label="Home">${esc(SITE.name)}</a>
+  <main class="col">
+    <a class="back" href="#work">← all work</a>
+    <h1 class="p-title">${esc(p.title)}</h1>
+    <div class="cap p-cap"><u>${esc(p.sub)} / ${p.year}</u></div>
+    ${info ? `<p class="p-info">${esc(info)}</p>` : `<p class="p-info empty">Project write-up coming soon.</p>`}
+    <div class="p-body">${rows || (p.cover? `<div class="p-row c1"><figure>${img(p.cover,p.title,false)}</figure></div>` : "")}</div>
+    <a class="next" href="#${next.slug}">
+      <div><span class="k">next project →</span><span class="t">${esc(next.title)}</span></div>
+      ${coverBox(next)}
+    </a>
+    ${footer()}
+  </main>`;
+}
+
+/* ---------- routing ---------- */
+let mode=null;
+function route(){
+  const h=location.hash.slice(1);
+  const p=PROJECTS.find(x=>x.slug===h);
+  if(p){
+    $("#app").innerHTML=project(p); mode="project";
+    document.title=`${p.title} · ${SITE.name}`;
+    window.scrollTo(0,0);
+  } else {
+    if(mode!=="home"){ $("#app").innerHTML=home(); mode="home"; }
+    document.title=SITE.name;
+    if(h==="work") requestAnimationFrame(()=>$("#work").scrollIntoView()); else window.scrollTo(0,0);
+  }
+}
+addEventListener("hashchange", route);
+addEventListener("keydown", e=>{
+  if(mode!=="project") return;
+  const i=PROJECTS.findIndex(x=>x.slug===location.hash.slice(1)); if(i<0) return;
+  if(e.key==="ArrowRight") location.hash=PROJECTS[(i+1)%PROJECTS.length].slug;
+  if(e.key==="ArrowLeft") location.hash=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length].slug;
+});
+route();
+</script>

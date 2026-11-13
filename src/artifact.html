@@ -1,0 +1,1705 @@
+<title>Trent Estes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Trent Estes, brand and packaging designer.">
+<style>
+@font-face{font-family:"Bricolage Grotesque";font-weight:200 800;font-style:normal;font-display:swap;src:url(fonts/bricolage-var.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-sans-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format("woff2")}
+/* Neutral studio look: light grey ground, white cards, black type, hairline guides, small grey mono labels. */
+:root{
+  --bg:#F2F2F0;
+  --surface:#E8E8E5;
+  --card:#FBFBF9;
+  --fg:#121211;
+  --ink-2:#3C3B38;
+  --night:#111110;
+  --on-dark:#F6F6F3;
+  --muted:#8A8A86;
+  --line:#E0E0DC;
+  --sans:"IBM Plex Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --display:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --green:#3f9b49;--red:#E1352B;--blue:#2D4BDB;--sun:#F4D23A;
+  /* type scale: display (slab) for names + headings, mono for everything read */
+  --fs-hero:clamp(48px,7vw,128px);--fs-1:clamp(44px,5.6vw,92px);--fs-2:clamp(28px,2.6vw,42px);--fs-3:18px;
+  --fs-lead:clamp(19px,1.6vw,24px);--fs-body:17px;--fs-small:15px;--fs-label:12px;
+  --lh-lead:1.34;--lh-body:1.45;
+  /* spacing scale: 4/8 base, fluid at the large end */
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;
+  --s7:clamp(40px,4vw,56px);--s8:clamp(56px,6vw,88px);--s9:clamp(80px,9vw,136px);--s10:clamp(104px,12vw,180px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+h1,h2,h3,b,.pl-t{font-kerning:normal;font-feature-settings:"kern" 1;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:hidden;font:400 16px/1.5 var(--sans)}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{color:inherit;background:none;border:0;cursor:pointer;padding:0;font:inherit}
+:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+:root{--gut:16px}
+@media (min-width:800px){:root{--gut:clamp(40px,6vw,120px)}}
+.pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.mono{font:400 11.5px/1.35 var(--mono);letter-spacing:.01em}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:var(--s2);height:48px;padding:0 var(--s5);border-radius:999px;text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s;font:500 14px/1 var(--sans)}
+.btn.ink{background:var(--fg);color:var(--on-dark)}
+.btn.ink:hover{background:#3a3a3a}
+.btn.line{border:1px solid var(--line);background:var(--card)}
+.btn.line:hover{border-color:var(--fg)}
+.btn .ar{transition:transform .25s}
+.btn:hover .ar{transform:translateX(3px)}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:30;padding:calc(10px + env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));pointer-events:none}
+.top .in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px;padding-inline:24px 8px!important;border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgba(0,0,0,.06);box-shadow:0 6px 24px -14px rgba(0,0,0,.25)}
+@media (min-width:1000px){.top .in{width:75%;margin-inline:auto}}
+.mark{text-decoration:none;font:600 17px/1 var(--display);letter-spacing:-.03em}
+
+.status{display:none;align-items:center;gap:8px;color:var(--muted)}
+@media (min-width:980px){.status{display:inline-flex}}
+.dot{width:6px;height:6px;border-radius:50%;background:#33A853;animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,168,83,.45)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion: reduce){.dot{animation:none}}
+.tnav{display:flex;align-items:center;gap:clamp(18px,2.6vw,38px)}
+.tnav a{text-decoration:none;color:var(--ink-2);font:400 14px/1 var(--sans)}
+.tnav a:hover{color:var(--fg)}
+.tnav .cta{background:var(--fg);color:var(--on-dark);padding:10px 14px;border-radius:999px}
+.tnav .cta:hover{background:#3a3a3a;color:var(--on-dark)}
+@media (max-width:640px){.tnav .hide-s{display:none}.tnav{gap:12px}.tnav .cta{padding:9px 12px}.tnav a{white-space:nowrap;font:400 14px/1 var(--sans)}.tnav{gap:var(--s4)}.mark{white-space:nowrap;font:600 17px/1 var(--display);letter-spacing:-.03em}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;min-height:max(600px,calc(100svh - 62px));isolation:isolate}
+.g{position:absolute;background:var(--line);z-index:0}
+.g.v{top:0;bottom:0;width:1px}.g.h{left:0;right:0;height:1px}
+.h-frame{position:absolute;z-index:2;left:50%;top:41%;width:min(44vw,660px);aspect-ratio:823/568;transform:translate(-50%,-50%)}
+.h-frame .lbl{position:absolute;top:-22px;left:0;color:var(--muted)}
+.h-frame .lbl.r{left:auto;right:0}
+.h-me{width:100%;height:auto;animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both .1s}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}}
+.h-word{position:absolute;z-index:1;margin:0;white-space:nowrap;animation:fade 1s ease both;font:600 clamp(56px,9vw,156px)/.85 var(--display);letter-spacing:-.03em}
+.h-word.a{left:calc((50% - min(22vw,330px))/2);top:41%;transform:translate(-50%,-50%)}
+.h-word.b{left:calc(100% - (50% - min(22vw,330px))/2);top:41%;transform:translate(-50%,-50%);animation-delay:.1s}
+@keyframes fade{from{opacity:0}}
+.h-word .ch{display:inline-block;transform-origin:50% 100%;animation:chin .9s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i) * 45ms + .15s);will-change:transform}
+@keyframes chin{from{opacity:0;transform:translateY(35%)}}
+.h-frame picture{display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+@media (prefers-reduced-motion: reduce){.h-me,.h-word,.h-word .ch{animation:none}}
+.h-top,.h-bot{position:absolute;z-index:3;left:0;right:0;display:flex;justify-content:space-between;gap:16px;align-items:flex-end}
+.h-top{top:18px;align-items:flex-start;color:var(--muted)}
+.h-bot{bottom:var(--s8);flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;gap:var(--s5)}
+.h-bot p{margin:0;max-width:min(560px,86vw);text-wrap:balance;font:400 clamp(16px,1.3vw,19px)/1.4 var(--sans);letter-spacing:-.01em}
+.h-btns{display:flex;gap:8px;flex-wrap:wrap}
+.h-down{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--fg);color:var(--on-dark);text-decoration:none;transition:transform .25s,background .2s}
+.h-down svg{animation:nudge 1.8s ease-in-out infinite}
+.h-down:hover{background:#3a3a3a;transform:translateY(2px)}
+@keyframes nudge{50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion: reduce){.h-down svg{animation:none}}
+@media (max-width:760px){
+  .hero{min-height:calc(100svh - 62px)}
+  .h-word{font-size:27vw}
+  .h-word.a{top:52px;left:16px;transform:none}.h-word.b{top:calc(52px + 23vw);left:auto;right:16px;transform:none}
+  .h-frame{width:88vw;top:auto;bottom:9svh;transform:translateX(-50%)}
+  .h-bot{display:none}
+  .g.hide-m{display:none}
+}
+.m-intro{display:none}
+@media (max-width:760px){.m-intro{display:flex;flex-direction:column;gap:18px;padding-block:24px 30px;border-top:1px solid var(--line)}.m-intro p{margin:0;font-size:18px;line-height:1.4}}
+
+/* ---------- section heads ---------- */
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;padding-block:var(--s10) var(--s5);border-bottom:1px solid var(--line)}
+.sh h2{margin:0;font:600 clamp(44px,6vw,96px)/.9 var(--display);letter-spacing:-.03em}
+.sh .mono{color:var(--muted);padding-bottom:6px}
+
+/* ---------- printed / dot-matrix layer ---------- */
+body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.ridge{position:absolute;left:0;right:0;bottom:0;z-index:0;width:100%;height:62%;object-fit:cover;object-position:50% 100%;opacity:.2;pointer-events:none;user-select:none}
+@media (max-width:760px){.ridge{height:40%;opacity:.16}}
+.stitch{display:block;overflow:visible}
+.stitch path{fill:currentColor}
+.pl-num{color:#ABABA6;transition:color .3s}.pl-num .stitch{height:24px;width:auto}
+.plate:hover .pl-num{color:var(--green)}
+.sh .dt{color:#ABABA6;padding-bottom:8px}.sh .dt .stitch{height:clamp(18px,1.8vw,24px);width:auto}
+.a-photo{position:relative}
+.a-photo canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;border-radius:inherit}
+.wordmark{display:block;color:#34322D;padding-block:var(--s9) var(--s6);user-select:none}
+.wordmark .stitch{width:100%;height:auto}
+.wordmark .g{color:var(--green)}
+.plate{border-bottom:0!important;background:linear-gradient(90deg,#C6C6C2 0 7px,transparent 7px 12px) bottom/12px 1px repeat-x}
+.plate:last-child{background:none}
+.h-tags span::before{content:"+ ";color:var(--green)}
+
+/* ---------- selected work ---------- */
+.plates{display:flex;flex-direction:column;padding-block:var(--s3) 0}
+.plate{display:grid;grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s5);border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
+.plate:last-child{border-bottom:0}
+@media (min-width:820px){.plate{grid-template-columns:48px minmax(0,1fr) minmax(0,.5fr);column-gap:var(--s6);align-items:center}}
+.pl-img{position:relative;overflow:hidden;aspect-ratio:2.4/1;background:var(--surface);border-radius:8px;
+  will-change:border-radius}
+.nextp .pl-img{transform:none!important;animation:none!important}
+@media (max-width:819px){.pl-img{aspect-ratio:16/9}}
+.pl-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.pl-img.white{background:#fff}.pl-img.white img{object-fit:contain}
+.pl-img.blur>img{position:relative;object-fit:contain;padding:5% 0;filter:drop-shadow(0 18px 24px rgba(0,0,0,.28))}
+.pl-img.blur .bgi{position:absolute;inset:-10%}
+.pl-img.blur .bgi img{width:100%;height:100%;object-fit:cover;filter:blur(28px) saturate(1.1) brightness(.92)}
+.plate:hover .pl-img.blur .bgi img{transform:none}
+.plate:hover .pl-img img{transform:scale(1.035)}
+.pl-num{align-self:center;padding-top:0}
+@media (max-width:819px){.pl-num{order:2;padding:0}.pl-img{order:1}.pl-text{order:3}}
+.pl-text{display:flex;flex-direction:column;gap:0;min-width:0}
+.pl-row{display:flex;align-items:center;gap:14px}
+.pl-t{margin:0;font-size:clamp(26px,2.4vw,36px)!important;font:600 clamp(22px,2vw,30px)/1.05 var(--display);letter-spacing:-.03em}
+.pl-row .ar{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);transition:background .25s,color .25s,border-color .25s,transform .25s;font-size:13px}
+.plate:hover .pl-row .ar{background:var(--fg);border-color:var(--fg);color:var(--on-dark);transform:translateX(3px)}
+.pl-k{margin:var(--s2) 0 0;color:var(--ink-2);max-width:46ch;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.pl-sub{display:flex;flex-wrap:wrap;gap:0;margin-top:var(--s3)}
+.pl-sub i{font-style:normal;font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.plate:hover .pl-sub i{font-style:normal;font:500 11px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.pl-sub i+i::before{content:"/";margin:0 8px;color:#B0B0AB}
+.pl-tags span{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--ink-2);background:var(--card)}
+@media (prefers-reduced-motion: reduce){.pl-img img{transition:none}}
+
+/* ---------- poster hall entry ---------- */
+.hentry{display:block;position:relative;background:var(--card);text-decoration:none;overflow:hidden;border-block:1px solid var(--line);margin-top:var(--s9)}
+.he-in{display:grid;grid-template-columns:1fr;gap:var(--s7);padding-block:var(--s10)}
+@media (min-width:980px){.he-in{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center}}
+.he-text{position:relative;z-index:2;display:flex;flex-direction:column;gap:var(--s5);align-items:flex-start}
+.he-text .btn,.spot-side .btn{margin-top:var(--s3)}
+.he-text .mono{color:var(--muted)}
+.he-text h2{margin:0;font:600 clamp(52px,7vw,112px)/.88 var(--display);letter-spacing:-.03em}
+.he-text p{margin:0;max-width:34ch;color:var(--ink-2);font-size:17px}
+.he-stage{position:relative;height:clamp(320px,34vw,460px);perspective:1400px;display:grid;place-items:center}
+.he-stage::after{content:"";position:absolute;left:20%;right:20%;bottom:6%;height:40px;background:radial-gradient(closest-side,rgba(0,0,0,.14),transparent);filter:blur(4px)}
+.ring{--rr:clamp(170px,19vw,270px);position:relative;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-10deg)}
+.ring .sp{position:absolute;transform-style:preserve-3d;animation:spin 46s linear infinite}
+@keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(-360deg)}}
+@media (prefers-reduced-motion: reduce){.ring .sp{animation:none}}
+.ring figure{position:absolute;margin:0;height:clamp(96px,10vw,140px);backface-visibility:hidden;box-shadow:0 14px 20px -14px rgba(0,0,0,.45);background:#ddd}
+.ring img,.ring video{height:100%;width:auto;max-width:none}
+video.mv{display:block;aspect-ratio:1/1;object-fit:cover;background:#ddd}
+.he-stage .gl{position:absolute;background:var(--line)}
+@media (max-width:979px){.he-stage{height:300px}}
+
+/* ---------- more work ---------- */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;padding:14px 10px 12px;border-bottom:1px solid var(--line);font-weight:400;color:var(--muted)}
+.tbl td{padding:18px 10px;border-bottom:1px solid var(--line);vertical-align:baseline}
+.tbl td.t{font:600 clamp(22px,2vw,28px)/1.05 var(--display);letter-spacing:-.03em}
+.tbl td.t a{text-decoration:none}
+.tbl tbody tr{cursor:pointer;transition:background .2s}
+.tbl tbody tr:hover{background:var(--card)}
+.tbl .y{width:9%;color:var(--muted)}
+.tbl .go{text-align:right;width:40px}
+@media (max-width:640px){.tbl .hide{display:none}}
+.spot{background:var(--night);color:#F6F6F3;margin-top:0;padding-block:var(--s7);position:relative;overflow:hidden}
+.spot-in{position:relative;display:grid;gap:var(--s8)}
+/* spotlight: device in the middle, smaller; title on its left, copy on its right */
+.spot-in{justify-items:center;text-align:center;row-gap:var(--s5)!important}.spot-in .pp-frame{margin-top:var(--s6)}.spot-tag{white-space:nowrap}.spot-side{align-items:center!important}.spot-l{gap:var(--s5)}.spot-r p{max-width:40ch}
+@media (min-width:1100px){
+  .spot-in{grid-template-columns:minmax(0,1fr) minmax(0,600px) minmax(0,1fr);grid-template-areas:"l dev r";align-items:center;gap:var(--s7);text-align:left}
+  .spot-l{grid-area:l;justify-self:end;align-items:flex-end!important;text-align:right}
+  .spot-r{grid-area:r;justify-self:start;align-items:flex-start!important}
+  .spot-in .pp-frame{grid-area:dev;max-width:600px!important;margin-top:0}
+  .spot-l .spot-tag{font-size:15px;padding:9px 14px 10px}
+  .spot-side h2{font-size:clamp(48px,4.6vw,80px)!important}
+  .spot-r p{max-width:26ch}
+}
+.spot-side{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s6)}
+.spot-side .spot-tag{margin-bottom:var(--s3)}
+.spot-side .btn{margin-top:var(--s2)!important}
+.spot-tag{display:inline-block;background:#FF5C28;color:var(--fg);border-radius:8px;padding:10px 16px 11px;font:600 clamp(17px,1.5vw,22px)/1 var(--display);letter-spacing:-.01em}
+.spot-tag i{width:7px;height:7px;border-radius:50%;background:#111;animation:spotblink 1.6s infinite}
+@keyframes spotblink{50%{opacity:.25}}
+.spot-side h2{margin:0;white-space:nowrap;font:600 clamp(52px,6.4vw,104px)/.85 var(--display);letter-spacing:-.04em}
+.spot-side p{margin:0;max-width:44ch;color:rgba(246,246,243,.82);font-size:clamp(15px,1.15vw,17px);line-height:1.5}
+.pp-links{display:flex;gap:10px;flex-wrap:wrap}
+.spot-btn{background:#F6F6F3;color:var(--fg);border-color:#F6F6F3}
+.pp-note{color:rgba(246,246,243,.6)!important;font-size:13px!important}
+.pp-frame{position:relative;width:100%;max-width:780px;justify-self:center;border-radius:12px;overflow:hidden;background:#e4e4e2;height:640px;box-shadow:0 34px 70px -30px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.08)}
+.pp-frame iframe{position:absolute;left:0;top:0;width:1100px;height:930px;border:0;transform-origin:0 0}
+.peek{position:fixed;left:0;top:0;width:220px;aspect-ratio:4/3;pointer-events:none;z-index:25;overflow:hidden;background:var(--surface);opacity:0;border-radius:999px;transform:translate(18px,-50%) scale(.96);transition:opacity .15s,transform .15s;box-shadow:0 18px 30px -16px rgba(0,0,0,.4)}
+.peek.on{opacity:1;transform:translate(18px,-50%) scale(1)}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media (hover:none){.peek{display:none}}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr;gap:var(--s6);padding-block:var(--s7) var(--s10)}
+@media (min-width:900px){.about{grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:var(--s8);align-items:start}}
+.a-photo{margin:0;max-width:400px}
+.a-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%;border-radius:10px}
+.a-photo figcaption{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted)}
+.a-body p{margin:0 0 var(--s5);max-width:38em;font:400 clamp(21px,2vw,30px)/1.3 var(--sans);letter-spacing:-.025em}
+.a-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:26px}
+.a-tags span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+
+/* ---------- contact ---------- */
+.foot{background:var(--night);color:#F4F4F1}
+.f-in{display:grid;grid-template-columns:1fr;gap:var(--s7);padding-block:var(--s10) 0}
+@media (min-width:900px){.f-in{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:end}}
+.foot h2{margin:0;max-width:18ch;font:600 clamp(40px,5.4vw,92px)/.95 var(--display);letter-spacing:-.03em}
+.fq{margin:0}.fq blockquote{margin:0}.fq figcaption{margin-top:var(--s5);color:rgba(246,246,243,.7);font-size:13px}
+.foot h2,.foot h2 span{color:var(--on-dark)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid}
+.foot li a{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #2A2A28;text-decoration:none;font-size:13px}
+.foot li a:hover{color:var(--on-dark)}
+.foot li a span:first-child{color:#7A7A76}
+.foot li a span:last-child{text-transform:none}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s2);padding-block:var(--s5) var(--s6);border-top:1px solid #2A2A28;color:#6A6A66}
+
+/* ---------- floating card ---------- */
+.fcard{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:26;width:232px;background:var(--card);padding:14px 16px;border:1px solid var(--line);border-radius:8px;box-shadow:0 14px 30px -18px rgba(0,0,0,.35);transition:opacity .35s,transform .35s}
+.fcard.away{opacity:0;pointer-events:none;transform:translateY(20px)}
+.fcard b{display:block;font:600 18px/1.1 var(--display);letter-spacing:-.03em}
+.fcard span{display:block;margin-top:4px;color:var(--muted)}
+.fcard .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.fcard .go{display:inline-flex;align-items:center;gap:6px;background:var(--fg);color:var(--on-dark);border-radius:999px;padding:8px 13px;text-decoration:none;font:500 13px/1 var(--sans)}
+.fcard .x{position:absolute;top:6px;right:9px;padding:4px;color:var(--muted);font-size:16px;line-height:1}
+@media (max-width:640px){.fcard{width:auto;padding:9px 34px 10px 12px}.fcard span,.fcard .row a+a{display:none}.fcard b{font-size:16px}.fcard .row{margin-top:8px}}
+
+/* ---------- project page ---------- */
+.p-head{padding-block:var(--s7) var(--s6)}
+.p-head .back{text-decoration:none;color:var(--muted)}.p-head .back:hover{color:var(--fg)}
+.p-head h1{margin:22px 0 0;text-wrap:balance;font:600 clamp(52px,8vw,136px)/.9 var(--display);letter-spacing:-.03em}
+.p-sub{display:grid;grid-template-columns:1fr;gap:var(--s5);margin-top:var(--s7);padding-top:var(--s5);border-top:1px solid var(--line)}
+@media (min-width:900px){.p-sub{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.p-info{margin:0;max-width:48ch;font:400 clamp(19px,1.6vw,23px)/1.4 var(--sans);letter-spacing:-.015em}
+.p-meta{margin:0;display:grid;align-content:start;border-top:1px solid var(--line)}
+.p-meta div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.p-meta dt{color:var(--muted)}.p-meta dd{margin:0;text-align:right}
+.p-body{display:flex;flex-direction:column;padding-bottom:clamp(64px,8vw,120px)}
+.p-hero{display:grid;gap:12px;margin-bottom:clamp(40px,5vw,72px)}
+/* rows are justified: every image keeps its own shape, heights match, widths fill the row */
+.p-row{display:flex;gap:12px;align-items:flex-start}
+.p-row figure{flex:var(--ar,1.5) 1 0;min-width:0;margin:0;overflow:hidden;border-radius:10px;aspect-ratio:var(--ar,1.5);background:#E6E6E3}
+.p-row figure.ok{background:transparent}
+.p-row.c1 figure{flex:none;width:min(100%,calc(var(--ar,1.5) * 92vh));margin-inline:auto}
+.p-row img,.p-row video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:699px){.p-row{flex-direction:column}.p-row figure{flex:none;width:100%}.p-row.c1 figure{width:min(100%,calc(var(--ar,1.5) * 75vh))}}
+.step{display:grid;grid-template-columns:1fr;gap:var(--s5);padding-block:var(--s7) var(--s8);border-top:1px solid var(--line)}
+@media (min-width:900px){.step{grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:var(--s8)}.s-side{position:sticky;top:96px;align-self:start}}
+.s-side{display:flex;flex-direction:column;gap:12px}
+.s-side .mono{color:var(--muted)}
+.s-side h2{margin:0;font:600 clamp(26px,2.4vw,36px)/1.05 var(--display);letter-spacing:-.03em}
+.s-side p{margin:0;max-width:38ch;color:var(--ink-2);font-size:16.5px;line-height:1.55}
+.s-main{display:flex;flex-direction:column;gap:12px;min-width:0}
+.p-cap{margin:2px 0 0;color:var(--muted)}
+.p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 24px;margin:4px 0 clamp(20px,3vw,36px);border-top:1px solid var(--line)}
+.p-facts div{padding:14px 0;border-bottom:1px solid var(--line)}
+.p-facts dt{color:var(--muted);margin-bottom:4px;font:400 11.5px/1.3 var(--mono)}
+.p-facts dd{margin:0;font-size:16px}
+.p-list{list-style:none;margin:0 0 clamp(20px,3vw,36px);padding:0;max-width:62ch;border-top:1px solid var(--line);counter-reset:li}
+.p-list li{display:grid;grid-template-columns:3em 1fr;padding:14px 0;border-bottom:1px solid var(--line);counter-increment:li;font-size:17px}
+.p-list li::before{content:counter(li,decimal-leading-zero);color:var(--muted);font:400 12px/1.9 var(--mono)}
+.vid{display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid var(--line);background:var(--card);border-radius:6px;padding:16px 18px;text-decoration:none}
+.vid:hover{border-color:var(--fg)}
+.nextp{display:grid;grid-template-columns:1fr;gap:var(--s4);padding-block:var(--s6) var(--s10);border-top:1px solid var(--line);text-decoration:none}
+@media (min-width:760px){.nextp{grid-template-columns:minmax(0,1fr) 320px;align-items:end}}
+.nextp .mono{color:var(--muted)}
+.nextp .t{display:block;margin-top:10px;transition:transform .35s;font:600 clamp(40px,6vw,96px)/.92 var(--display);letter-spacing:-.03em}
+.nextp:hover .t{transform:translateX(8px)}
+.nextp .pl-img{aspect-ratio:4/3}
+
+/* ---------- the poster hall: a spiral you turn through ---------- */
+body.in-hall{overflow:hidden}
+body.in-hall .top,body.in-hall .fcard{display:none}
+.hall{position:fixed;inset:0;z-index:40;background:radial-gradient(ellipse 80% 70% at 50% 45%,#FAFAF9,#ECECEA 70%,#E4E4E2);color:var(--fg);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.hall.drag{cursor:grabbing}
+.hall .g{z-index:0}
+.stage{position:absolute;inset:0;perspective:1700px;perspective-origin:50% 42%}
+.cam{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.helix{position:absolute;width:0;height:0;transform-style:preserve-3d}
+.hc{position:absolute;left:0;top:0;transform-style:preserve-3d;cursor:pointer}
+.hc .fa,.hc .bk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.hc .fa{background:#ddd;box-shadow:0 1px 0 rgba(0,0,0,.06),0 36px 40px -30px rgba(0,0,0,.5)}
+.hc .fa img,.hc .fa video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hc .fa i{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+.hc .bk{transform:rotateY(180deg);background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);display:flex;align-items:flex-end;padding:10px;color:#B5B5B1}
+.hc .t1,.hc .t2{position:absolute;left:0;right:0;display:flex;justify-content:space-between;gap:8px;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;white-space:nowrap;font:400 10.5px/1 var(--mono)}
+.hc .t1{bottom:100%;margin-bottom:7px}
+.hc .t2{top:100%;margin-top:8px}
+.hc .t2 b{font-weight:400;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis}
+.hc.cur .t2 b{color:var(--fg)}
+.floor{position:absolute;left:-600px;width:1200px;height:1200px;top:0;margin-top:-600px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.16),rgba(0,0,0,.05) 45%,transparent 70%)}
+.hud{position:absolute;z-index:3;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-left,0px)) 14px;pointer-events:none}
+.hud>*{pointer-events:auto}
+.hud .back{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:999px;text-decoration:none}
+.hud .back:hover{border-color:var(--fg)}
+.hud h1{margin:0;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font:600 17px/1 var(--display);letter-spacing:-.03em}
+.hud .cnt{color:var(--muted);min-width:70px;text-align:right}
+.now{position:absolute;z-index:3;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:6px;max-width:60vw;pointer-events:none}
+.now b{font:600 clamp(28px,3vw,44px)/1 var(--display);letter-spacing:-.03em}
+.now span{color:var(--muted)}
+.hint{position:absolute;z-index:3;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));color:var(--muted);text-align:right;transition:opacity .6s;pointer-events:none;max-width:40vw}
+.hint.gone{opacity:0}
+.hnav{display:flex;gap:6px;position:absolute;z-index:3;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+.hnav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.75);display:grid;place-items:center}
+.hnav button:hover{border-color:var(--fg)}
+@media (max-width:640px){.hud h1{display:none}.hnav{display:none}.hint{max-width:none;left:16px;right:16px;text-align:left;bottom:auto;top:calc(68px + env(safe-area-inset-top,0px))}}
+/* zoom mode: clicked poster grows from its spot on the spiral to fill the viewport */
+.lb{position:absolute;inset:0;z-index:5;cursor:zoom-out}
+.lb .zbg{position:absolute;inset:0;background:rgba(246,246,243,.96);opacity:0;transition:opacity .5s cubic-bezier(.2,.7,.2,1)}
+.lb.on .zbg{opacity:1}
+.hall .now,.hall .hnav,.hall .hud .cnt{transition:opacity .35s}.hall.zoomed .now,.hall.zoomed .hnav,.hall.zoomed .hint,.hall.zoomed .hud .cnt{opacity:0;pointer-events:none}
+.lb .zp{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;box-shadow:0 40px 70px -40px rgba(0,0,0,.5);background:#ddd}
+.lb .zp img,.lb .zp video{display:block;width:100%;height:100%;object-fit:cover}
+.lb .zui{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s .15s}
+.lb.on .zui{opacity:1}
+.lb .zui>*{pointer-events:auto}
+.lb .zmeta{position:absolute;left:var(--gut);bottom:calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:6px;max-width:min(360px,40vw);cursor:default}
+.lb .zmeta b{font:600 clamp(22px,2vw,30px)/1 var(--display);letter-spacing:-.02em}
+.lb .zmeta .mono{color:var(--muted)}.lb .zmeta a.more{color:var(--fg)}
+.lb .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;height:38px;padding:0 14px;border:1px solid var(--line);background:#fff;border-radius:999px;cursor:pointer}
+.lb .x:hover{border-color:var(--fg)}
+.lb .za{position:absolute;top:50%;width:48px;height:48px;margin-top:-24px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:18px;cursor:pointer}
+.lb .za:hover{border-color:var(--fg)}.lb .za:disabled{opacity:.3;cursor:default}
+.lb .za.p{left:16px}.lb .za.n{right:16px}
+.lb .zkeys{position:absolute;right:var(--gut);bottom:calc(22px + env(safe-area-inset-bottom,0px));color:var(--muted)}
+@media (max-width:760px){.lb .zmeta{max-width:none;right:16px;left:16px}.lb .zkeys{display:none}.lb .za{top:auto;bottom:90px}}
+@media (hover:none){.lb .zkeys{display:none}}
+</style>
+
+<header class="top">
+  <div class="in pad">
+    <a class="mark" href="#top" aria-label="Trent Estes, home">Trent Estes</a>
+    <span class="status mono"><span id="clock"></span></span>
+    <nav class="tnav" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#posters">Poster Gallery</a>
+      <a class="hide-s" href="#about">About</a>
+      <a class="hide-s" href="Trent-Estes-Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+      <a class="hide-s" href="https://www.linkedin.com/in/trent-estes-0a538b300/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div id="app"></div>
+
+
+<div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
+
+<script>
+/* ============================================================
+   EDIT HERE — your details. Projects are in PROJECTS below,
+   posters for the hall are in POSTERS.
+   ============================================================ */
+const SITE = {
+  name: "Trent Estes",
+  email: "hello@trente.design",
+  phone: "804-997-1613",
+  linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
+  instagram: "",
+  resume: "Trent-Estes-Resume.pdf",
+  featured: ["solful","gatorade-banana","paige-bueckers-court","appalachian-folk-festival","ginergy","hale-community-garden","olympic-branding","the-junction"],
+};
+const CDN = "https://cdn.myportfolio.com/b4959d68-b493-4a74-8c26-0cfab32fedbd/";
+const PROJECTS_ALL = [
+{
+"feature": true,
+"slug": "gatorade-banana",
+"title": "Gatorade Banana",
+"sub": "Packaging",
+"year": 2026,
+"size": "big",
+"tags": [
+"Packaging"
+],
+"kind": "Limited-edition banana flavor, 20 oz bottle",
+"cover": "gatorade-cover.jpg",
+"fit": "contain",
+"info": "Label design for a limited-edition banana Gatorade, 20 oz bottle.",
+"rows": [
+[
+"gatorade-final.jpg"
+],
+{
+"h": "Pattern explorations"
+},
+{
+"p": "Early directions on the 20 oz bottle: banana leaves, peel spots, stickers and color."
+},
+[
+"gatorade-pattern-leaf-top.jpg",
+"gatorade-pattern-leaves.jpg",
+"gatorade-pattern-leaf-natural.jpg",
+"gatorade-pattern-leaf-clearing.jpg",
+"gatorade-pattern-crazy-leaf.jpg"
+],
+[
+"gatorade-pattern-spots.jpg",
+"gatorade-pattern-real-spots.jpg",
+"gatorade-pattern-rainbow.jpg",
+"gatorade-pattern-lto.jpg",
+"gatorade-pattern-sticker.jpg"
+],
+[
+"gatorade-label-flat.jpg",
+"gatorade-sticker-sheet.jpg"
+],
+{
+"h": "Process"
+},
+[
+"gatorade-process-sticker-collage.jpg",
+"gatorade-process-lime-stickers.jpg",
+"gatorade-process-lime-band.jpg"
+],
+[
+"gatorade-process-full-sticker.jpg",
+"gatorade-process-half-sticker.jpg"
+],
+[
+"gatorade-process-gold-swirl.jpg",
+"gatorade-process-banana-slices.jpg"
+],
+{
+"h": "Released"
+},
+{
+"p": "Gatorade released a limited-edition banana Thirst Quencher on October 8, 2026, sold on TikTok Shop."
+},
+[
+"gatorade-banana-released.jpg"
+],
+{
+"cap": "Image: Griffin Parker / Gatorade."
+}
+]
+},
+{
+"feature": true,
+"slug": "ginergy",
+"title": "Ginergy",
+"sub": "Packaging system",
+"year": 2025,
+"size": "big",
+"tags": [
+"Packaging",
+"Identity"
+],
+"kind": "Caffeine-free ginger energy drink",
+"cover": "ginergy-hero.jpg",
+"info": "Ginergy is a caffeine-free energy drink made with ginger, for active 16–25 year olds. I designed the brand, a 12 oz slim can, a 4-pack carton, and the shipper and pallet load.",
+"rows": [
+[
+"ginergy-hero.jpg"
+],
+{
+"h": "Brand"
+},
+{
+"p": "Clean, natural, bold. Type is New Astro Bold and Cubano."
+},
+[
+"ginergy-brand-board.jpg"
+],
+{
+"h": "Can and carton"
+},
+{
+"p": "The slim can gives a more premium feel. The label wraps the can so the aluminum shows. The 4-pack has a window so the cans are visible on the shelf."
+},
+[
+"ginergy-cans.jpg",
+"ginergy-window.jpg",
+"ginergy-back.jpg"
+],
+{
+"h": "Shipper and unit load"
+},
+{
+"p": "Each shipper holds 12 cartons (48 cans). Pinwheel pallet pattern, stacked 3 high."
+},
+[
+"ginergy-shipper.jpg"
+],
+[
+"ginergy-pallet-pattern.jpg"
+],
+[
+"ginergy-pallet-load.jpg"
+],
+[
+"ginergy-truck-load.jpg"
+]
+]
+},
+{
+"feature": true,
+"slug": "paige-bueckers-court",
+"title": "Paige Bueckers Court Design",
+"sub": "Lettering",
+"year": 2026,
+"size": "big",
+"tags": [
+"Type",
+"Illustration"
+],
+"kind": "Lettering explorations for “A ball and a basket is all you need”",
+"cover": "court-cover.jpg",
+"fit": "contain",
+"info": "A custom basketball court for WNBA player Paige Bueckers at Blackstone Park in St. Louis Park, Minnesota, her hometown. Co-developed with Project Backboard during my Gatorade internship at PepsiCo. I worked on the lettering for her line, “A ball and a basket is all you need.”",
+"rows": [
+[
+"court-finished-drone.jpg"
+],
+{
+"cap": "Final design by Joey Ochoa. Photo courtesy of Gatorade."
+},
+{
+"h": "Sketches"
+},
+[
+"court-sketchbook.jpg",
+"court-lettering-hand.jpg"
+],
+[
+"court-sketch-flora.jpg",
+"court-lettering-vines.jpg"
+],
+{
+"h": "From the lake"
+},
+{
+"p": "The flowing letterforms took their shape from Lake Minnetonka: outlines drawn over a map of the lake became the starting point for the letters."
+},
+[
+"court-lake-map.jpg"
+],
+[
+"court-lake-traces.jpg",
+"court-sketch-wavy.jpg"
+],
+{
+"h": "Type explorations"
+},
+{
+"p": "I was given a rough draft mockup to use to draft different typographic styles and layouts. In the interview done with her for background information, she mentioned she really enjoyed the nature aspects of her hometown and said that she really enjoyed streetwear style, inspiring some of the work."
+},
+[
+"court-poster-floral.jpg"
+],
+[
+"court-poster-1.jpg",
+"court-poster-2.jpg",
+"court-poster-3.jpg"
+],
+[
+"court-poster-4.jpg",
+"court-poster-5.jpg",
+"court-poster-6.jpg"
+],
+[
+"court-poster-7.jpg",
+"court-poster-8.jpg"
+]
+]
+},
+{
+"feature": true,
+"slug": "solful",
+"title": "Solful",
+"sub": "Brand + experience",
+"year": 2026,
+"size": "big",
+"tags": [
+"Strategy",
+"Identity",
+"Product",
+"Retail"
+],
+"kind": "Wellness platform, PepsiCo design intern cohort",
+"cover": "solful-hero.jpg",
+"info": "Solful is a wellness companion that helps Gen Z cut through decision fatigue, built around PepsiCo's better-for-you portfolio. A group project with the PepsiCo design intern cohort, summer 2026. I worked on the research and strategy behind the brand identity, product concepting, and the experience design for the retail immersion.",
+"rows": [
+[
+"solful-hero.jpg"
+],
+{
+"h": "Research and strategy"
+},
+{
+"p": "Gen Z is shaping a $2 trillion wellness market, but many find it overwhelming. Personas, a day-in-the-life study and visual territories set the brand values: authentic, grounded, encouraging, self-assured."
+},
+[
+"solful-brief.jpg",
+"solful-needs.jpg"
+],
+[
+"solful-persona-day.jpg",
+"solful-caregiver.jpg"
+],
+[
+"solful-simply.jpg"
+],
+[
+"solful-deck-11.jpg"
+],
+[
+"solful-deck-14.jpg",
+"solful-deck-18.jpg"
+],
+{
+"h": "Brand identity"
+},
+{
+"p": "Sol is Latin for sun, a symbol of the daily cycle; -ful is fulfillment. The mark draws on cave-painting suns."
+},
+[
+"solful-logo-sketch.jpg",
+"solful-logo.jpg"
+],
+[
+"solful-type.jpg",
+"solful-tone.jpg"
+],
+[
+"solful-mood.jpg"
+],
+[
+"solful-ooh.jpg",
+"solful-social.jpg"
+],
+{
+"h": "Digital experience"
+},
+{
+"p": "An app that turns quick check-ins into a snack plan, a calendar and a shoppable feed."
+},
+[
+"solful-app-hero.jpg"
+],
+[
+"solful-app-shop.jpg",
+"solful-app-calendar.jpg"
+],
+[
+"solful-app-hand.jpg",
+"solful-app-flow.jpg"
+],
+{
+"h": "Product concepts"
+},
+{
+"p": "Three products for three moments of the day: Good Warrior collagen bone broth cubes for the morning, Gatorade caffeine boba for the afternoon, and Pepsi Sizzle drink bombs for the night."
+},
+[
+"solful-wellness-gap.jpg"
+],
+[
+"solful-products.jpg"
+],
+[
+"solful-warrior.jpg",
+"solful-warrior-scene.jpg"
+],
+[
+"solful-gatorade.jpg",
+"solful-gatorade-scene.jpg"
+],
+[
+"solful-pepsi.jpg",
+"solful-pepsi-scene.jpg"
+],
+{
+"h": "Retail immersion"
+},
+{
+"p": "Solchella, a festival activation built from the logo's shapes. Guests check in at a vibe-check kiosk, then move through zones to relax, energize and sustain. The same system scales down to an outdoor mall and a Target display."
+},
+[
+"solful-sketch-flow.jpg",
+"solful-sketch-plan.jpg"
+],
+[
+"solful-sketch-kiosk.jpg",
+"solful-sketch-arch.jpg",
+"solful-sketch-displays.jpg"
+],
+[
+"solful-sketch-pods.jpg",
+"solful-sketch-booth.jpg"
+],
+{
+"cap": "Early sketches: guest flow, floor plan, kiosks, the entry arch and display ideas."
+},
+[
+"solful-solchella.jpg"
+],
+[
+"solful-solchella-architecture.jpg"
+],
+[
+"solful-solchella-first-look.jpg"
+],
+[
+"solful-solchella-flow.jpg"
+],
+[
+"solful-solchella-launch.jpg"
+],
+[
+"solful-mall.jpg",
+"solful-mall-kiosk.jpg"
+],
+[
+"solful-target.jpg"
+],
+[
+"solful-display-model.jpg",
+"solful-display-arches.jpg"
+],
+{
+"cap": "Early display studies."
+},
+{
+"h": "Launch"
+},
+[
+"solful-launch-app.jpg",
+"solful-influencer-kit.jpg"
+]
+]
+},
+{
+"feature": true,
+"slug": "appalachian-folk-festival",
+"title": "Appalachian Folk Festival",
+"sub": "Event identity",
+"year": 2026,
+"size": "big",
+"tags": [
+"Identity",
+"Print"
+],
+"kind": "Folk, art and music festival identity",
+"info": "An Appalachian folk, art and music festival for bluegrass, folk and country fans. While building an archive of old Appalachian posters, I noticed how little of it is digitized, which is why I wanted to make this.",
+"rows": [
+[
+"7f12641b-ef16-4f65-80d1-3f0d5517aec4_rw_3840.jpg?h=ef30bac595f1c00ff4ef3e721c84f314"
+],
+{
+"h": "Visual archive"
+},
+[
+"e8068be2-eebf-4366-9637-9bfe597bdde5_rw_1920.png?h=a3691c69127eb6036b3796f41b1e26df",
+"ced3a3a5-6b98-40ab-bf08-2e5ab7a96042_rw_1920.png?h=cf50be3e655907310a74b215bedd629c"
+],
+[
+"1d911cee-5742-4b74-871e-4764b1e3091c_rw_1920.png?h=de411675aa42ddaeb8c442296210e856",
+"b6470999-499d-4ba6-84e2-1b332783d143_rw_1920.png?h=bca7f33ef6be7d561ff76e20dd484e3b"
+],
+{
+"h": "Process"
+},
+[
+"f31274b4-1538-4029-ad99-6c08a4496b0f_rw_1920.png?h=c6c16e6f0a54443cc9664c76f362c904",
+"e41b668f-33a3-48a5-87ae-37a6abdbd0e5_rw_1920.png?h=57173ff9ce18b4cff6ca97081ebb1bb7"
+],
+{
+"h": "Final"
+},
+[
+"1d68f61c-6f2f-4995-8903-1934ed105a4a_rw_3840.jpg?h=8b7f736ed9361eb6f3e74da26419df70",
+"23412f81-7e6b-48bb-8ba4-7978ab2f266d_rw_1920.png?h=797c3d8fb3f68f7c698bb169bb330601"
+],
+[
+"49a8f0e0-b943-4d76-aeb7-811eace0c8b1_rw_3840.jpg?h=1fabd5b8c3cf1b7bff40e570e98ab527",
+"d072e12b-bf02-435a-a293-eb0f10cbaf5a_rw_1920.jpg?h=52e72dba03fd54263238489c89413405"
+],
+[
+"3523bc9c-e180-441f-8e08-75d627855aeb_rw_3840.jpg?h=7a30d889d68370591360b18dd9cf41e1",
+"3c3347ca-f3eb-4924-899b-5cb0326df032_rw_3840.jpg?h=9a6e57bf10bf58ce477b3c1823a63e00"
+]
+],
+"cover": "7f12641b-ef16-4f65-80d1-3f0d5517aec4_rw_3840.jpg?h=ef30bac595f1c00ff4ef3e721c84f314"
+},
+{
+"feature": true,
+"slug": "hale-community-garden",
+"title": "Hale Community Garden",
+"sub": "Brand identity",
+"year": 2026,
+"tags": [
+"Identity",
+"Print"
+],
+"kind": "Identity for a local community garden",
+"info": "Branding for Hale Community Garden, run by Live Work Eat Grow. It started with interviews with the garden coordinator and the land donor, plus time observing the space.",
+"rows": [
+[
+"0cf50797-86dc-425c-a705-7f384e695f60_rw_3840.jpg?h=956864d6ebc94baf2855a0913bb8bf29"
+],
+{
+"h": "Research"
+},
+[
+"f92615d7-86a5-4a1b-bb05-aecf6209141a_rw_3840.jpg?h=412e79897ecdae3d928e45fe0033dbd3",
+"f02503b9-fbb0-4c89-bb70-4ed56a7c9cb9_rw_3840.jpg?h=87cf2db0c001a4feeac89e20d81234a0"
+],
+{
+"h": "Identity"
+},
+{
+"p": "The mark combines a seed, a location pin and a carrot: growth, a local place, and food."
+},
+[
+"1c87539a-f815-42e1-8081-2c035b3b4005_rw_3840.jpg?h=bef137e381f28d4fcbc49880fa164457",
+"2ed4e0d7-4b37-4849-9d26-8690c3a324a3_rw_3840.jpg?h=ca705fd8b22d87d633c7fdd9294c5ec0"
+],
+{
+"h": "Applications"
+},
+[
+"3d53e30a-8dc1-4b56-823d-4aac8c4c7f32_rw_1920.jpg?h=84c39e13383aaa6ac0098cf5030bd3f2",
+"0c6d0fc8-1a61-40a9-a985-467af46239f9_rw_1920.jpg?h=79457b15ce51233d179603558c339583"
+],
+[
+"f26be64c-2287-4a23-b101-1aa7c6c39a24_rw_1920.jpg?h=948f8d946ef9e9bcf717409a712dfaa1",
+"dd1230ed-9f96-4119-aa80-ce53aec6ffc0_rw_1920.jpg?h=d1c19033a7d3ab78fc2475539413c7d7"
+],
+[
+"ab18f530-95d9-43e6-8721-16365eb6c731_rw_3840.png?h=6079f8ac7718b070e2422fb885d134a8",
+"6062a009-b4cf-480d-a319-ef4c34069685_rw_1920.jpg?h=a939f1c6a4dcbb21fa6e84987923c4fe"
+]
+],
+"size": "small",
+"cover": "hale-cover.jpg"
+},
+{
+"feature": true,
+"slug": "the-junction",
+"title": "The Junction",
+"sub": "Brand identity",
+"year": 2025,
+"tags": [
+"Identity"
+],
+"kind": "Coffee shop and local small-business hub",
+"info": "A place to get immersed in your community: coffee, local small businesses, and like-minded people. Slogan: “Keep it local!”",
+"rows": [
+[
+"jn-wall.jpg"
+],
+{
+"h": "Logo"
+},
+{
+"p": "The final mark came from experimenting: I put an existing mark in a box, used the shape-exclude tool and rounded the corners."
+},
+[
+"f883f702-8d93-4d93-b02c-aaa21b8356fe_rw_3840.png?h=d91e4b211d61bd1fdab28d1f7ce0f8bf"
+],
+[
+"0386767c-5b0a-46f4-baa7-b957915a5d9c_rw_3840.png?h=a4242766970de1c3fa24574a96efff22",
+"424f793a-eaea-49ad-9c94-efe8b66163cf_rw_3840.png?h=ace98b6572d0b71dd6d1f104dda63366"
+],
+{
+"h": "Mockups"
+},
+[
+"jn-tote.jpg",
+"jn-mug.jpg"
+]
+],
+"size": "small",
+"cover": "jn-wall.jpg"
+},
+{
+"slug": "record-vault",
+"title": "Record Vault",
+"sub": "Brand identity",
+"year": 2025,
+"tags": [
+"Identity"
+],
+"kind": "Identity for an independent record store",
+"info": "A record store built around protecting old and new music. “Guarding music gold.”",
+"rows": [
+[
+"eb6e27f9-298f-41d1-a5c6-9c18469ad7ea_rwc_1163x422x1292x1721x1292.jpg?h=a3d7756e2af3a2ad345a4f8c0361d494"
+],
+{
+"h": "Sketches"
+},
+[
+"40904122-d7bb-496b-9079-b424edb462ab_rw_3840.jpg?h=616da1ca3d814588a596fe3f56136f7d",
+"65735aec-270e-4a8c-be4d-8ce289c073ad_rw_3840.jpg?h=ee6bf15e4bf46c221d55940483d0b845"
+],
+[
+"697405f4-590e-4906-8744-00bda5e21bab_rw_3840.jpg?h=c0dab8202a2c1568d0da5b3a5b42ec47"
+],
+{
+"h": "System"
+},
+[
+"253aa042-fa91-4116-a380-c432498ea009_rw_3840.jpg?h=67a32f95a7518408182862e4a289e54c",
+"0cad5312-5932-48aa-ba56-45b3581b0836_rw_3840.jpg?h=00a2196cdf1b7e149ad77a333a582ae7"
+],
+[
+"b1135c32-8699-4ddf-9ac6-2ceb682f5fe1_rw_3840.jpg?h=141b7fd7875e039a43059e06674891ca"
+],
+{
+"h": "Mockups"
+},
+[
+"rv-storefront.jpg",
+"rv-tote.jpg"
+]
+],
+"size": "small",
+"cover": "rv-storefront.jpg"
+},
+{
+"slug": "colorectal-cancer-toolkit",
+"title": "Cease Colorectal Cancer",
+"sub": "Health communication",
+"year": 2026,
+"tags": [
+"Print",
+"Packaging"
+],
+"kind": "Screening toolkit for patients and physicians",
+"info": "A toolkit of foldables, cards and data visuals to help patients and physicians talk about colorectal cancer screening.",
+"rows": [
+[
+"30354618-05ad-4d45-99a7-57c892d190fc_rw_1920.jpg?h=da4245b73d38d84742194c27ae4d6a34"
+],
+{
+"h": "Research"
+},
+[
+"d6e55fc1-bc04-4020-875d-74a82d9363ee_rw_1920.jpg?h=849b381873ef3b5252d929ecff810cf2",
+"4d510c49-9076-4f72-8466-a57829f56aa9_rw_1920.jpg?h=2af8a269048dbb2d61de7524db45e780"
+],
+[
+"1ab20d54-8836-4b08-a975-a7dc6e0ab071_rw_1920.jpg?h=e77fc2fa1d0b9aea26671655a597721e",
+"39198e99-6138-4178-85f3-af4c1d718f25_rw_1920.jpg?h=0aeea5d6854ed2af7597eb6c921e9086"
+],
+{
+"h": "Brand"
+},
+[
+"9c2e7de8-52cf-4c1f-b8e2-ee98e1a8c5f3_rw_1200.jpg?h=5543ebd35704e352f5428b9ddf047977",
+"62362e55-0517-4600-918c-210ce71c3581_rw_1920.jpg?h=d1a6a170eb8b535c477098f43b47767e"
+],
+{
+"h": "Prototypes"
+},
+[
+"1adbb5c9-9aaa-491d-bcec-2d732ed93111_rw_1920.jpg?h=b242f636f9b51050aee20826603c6d6d",
+"778aaec7-161d-4504-9f36-92aca8b72785_rw_1920.jpg?h=df018dc1976f1544a513d78fdd753bc4"
+],
+{
+"h": "Final"
+},
+[
+"08776bbf-5d54-4a2f-841a-06e12d30daf4_rw_1920.jpg?h=6aeb1e2b637cd9e7f0027c90f5de83b6",
+"754fe9ee-9db2-42d4-b85a-17c719a67153_rw_1920.jpg?h=66129d9d8429a91f22450f8795b0e88c"
+],
+[
+"669fb342-4ff6-4510-848c-eefe539d4bb2_rw_1920.jpg?h=dc4187bcd5e0efa08069afbf79321981",
+"b7ab92ad-99db-42a6-a464-685690641734_rw_1920.jpg?h=22cebec18c6af1b7d0bb66d80fc7cdfb",
+"769a5759-5e91-406c-95bc-bb63b6c76db4_rw_1920.jpg?h=ff5f80f739bd2c6fb8808b900d8abeaa"
+],
+[
+"46a306c7-d4bb-438d-aa4c-e06dc7b21156_rw_1920.jpg?h=5d1cef772da2ca35e48a14cecb703dcc",
+"e5ec64e1-1937-4f9c-a567-7cf0430202f7_rw_1920.jpg?h=884318b29cae0493bb5818194b294b5c"
+],
+[
+"f4f6b958-8020-4869-9ede-e9504c9bae13_rw_1920.jpg?h=053f1e8ac5c52d36747f47f904f3824b",
+"dae8984f-ee4e-412e-9f21-df732a395087_rw_1920.jpg?h=e8886a80c4d469f5232bbbace094df03",
+"c121b231-afc2-4586-ad87-f729fdb5ac3d_rw_1920.jpg?h=6f7d155ea5ece4c2948e4598fc56673d"
+]
+],
+"size": "small",
+"cover": "76357cc3-7e39-4f42-b77f-b198c65d609e_rwc_62x212x1371x1827x1371.jpg?h=c5823a1c18c6eeeb43f4a5eb62e701e4"
+},
+{
+"slug": "olympic-branding",
+"title": "Berlin Olympics",
+"sub": "Event identity",
+"year": 2025,
+"tags": [
+"Identity"
+],
+"kind": "Olympic identity inspired by Berlin’s techno scene",
+"info": "I chose Berlin because its techno scene had just been added to UNESCO’s intangible cultural heritage list, and combined it with the most recognized Olympic mark, the rings.",
+"rows": [
+[
+"626bf2d6-7d60-4515-be18-92e8926f4530_rw_3840.jpg?h=37ad562e2203ed8e27654c49ae84314c"
+],
+{
+"h": "Process"
+},
+[
+"dee3969a-e76a-4038-bca1-0f4bc9cafe6f_rw_1920.jpg?h=e8c9b328cc38ffb4ca5eeb56de1a5c80",
+"7c364141-e143-4fc5-922e-1486e6842719_rw_1920.jpg?h=4854d04526f7bbc607a6b00d19e1bd6b"
+],
+{
+"h": "System"
+},
+[
+"dba55374-5b6c-4fa6-96d5-8771ec9db603_rw_1920.jpg?h=dbd535816f55653d2bfb226f80339ab6",
+"8276f61b-d4ec-44a9-8179-9a6799bb2d99_rw_1920.jpg?h=873163d0d2625477909e1b5cf7d5f47c"
+],
+[
+"b4e66414-e98c-4891-a490-eb91296330e8_rw_1920.jpg?h=466e039f85ea34410e47302fa74badcf"
+],
+[
+"70b03220-df90-4368-b4c5-b5950d0beef1_rw_1920.jpg?h=3a1c6c6d1422b72260d38fe30ea38895",
+"a628fb91-b0f5-46b5-80bb-fd5f342bdd5a_rw_1920.jpg?h=6d9e0772a3ed8b3e367ee704140689c3"
+]
+],
+"size": "small",
+"cover": "berlin-cover.jpg"
+},
+{
+"slug": "arabic-typography",
+"title": "Arabic Typography Study",
+"sub": "Type + editorial",
+"year": 2025,
+"tags": [
+"Type",
+"Print"
+],
+"kind": "Pattern making and editorial spreads",
+"info": "Typographic pattern making with Arabic letterforms, and editorial spreads.",
+"rows": [
+[
+"5d69892e-e944-4dbc-8ad4-6881dbf6db96_car_3x4.jpg?h=7dc4a0a8a877ab630e7ac5a0f9161d7c"
+],
+{
+"h": "Patterns"
+},
+[
+"ae2c4db2-c7ee-450a-aca9-10c3fc5fd632_rw_3840.jpg?h=b9e2ea08db10be77843379097cf26398",
+"cf9c9d2c-213c-46a2-b05a-ba2d31884dcc_rw_3840.jpg?h=11935236a8dff730fc66511144c0a04e"
+],
+[
+"ae1dd2db-7b81-4b1d-96cd-e7038610c43b_rw_3840.jpg?h=7eda4d52a22849aa8181acb39e69d355",
+"d0cf3367-3c22-4035-a80f-e057e29c5ead_rw_3840.jpg?h=7e16f05b8f73822b838cfbf4b9587205"
+],
+{
+"h": "Spreads"
+},
+[
+"06ee3d21-1df6-400f-98d0-1e73b350d98f_rw_3840.jpg?h=f3edcb6fc0ea51f24be9fd30c7b899c7"
+],
+[
+"7c848821-351b-45cd-ba81-9815dd0c6b65_rw_3840.jpg?h=53a2e61f7ae1aa566ff8e214ae68e9aa"
+]
+],
+"size": "small",
+"cover": "5d69892e-e944-4dbc-8ad4-6881dbf6db96_car_3x4.jpg?h=7dc4a0a8a877ab630e7ac5a0f9161d7c"
+},
+{
+"slug": "meraki-website",
+"title": "Meraki",
+"sub": "Web + typography",
+"year": 2025,
+"cover": "3d12623f-108e-4bfa-9d2a-3d60e0c0d69f_rwc_73x0x646x860x646.png?h=e552dc0466741517809a183a26dda131",
+"tags": [
+"Digital",
+"Type"
+],
+"kind": "A website for an untranslatable word",
+"info": "A website for meraki, a Greek word that roughly means putting love, soul and creativity into what you do.",
+"rows": [
+[
+"6c19f855-eadc-4ab0-a223-30e4a90e4b37_rw_1920.png?h=994a433b54b41d4c98646021df630623",
+"71f52466-c287-487a-bfad-c27d9f297011_rw_1920.png?h=9cf6a766342d798c0834596e82950346",
+"d6ef9b8e-a919-4a01-a43d-7c7ebcc98e9e_rw_1920.png?h=6115dc4bfb760608147e68bc0e09d67d"
+],
+{
+"h": "Process"
+},
+[
+"9228dbec-214a-4936-b0cc-be52bb583107_rw_1200.png?h=96fda9dec8dd224e5a04da91592ef42d",
+"9f39aee0-c934-47d9-b3c0-92437a1f036a_rw_1200.png?h=4ca4c3d1c61eeb49d43125d2ba9229b2"
+],
+[
+"58451afd-479f-4ab7-a37d-ff60f69b29d9_rw_1200.png?h=58d209cbe74ab69b2737ca42abbe77d0",
+"63a8f738-7e11-4ada-a12d-9f2954bb4dc9_rw_1920.jpg?h=80f71d5bea24dfdc56cdb49bd52dffd5"
+],
+{
+"v": "Mk8xjx99vvg"
+}
+],
+"size": "small"
+},
+{
+"slug": "poster-library",
+"title": "Poster Library",
+"sub": "Posters",
+"year": 2025,
+"cover": "poster-library.webp",
+"tags": [
+"Print"
+],
+"kind": "Poster collection",
+"info": "",
+"rows": [
+[
+"poster-library.webp",
+"1e0d873d-c2e0-4965-a156-67ca68ba3b82_rw_3840.jpg?h=81ff5a15c98e098ac4c26c45d567c874"
+],
+[
+"44673a3c-a210-423c-913e-20da5e979228_rw_3840.jpg?h=cb44b92509907c8baafa72f928a7a365",
+"469755a0-02e0-42a0-83c4-89c8492ae55b_rw_1200.jpg?h=6eb684b2acbaa0c40a5ee76be11b2519"
+],
+[
+"4c40f712-d852-43c9-b6d1-23986f6c9043_rw_1920.jpg?h=cb0c99f93a89fa484e834e743322c4f3",
+"df369f12-ae17-4968-bbfd-72691aa25e21_rw_3840.jpg?h=15ffbc61089c6290eb179d828668d900"
+],
+[
+"9a9d709a-1bc5-47ba-b692-3c6b299e61c5_rw_1920.jpg?h=1a2bac2c140a5c0538b8b8ef48681c62",
+"2e269fe0-51c8-4fdc-bb4a-4b3eb6643a19_rw_1920.jpg?h=e3ae87b875aab359cccd6992aad8728b"
+],
+[
+"0e6edf7c-2302-4c86-80bd-cdadc7698445_rw_3840.png?h=31838a98aaf6307c8e2ee9b996fe9c77"
+],
+[
+"motion-om-mani.mp4",
+"motion-kung-jjak.mp4"
+]
+],
+"size": "small"
+}
+];
+const POSTERS = [{"f": "1d68f61c-6f2f-4995-8903-1934ed105a4a_rw_3840.jpg?h=8b7f736ed9361eb6f3e74da26419df70", "t": "Appalachian Folk Festival Poster", "n": "", "s": "appalachian-folk-festival", "ar": 0.667}, {"f": "60c87e43-7ee8-49c2-bca5-79524d77adb6_rwc_417x290x1081x1440x1081.jpg?h=ca7327c0c0b495e23fdbaef191076344", "t": "Berlin Olympics", "n": "", "s": "olympic-branding", "ar": 0.75}, {"f": "df369f12-ae17-4968-bbfd-72691aa25e21_rw_3840.jpg?h=15ffbc61089c6290eb179d828668d900", "t": "Billy Strings Poster", "n": "", "s": "", "ar": 0.75}, {"f": "c3c71bd9-d512-467b-ae65-c7b86adfd545_rw_1920.jpg", "t": "Hale Community Garden Poster", "n": "", "s": "hale-community-garden", "ar": 0.786}, {"f": "6062a009-b4cf-480d-a319-ef4c34069685_rw_1920.jpg?h=a939f1c6a4dcbb21fa6e84987923c4fe", "t": "Hale Community Garden Poster", "n": "", "s": "hale-community-garden", "ar": 0.786}, {"f": "469755a0-02e0-42a0-83c4-89c8492ae55b_rw_1200.jpg?h=6eb684b2acbaa0c40a5ee76be11b2519", "t": "Miss Modular Poster", "n": "", "s": "", "ar": 0.647}, {"f": "4c40f712-d852-43c9-b6d1-23986f6c9043_rw_1920.jpg?h=cb0c99f93a89fa484e834e743322c4f3", "t": "Spring Rush 2025", "n": "", "s": "", "ar": 0.8}, {"f": "9a9d709a-1bc5-47ba-b692-3c6b299e61c5_rw_1920.jpg?h=1a2bac2c140a5c0538b8b8ef48681c62", "t": "Fly!", "n": "", "s": "", "ar": 0.647}, {"f": "1e0d873d-c2e0-4965-a156-67ca68ba3b82_rw_3840.jpg?h=81ff5a15c98e098ac4c26c45d567c874", "t": "Emerald Isle Poster", "n": "", "s": "", "ar": 0.75}, {"f": "44673a3c-a210-423c-913e-20da5e979228_rw_3840.jpg?h=cb44b92509907c8baafa72f928a7a365", "t": "Love", "n": "", "s": "", "ar": 0.75}, {"f": "poster-library.webp", "t": "Basel Mural Walk Poster", "n": "", "s": "", "ar": 0.75}, {"f": "motion-om-mani.mp4", "t": "Tibetan Typography Motion Exploration", "n": "", "s": "", "ar": 1.0}, {"f": "motion-kung-jjak.mp4", "t": "Expressive Korean Typography Poster", "n": "", "s": "", "ar": 1.0}, {"f": "2e269fe0-51c8-4fdc-bb4a-4b3eb6643a19_rw_1920.jpg?h=e3ae87b875aab359cccd6992aad8728b", "t": "Whiplash Poster", "n": "", "s": "", "ar": 0.647}];
+const HALL_SLUG = "poster-library";
+const HALL_SRC = PROJECTS_ALL.find(p=>p.slug===HALL_SLUG);
+const PROJECTS = SITE.featured.map(s=>PROJECTS_ALL.find(p=>p.slug===s)).filter(Boolean);
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pad2 = n => String(n).padStart(2,"0");
+const srcs = f => { const n=f.split("?")[0]; const web="images-web/"+n.replace(/\.png$/i,".jpg"); return [...new Set([web, "images-web/"+n, "images/"+n, ...(f.includes("?")?[CDN+f]:[])])]; };
+function nextSrc(el){ const l=(el.dataset.fb||"").split("|").filter(Boolean); if(l.length){ el.dataset.fb=l.slice(1).join("|"); el.src=l[0]; } }
+function img(f, alt, lazy=true, style=""){
+  if(/\.mp4$/i.test(f)){ const v="images-web/"+f; return `<video class="mv" src="${v}" poster="${v.replace(/\.mp4$/i,".jpg")}" muted autoplay loop playsinline disablepictureinpicture preload="${lazy?"metadata":"auto"}" aria-label="${esc(alt)}" draggable="false" ${style?`style="${style}"`:""}></video>`; }
+  const [a,...rest]=srcs(f);
+  return `<img src="${a}" data-fb="${rest.join("|")}" alt="${esc(alt)}" ${lazy?'loading="lazy"':''} decoding="async" draggable="false" ${style?`style="${style}"`:""} onerror="nextSrc(this)">`;
+}
+function setImg(el, f){ const [a,...rest]=srcs(f); el.dataset.fb=rest.join("|"); el.onerror=()=>nextSrc(el); el.src=a; }
+const digits = s => s.replace(/[^0-9+]/g,"");
+const by = slug => PROJECTS.find(p=>p.slug===slug);
+const FEATURED = SITE.featured.map(by).filter(Boolean);
+const info = p => p.info || (p.rows.find(r=>r.p)||{}).p || "";
+const ratio = ar => { const c=[[1,1],[4,5],[3,4],[2,3],[11,17]]; let b=c[0]; for(const r of c) if(Math.abs(r[0]/r[1]-ar)<Math.abs(b[0]/b[1]-ar)) b=r; return b.join(":"); };
+function cover(p, lazy=true){
+  if(!p.cover) return `<div class="pl-img"></div>`;
+  if(p.fit==="blur") return `<div class="pl-img blur"><div class="bgi">${img(p.cover,"",lazy)}</div>${img(p.cover, p.title, lazy)}</div>`;
+  const white = p.fit==="contain" ? " white" : "";
+  return `<div class="pl-img${white}">${img(p.cover, p.title, lazy, p.pos?`object-position:${p.pos}`:"")}</div>`;
+}
+
+/* ---------- home ---------- */
+
+/* cross-stitch type: same "+" mark the TE monogram is built from */
+const STF={"0":"01110 10001 10001 10001 10001 10001 01110","1":"00100 01100 00100 00100 00100 00100 01110","2":"01110 10001 00001 00010 00100 01000 11111","3":"11110 00001 00001 01110 00001 00001 11110","4":"00010 00110 01010 10010 11111 00010 00010","5":"11111 10000 11110 00001 00001 10001 01110","6":"00110 01000 10000 11110 10001 10001 01110","7":"11111 00001 00010 00100 01000 01000 01000","8":"01110 10001 10001 01110 10001 10001 01110","9":"01110 10001 10001 01111 00001 00010 01100",
+"T":"11111 00100 00100 00100 00100 00100 00100","R":"11110 10001 10001 11110 10100 10010 10001","E":"11111 10000 10000 11110 10000 10000 11111","N":"10001 11001 10101 10011 10001 10001 10001","D":"11100 10010 10001 10001 10001 10010 11100","S":"01111 10000 10000 01110 00001 00001 11110","I":"01110 00100 00100 00100 00100 00100 01110","G":"01110 10001 10000 10111 10001 10001 01111",".":"0 0 0 0 0 0 1"};
+const AST=[[0,-1],[.866,-.5],[.866,.5],[0,1],[-.866,.5],[-.866,-.5]];
+function star(cx,cy,a,w0,w1){ let d=""; for(const [ux,uy] of AST){ const px=-uy,py=ux, tx=cx+ux*a, ty=cy+uy*a;
+  d+=`M${(cx+px*w0).toFixed(2)} ${(cy+py*w0).toFixed(2)}L${(tx+px*w1).toFixed(2)} ${(ty+py*w1).toFixed(2)}L${(tx-px*w1).toFixed(2)} ${(ty-py*w1).toFixed(2)}L${(cx-px*w0).toFixed(2)} ${(cy-py*w0).toFixed(2)}Z`; } return d; }
+function stitch(str,o={}){
+  const U=10, a=o.a||5.2, w0=.45, w1=o.w||1.05; let x=0, d="", dg="";
+  for(const ch of str){ const g=(STF[ch]||"00000 00000 00000 00000 00000 00000 00000").split(" "); const w=g[0].length;
+    g.forEach((row,y)=>[...row].forEach((b,i)=>{ if(b!=="1") return; const seg=star((x+i)*U+U/2, y*U+U/2, a, w0, w1); if(o.green&&o.green.includes(ch)) dg+=seg; else d+=seg; }));
+    x+=w+1; }
+  const W=(x-1)*U;
+  return `<svg class="stitch" viewBox="-1 -1 ${W+2} ${7*U+2}" width="${W+2}" height="${7*U+2}" aria-hidden="true"><path d="${d}"/>${dg?`<path class="g" d="${dg}"/>`:""}</svg>`;
+}
+function home(){
+  const plates = FEATURED.map((p,i)=>`
+    <a class="plate" href="#${p.slug}">
+      <span class="pl-num" aria-hidden="true">${stitch(pad2(i+1),{w:1.3})}</span>
+      <div class="pl-text">
+        <div class="pl-row"><h3 class="pl-t">${esc(p.title)}</h3></div>
+        <p class="pl-k">${esc(p.kind)}</p>
+        <span class="pl-sub" aria-label="${esc(p.sub)}">${p.sub.split(/\s*\+\s*/).map(t=>`<i>${esc(t)}</i>`).join("")}</span>
+      </div>
+      ${cover(p, i>1)}
+    </a>`).join("");
+  const RN=Math.min(10,POSTERS.length);
+  const ring = POSTERS.slice(0,RN).map((q,i)=>`<figure style="transform:translate(-50%,-50%) rotateY(${i*360/RN}deg) translateZ(var(--rr)) translateY(${(i-RN/2)*9}px)">${img(q.f,"",true)}</figure>`).join("");
+  return `
+  <section class="hero" id="top" aria-label="Introduction">
+    <img class="ridge" src="images-web/blue-ridge.svg" alt="" aria-hidden="true" decoding="async">
+    <span class="g h" style="top:50%"></span>
+    <span class="g v hide-m" style="left:calc(var(--gut) * .5)"></span><span class="g v hide-m" style="right:calc(var(--gut) * .5)"></span>
+    <h1 class="h-word a">Trent</h1>
+    <div class="h-frame">
+      
+      <picture><source srcset="images-web/te-sticker-halftone.png" media="(prefers-reduced-motion: reduce)"><img class="h-me" src="images-web/te-sticker-halftone.webp" alt="TE monogram sticker" decoding="async" fetchpriority="high" onerror="this.onerror=null;this.src='images-web/te-sticker-halftone.png'"></picture>
+    </div>
+    <p class="h-word b" aria-hidden="true">Estes</p>
+    <div class="h-bot pad">
+      <p>Here to be creative and solve problems. I do what I do.</p>
+      <div class="h-btns"><a class="h-down" href="#work" aria-label="See the work"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 4v15M5.5 12.5 12 19l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </section>
+  <div class="m-intro pad">
+    <p>Here to be creative and solve problems. I do what I do.</p>
+    <div class="h-btns"><a class="h-down" href="#work" aria-label="See the work"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 4v15M5.5 12.5 12 19l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+
+  <div class="pad">
+    <section id="work">
+      <div class="sh"><h2>Selected work</h2><span class="dt" aria-label="${PROJECTS.length} projects">${stitch(pad2(PROJECTS.length))}</span></div>
+      <div class="plates">${plates}</div>
+    </section>
+  </div>
+
+  <a class="hentry" href="#posters" aria-label="Enter the Poster Gallery">
+    <div class="he-in pad">
+      <div class="he-text">
+        <h2>Poster Gallery</h2>
+        <p>Posters I made for projects and fun, along with some motion work as well.</p>
+        <span class="btn ink">Check it out</span>
+      </div>
+      <div class="he-stage" aria-hidden="true"><div class="ring"><div class="sp">${ring}</div></div></div>
+    </div>
+  </a>
+
+  <div class="pad">
+  </div>
+
+  <section id="passion" class="spot">
+    <div class="pad spot-in">
+      <div class="spot-side spot-l">
+        <span class="spot-tag">Passion Project Spotlight</span>
+        <h2>BBX&#8209;01</h2>
+      </div>
+      <div class="spot-side spot-r">
+        <p>A beatbox machine that records you and chops the take into samples, which you can then mess with using the knobs.</p>
+        <div class="pp-links"><a class="btn spot-btn" href="bbx-01/" target="_blank" rel="noopener">Open full screen <span class="ar">↗</span></a></div>
+      </div>
+      <div class="pp-frame" id="ppf"><iframe id="bbx" src="bbx-01/" title="BBX-01 beatbox sampler" allow="microphone; autoplay" loading="lazy"></iframe></div>
+    </div>
+  </section>
+
+  <div class="pad">
+    <section id="about">
+      <div class="sh"><h2>About</h2></div>
+      <div class="about">
+        <figure class="a-photo">
+          <img src="images-web/trent-portrait.jpg" alt="Trent Estes" width="1400" height="2100" loading="lazy">
+          
+        </figure>
+        <div class="a-body">
+          <p>I'm a graphic and packaging designer with a bold eye and a love of the analog and natural world. Vintage design, a deep respect for the environment and a lifelong connection to music shape most of what I make.</p>
+          <p>I treat every project as a problem worth solving, and I care about the details that make something stick. Passionate about everything, always willing to learn.</p>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+  ${footer()}`;
+}
+function footer(){
+  return `
+  <footer class="foot" id="contact">
+    <div class="f-in pad">
+      <figure class="fq"><blockquote><h2>“Look deep into nature, <span>and then you will understand everything better.”</span></h2></blockquote><figcaption class="mono">Albert Einstein</figcaption></figure>
+      <ul class="mono">
+        <li><a href="mailto:${esc(SITE.email)}"><span>Email</span><span>${esc(SITE.email)}</span></a></li>
+        <li><a href="tel:${digits(SITE.phone)}"><span>Phone</span><span>${esc(SITE.phone)}</span></a></li>
+        ${SITE.linkedin?`<li><a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span>↗</span></a></li>`:""}
+        ${SITE.instagram?`<li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a></li>`:""}
+        ${SITE.resume?`<li><a href="${esc(SITE.resume)}" target="_blank" rel="noopener"><span>Résumé</span><span>PDF ↗</span></a></li>`:""}
+      </ul>
+    </div>
+    <div class="pad" aria-hidden="true"><span class="wordmark">${stitch("TRENTE.DESIGN",{green:"."})}</span></div>
+    <div class="legal pad mono"><span>© ${new Date().getFullYear()} ${esc(SITE.name)}</span><span>Creative designer</span></div>
+  </footer>`;
+}
+
+/* ---------- project page ---------- */
+function project(p){
+  const i=PROJECTS.indexOf(p), next=PROJECTS[(i+1)%PROJECTS.length];
+  const text=info(p); let first=true;
+  const rowH=r=>`<div class="p-row c${r.length}">${r.map(f=>{const h=`<figure>${img(f,p.title,!first)}</figure>`; first=false; return h;}).join("")}</div>`;
+  const misc=r=>{
+    if(r.cap) return `<p class="p-cap mono">${esc(r.cap)}</p>`;
+    if(r.facts) return `<dl class="p-facts">${r.facts.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
+    if(r.list) return `<ul class="p-list">${r.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+    if(r.v) return `<a class="vid" href="https://www-ccv.adobe.io/v1/player/ccv/${r.v}/embed?api_key=BehancePro2View" target="_blank" rel="noopener"><span>Motion piece</span><span>Watch ↗</span></a>`;
+    return "";
+  };
+  // group: lead images (hero), then one step per heading
+  const hero=[], steps=[]; let cur=null;
+  for(const r of p.rows){
+    if(r.h){ cur={h:r.h,t:[],m:[]}; steps.push(cur); continue; }
+    if(!cur){ if(Array.isArray(r)) hero.push(rowH(r)); else if(r.p&&r.p!==text){ cur={h:"",t:[r.p],m:[]}; steps.push(cur);} else hero.push(misc(r)); continue; }
+    if(r.p){ if(r.p!==text) cur.t.push(r.p); }
+    else cur.m.push(Array.isArray(r)?rowH(r):misc(r));
+  }
+  const rows = (hero.length?`<div class="p-hero">${hero.join("")}</div>`:"") + steps.map((st,k)=>`
+    <section class="step">
+      <div class="s-side">${st.h?`<h2>${esc(st.h)}</h2>`:""}${st.t.map(x=>`<p>${esc(x)}</p>`).join("")}</div>
+      <div class="s-main">${st.m.join("")}</div>
+    </section>`).join("");
+  return `
+  <div class="pad">
+    <section class="p-head">
+      <a class="back mono" href="#work">← Back to work</a>
+      <h1>${esc(p.title)}</h1>
+      <div class="p-sub">
+        ${text?`<p class="p-info">${esc(text)}</p>`:"<span></span>"}
+        <dl class="p-meta mono"><div><dt>Type</dt><dd>${esc(p.sub)}</dd></div><div><dt>Discipline</dt><dd>${esc(p.tags.join(", "))}</dd></div></dl>
+      </div>
+    </section>
+    <section class="p-body" id="pbody">${rows || (p.cover?`<div class="p-hero"><div class="p-row c1"><figure>${img(p.cover,p.title,false)}</figure></div></div>`:"")}</section>
+    <a class="nextp" href="#${next.slug}">
+      <div><span class="mono">Next project →</span><span class="t">${esc(next.title)}</span></div>
+      ${cover(next)}
+    </a>
+  </div>
+  ${footer()}`;
+}
+
+/* ---------- the poster hall: posters on a turning spiral ---------- */
+function hallHTML(){
+  const touch=matchMedia("(hover:none)").matches;
+  return `
+  <div class="hall" id="hall" tabindex="-1" role="region" aria-label="Poster Gallery: posters arranged on a spiral">
+    <span class="g h" style="top:42%"></span><span class="g v" style="left:50%"></span>
+    <div class="stage"><div class="cam" id="cam"><div class="helix" id="helix">
+      <div class="floor" id="floor"></div>
+      ${POSTERS.map((q,i)=>`<div class="hc" data-i="${i}" tabindex="0" role="button" aria-label="${esc(q.t)}">
+        <div class="fa">${img(q.f,q.t,false)}<i></i></div>
+        <div class="bk mono">${pad2(i+1)}</div>
+        <div class="t2"><span>${pad2(i+1)}</span><b>${esc(q.t)}</b></div>
+      </div>`).join("")}
+    </div></div></div>
+    <header class="hud">
+      <a class="back mono" href="#work">← Back</a>
+      <h1>Poster Gallery</h1>
+      <span class="cnt mono" id="hcount">01 / ${pad2(POSTERS.length)}</span>
+    </header>
+    <div class="now" aria-live="polite"><span class="mono" id="nowN"></span><b id="nowT"></b><span class="mono" id="nowS"></span></div>
+    <div class="hnav"><button type="button" id="hprev" aria-label="Previous poster">←</button><button type="button" id="hnext" aria-label="Next poster">→</button></div>
+    <div class="hint mono" id="hint">${touch?"Swipe to turn the spiral · tap a poster to zoom in":"Drag or scroll to turn the spiral · click a poster to zoom in"}</div>
+    <div class="lb" id="lb" hidden></div>
+  </div>`;
+}
+
+const H = { raf:0, on:false };
+function startHall(){
+  const hall=$("#hall"), cam=$("#cam"), helix=$("#helix"), cards=[...hall.querySelectorAll(".hc")], N=cards.length;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const PER=7, STEP=360/PER;
+  let G={};
+  function layout(){
+    const w=innerWidth, h=innerHeight, mob=w<700;
+    const PH=Math.round(mob?Math.min(150,h*.19):Math.min(230,h*.26));
+    const avgW=PH*POSTERS.reduce((a,q)=>a+q.ar,0)/N;
+    G={PH, DY:PH*.2, R:Math.max(PER*avgW*1.32/(2*Math.PI), mob?w*.36:0)};
+    cards.forEach((c,i)=>{
+      const pw=Math.round(PH*POSTERS[i].ar);
+      Object.assign(c.style,{width:pw+"px",height:PH+"px",marginLeft:(-pw/2)+"px",marginTop:(-PH/2)+"px"});
+      c._a=i*STEP; c._y=i*G.DY; c._b=Math.random()*6.28;
+    });
+    $("#floor").style.transform=`translate3d(0,${(N-1)*G.DY+PH/2+70}px,0) rotateX(90deg)`;
+  }
+  layout();
+  const S={s:-.6, ts:0, tilt:-15, ttilt:-15, yaw:0, tyaw:0};
+  let last=performance.now(), idleAt=performance.now()+2600, dir=1;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  let hinted=false; const hint=()=>{ if(!hinted){ hinted=true; $("#hint").classList.add("gone"); } };
+  let snapT=0; function move(d){ S.ts=clamp(S.ts+d,0,N-1); idleAt=performance.now()+4000; hint(); clearTimeout(snapT); snapT=setTimeout(()=>{ if(!drag) S.ts=Math.round(S.ts); },220); }
+  function goTo(i){ S.ts=clamp(i,0,N-1); idleAt=performance.now()+5000; hint(); }
+  let shown=-1;
+  function frame(now){
+    const dt=Math.min(50,now-last); last=now;
+    if(now>idleAt && $("#lb").hidden){ S.ts+=dir*dt*.00012; if(S.ts>N-1){S.ts=N-1;dir=-1;} if(S.ts<0){S.ts=0;dir=1;} }
+    const k=reduce?1:1-Math.pow(1-.075,dt/16.7);
+    if(!$("#lb").hidden) S.ts=S.s;
+    S.s+=(S.ts-S.s)*k; S.tilt+=(S.ttilt-S.tilt)*.05; S.yaw+=(S.tyaw-S.yaw)*.05;
+    const rot=-S.s*STEP, y=S.s*G.DY;
+    cam.style.transform=`translateZ(${-G.R*1.25}px) rotateX(${S.tilt}deg) rotateY(${S.yaw}deg)`;
+    helix.style.transform=`translateY(${-y}px) rotateY(${rot}deg)`;
+    const t=now/1000;
+    cards.forEach((c,i)=>{
+      const a=(c._a+rot)*Math.PI/180, f=Math.cos(a);
+      const dv=Math.abs(c._y-y)/G.PH;
+      const bob=reduce?0:Math.sin(t*.9+c._b)*4;
+      c.style.transform=`translateY(${c._y+bob}px) rotateY(${c._a}deg) translateZ(${G.R}px)`;
+      c.style.opacity=(dv>2.6?Math.max(0,1-(dv-2.6)/1.2):1).toFixed(3);
+      c.firstElementChild.lastElementChild.style.opacity=((1-f)*.32).toFixed(3);
+    });
+    const cur=Math.round(clamp(S.s,0,N-1));
+    if(cur!==shown){ shown=cur; const q=POSTERS[cur];
+      cards.forEach((c,i)=>c.classList.toggle("cur",i===cur));
+      $("#hcount").textContent=`${pad2(cur+1)} / ${pad2(N)}`; $("#nowN").textContent=pad2(cur+1); $("#nowT").textContent=q.t; $("#nowS").textContent=q.n; }
+    if(H.on) H.raf=requestAnimationFrame(frame);
+  }
+  hall.addEventListener("wheel",e=>{ if(!$("#lb").hidden) return; e.preventDefault(); move((e.deltaY+e.deltaX)*(e.deltaMode===1?30:1)*.0028); },{passive:false});
+  let drag=null, moved=false;
+  hall.addEventListener("pointerdown",e=>{ if(e.target.closest("a,button,.lb")) return; drag={x:e.clientX,y:e.clientY,sx:e.clientX,sy:e.clientY}; moved=false; hall.classList.add("drag"); });
+  addEventListener("pointermove",H.pm=e=>{
+    if(e.pointerType==="mouse"){ S.ttilt=-15+(e.clientY/innerHeight-.5)*-10; S.tyaw=(e.clientX/innerWidth-.5)*10; }
+    if(!drag) return;
+    const dx=e.clientX-drag.x, dy=e.clientY-drag.y; drag.x=e.clientX; drag.y=e.clientY;
+    if(Math.hypot(e.clientX-drag.sx,e.clientY-drag.sy)>6) moved=true;
+    if(moved) move((-dx*1.2-dy*1.2)/(G.PH*.75));
+  });
+  addEventListener("pointerup",H.pu=()=>{ if(drag&&moved) S.ts=Math.round(S.ts); drag=null; hall.classList.remove("drag"); });
+  const pick=i=>openLB(i);
+  hall.addEventListener("click",e=>{ if(moved){ moved=false; return; } const c=e.target.closest(".hc"); if(c) pick(+c.dataset.i); });
+  hall.addEventListener("keydown",e=>{ if(e.key==="Enter"){ const c=e.target.closest&&e.target.closest(".hc"); if(c) pick(+c.dataset.i); } });
+  addEventListener("keydown",H.kd=e=>{
+    if(!$("#lb").hidden){ if(e.key==="Escape") closeLB();
+      else if(e.key==="ArrowRight"||e.key==="ArrowDown"){ e.preventDefault(); zStep(1); }
+      else if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ e.preventDefault(); zStep(-1); }
+      return; }
+    const cur=Math.round(S.ts);
+    if(e.key==="ArrowRight"||e.key==="ArrowDown"){ e.preventDefault(); goTo(cur+1); }
+    else if(e.key==="ArrowLeft"||e.key==="ArrowUp"){ e.preventDefault(); goTo(cur-1); }
+    else if(e.key==="Enter"&&!e.target.closest?.(".hc")){ openLB(cur); }
+    else if(e.key==="Escape"){ location.hash="work"; }
+  });
+  $("#hprev").onclick=e=>{ e.stopPropagation(); goTo(Math.round(S.ts)-1); };
+  $("#hnext").onclick=e=>{ e.stopPropagation(); goTo(Math.round(S.ts)+1); };
+  addEventListener("resize",H.rs=()=>layout());
+  /* ---- zoom mode ---- */
+  const Z={i:-1, busy:false};
+  const ease="cubic-bezier(.2,.75,.15,1)";
+  function fitRect(i){ const w=innerWidth,h=innerHeight, mob=w<760, ar=POSTERS[i].ar;
+    const mw=w-(mob?32:220), mh=h-(mob?190:96); let pw=mw, ph=pw/ar; if(ph>mh){ ph=mh; pw=ph*ar; }
+    return {x:(w-pw)/2, y:(h-ph)/2-(mob?30:0), w:pw, h:ph}; }
+  function cardRect(i){ const b=cards[i].getBoundingClientRect(); return {x:b.left,y:b.top,w:b.width,h:b.height}; }
+  function place(el,r,dst,anim){ // el sized to dst; transform so it sits at r
+    el.style.width=dst.w+"px"; el.style.height=dst.h+"px";
+    el.style.transition=anim?`transform .7s ${ease}, opacity .5s`:"none";
+    el.style.transform=`translate(${r.x}px,${r.y}px) scale(${r.w/dst.w},${r.h/dst.h})`; }
+  function meta(i){ const q=POSTERS[i];
+    return `<span class="mono">${pad2(i+1)} of ${pad2(N)}</span><b>${esc(q.t)}</b><span class="mono">${esc(q.n)}</span>${q.s&&PROJECTS.find(p=>p.slug===q.s)?`<a class="more mono" href="#${q.s}">See the project →</a>`:""}`; }
+  function openLB(i){
+    if(Z.busy) return; Z.busy=true; Z.i=i;
+    S.ts=S.s; // stop the spiral right where it is
+    const lb=$("#lb"), q=POSTERS[i];
+    lb.innerHTML=`<div class="zbg"></div><div class="zp" id="zp">${img(q.f,q.t,false)}</div>
+      <div class="zui"><button class="x mono" type="button" id="lbx">Close ×</button>
+      <button class="za p" type="button" id="zprev" aria-label="Previous poster">←</button><button class="za n" type="button" id="znext" aria-label="Next poster">→</button>
+      <div class="zmeta" id="zmeta">${meta(i)}</div><div class="zkeys mono">← → to browse · Esc to zoom out</div></div>`;
+    lb.hidden=false; hall.classList.add("zoomed"); cards[i].style.visibility="hidden";
+    const zp=$("#zp"), dst=fitRect(i);
+    place(zp,cardRect(i),dst,false); zp.getBoundingClientRect();
+    requestAnimationFrame(()=>{ lb.classList.add("on"); place(zp,dst,dst,true); setTimeout(()=>{Z.busy=false;},650); });
+    $("#lbx").onclick=e=>{ e.stopPropagation(); closeLB(); };
+    $("#zprev").onclick=e=>{ e.stopPropagation(); zStep(-1); };
+    $("#znext").onclick=e=>{ e.stopPropagation(); zStep(1); };
+    $("#zmeta").onclick=e=>e.stopPropagation();
+    lb.onclick=e=>{ if(!e.target.closest(".za,.x,.zmeta")) closeLB(); };
+    zBtns(); hint();
+  }
+  function zBtns(){ $("#zprev").disabled=Z.i<=0; $("#znext").disabled=Z.i>=N-1; }
+  function zStep(d){
+    const j=Z.i+d; if(j<0||j>=N||Z.busy) return; Z.busy=true;
+    const old=$("#zp"), lb=$("#lb"), q=POSTERS[j];
+    cards[Z.i].style.visibility=""; Z.i=j; cards[j].style.visibility="hidden";
+    S.s=S.ts=j; // spiral quietly follows behind, so zooming out lands on this poster
+    const nz=document.createElement("div"); nz.className="zp"; nz.innerHTML=img(q.f,q.t,false);
+    const dst=fitRect(j), off=d*Math.min(innerWidth*.35,320);
+    place(nz,{x:dst.x+off,y:dst.y,w:dst.w,h:dst.h},dst,false); nz.style.opacity="0";
+    old.after(nz); nz.getBoundingClientRect();
+    const od=fitRect(j-d);
+    requestAnimationFrame(()=>{ place(nz,dst,dst,true); nz.style.opacity="1";
+      place(old,{x:od.x-off,y:od.y,w:od.w,h:od.h},od,true); old.style.opacity="0"; });
+    setTimeout(()=>{ old.remove(); nz.id="zp"; Z.busy=false; },560);
+    $("#zmeta").innerHTML=meta(j); zBtns();
+  }
+  function closeLB(){
+    if(Z.busy||$("#lb").hidden) return; Z.busy=true;
+    const lb=$("#lb"), zp=$("#zp"), i=Z.i, dst=fitRect(i);
+    lb.classList.remove("on"); hall.classList.remove("zoomed");
+    requestAnimationFrame(()=>{ place(zp,cardRect(i),dst,true); });
+    setTimeout(()=>{ lb.hidden=true; lb.innerHTML=""; cards[i].style.visibility=""; Z.busy=false; idleAt=performance.now()+4000; },720);
+  }
+  // swipe in zoom mode
+  let zs=null;
+  $("#lb").addEventListener("pointerdown",e=>{ zs={x:e.clientX,y:e.clientY}; });
+  $("#lb").addEventListener("pointerup",e=>{ if(!zs) return; const dx=e.clientX-zs.x, dy=e.clientY-zs.y; zs=null;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){ zStep(dx<0?1:-1); $("#lb").dataset.sw="1"; setTimeout(()=>delete $("#lb").dataset.sw,50); } },true);
+  $("#lb").addEventListener("click",e=>{ if($("#lb").dataset.sw){ e.stopPropagation(); } },true);
+  H.on=true; H.raf=requestAnimationFrame(frame);
+}
+function stopHall(){
+  H.on=false; cancelAnimationFrame(H.raf);
+  for(const [t,f] of [["pointermove",H.pm],["pointerup",H.pu],["keydown",H.kd],["resize",H.rs]]) if(f) removeEventListener(t,f);
+  document.body.classList.remove("in-hall");
+}
+
+function fitRows(root){
+  root.querySelectorAll(".p-row video").forEach(v=>{ const go=()=>{ if(!v.videoWidth) return; const f=v.closest("figure"); f.style.setProperty("--ar",(v.videoWidth/v.videoHeight).toFixed(4)); f.classList.add("ok"); }; if(v.readyState>=1) go(); else v.addEventListener("loadedmetadata",go); });
+  root.querySelectorAll(".p-row img").forEach(im=>{
+    const go=()=>{ if(!im.naturalWidth) return; const f=im.closest("figure"); f.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(4)); f.classList.add("ok"); im.classList.add("ok"); };
+    if(im.complete&&im.naturalWidth) go(); else im.addEventListener("load",go);
+  });
+}
+/* ---------- behaviour ---------- */
+function bindHome(){
+  const f=$("#bbx"), w=$("#ppf"); if(!f||!w) return;
+  // desktop: show just the BBX-01 device (it sits at x 60–1040, y 56–874 in a 1100px-wide page), scaled to the column
+  const BW=1100, BH=930, CX=36, CY=32, CW=1028, CH=866;
+  const fit=()=>{
+    const cw=w.clientWidth;
+    if(innerWidth<900){ let h=1520; try{ const d=f.contentDocument; if(d&&d.body) h=Math.max(h,d.documentElement.scrollHeight);}catch(e){}
+      f.style.width=cw+"px"; f.style.height=h+"px"; f.style.transform=""; w.style.height=h+"px"; return; }
+    const sc=cw/CW;
+    f.style.width=BW+"px"; f.style.height=BH+"px";
+    f.style.transform=`scale(${sc}) translate(${-CX}px,${-CY}px)`;
+    w.style.height=Math.round(CH*sc)+"px";
+  };
+  fit(); f.addEventListener("load",fit); new ResizeObserver(fit).observe(w);
+}
+let mode=null;
+function route(){
+  let h=location.hash.slice(1);
+  if(h===HALL_SLUG){ history.replaceState(null,"","#posters"); h="posters"; }
+  const p=by(h);
+  $("#peek").classList.remove("on");
+  if(mode==="hall" && h!=="posters") stopHall();
+  if(h==="posters"){
+    if(mode!=="hall"){ $("#app").innerHTML=hallHTML(); mode="hall"; document.body.classList.add("in-hall"); startHall(); $("#hall").focus({preventScroll:true}); }
+    document.title=`Poster Gallery · ${SITE.name}`;
+  } else if(p){
+    $("#app").innerHTML=project(p); mode="project"; cardVis(); fitRows($("#pbody"));
+    document.title=`${p.title} · ${SITE.name}`; window.scrollTo(0,0);
+  } else {
+    if(mode!=="home"){ $("#app").innerHTML=home(); bindHome(); mode="home"; if(typeof homeFx==="function") homeFx(); }
+    document.title=`${SITE.name} · Brand & packaging designer`;
+    const el=h&&h!=="top"?document.getElementById(h):null;
+    if(el) requestAnimationFrame(()=>el.scrollIntoView()); else window.scrollTo(0,0);
+    requestAnimationFrame(cardVis);
+  }
+}
+function cardVis(){}
+addEventListener("hashchange", route);
+addEventListener("keydown", e=>{
+  if(mode!=="project") return;
+  const i=PROJECTS.findIndex(x=>x.slug===location.hash.slice(1)); if(i<0) return;
+  if(e.key==="ArrowRight") location.hash=PROJECTS[(i+1)%PROJECTS.length].slug;
+  if(e.key==="ArrowLeft") location.hash=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length].slug;
+});
+route(); cardVis();
+function heroFx(){
+  const hero=document.getElementById("top"); if(!hero) return;
+  const words=[...hero.querySelectorAll(".h-word")]; let k=0;
+  words.forEach(w=>{ const t=w.textContent.trim(); w.setAttribute("aria-label",t);
+    w.innerHTML=[...t].map((c,i)=>`<span class="ch${i===0?" ini":""}" style="--i:${k++}" aria-hidden="true">${c}</span>`).join(""); });
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches || !matchMedia("(hover: hover)").matches) return;
+  const chs=[...hero.querySelectorAll(".ch")], pic=hero.querySelector(".h-frame picture"), cur=chs.map(()=>0);
+  let mx=-1e4,my=-1e4,raf=0;
+  const step=()=>{ raf=0; let moving=false;
+    chs.forEach((c,i)=>{ const r=c.getBoundingClientRect(); const d=Math.hypot(mx-(r.left+r.width/2),my-(r.top+r.height/2));
+      const t=Math.max(0,1-d/280); cur[i]+=(t-cur[i])*.16; if(Math.abs(t-cur[i])>.002) moving=true;
+      const v=cur[i]; c.style.transform=v>.001?`translateY(${-v*18}px)`:""; });
+    if(moving) raf=requestAnimationFrame(step); };
+  hero.addEventListener("pointermove",e=>{ mx=e.clientX; my=e.clientY; if(!raf) raf=requestAnimationFrame(step);
+    const r=hero.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+    if(pic) pic.style.transform=`perspective(1000px) rotateY(${(px*12).toFixed(2)}deg) rotateX(${(-py*9).toFixed(2)}deg)`; });
+  hero.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(step); if(pic) pic.style.transform=""; });
+}
+
+function astr(ctx,cx,cy,a){ ctx.beginPath(); for(const [ux,uy] of AST){ ctx.moveTo(cx,cy); ctx.lineTo(cx+ux*a,cy+uy*a); } ctx.stroke(); }
+/* about portrait: hovering re-draws the photo in cross-stitch */
+function asciiPortrait(){
+  const fig=document.querySelector(".a-photo"), img=fig&&fig.querySelector("img"); if(!img) return;
+  if(!matchMedia("(hover: hover)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const cv=document.createElement("canvas"); cv.setAttribute("aria-hidden","true"); fig.appendChild(cv);
+  const ctx=cv.getContext("2d"); let lum=null,W,H,C=11,cols,rows,dpr,mx=-1e4,my=-1e4,raf=0,cur=[];
+  const prep=()=>{
+    W=img.clientWidth; H=img.clientHeight; if(!W) return; dpr=Math.min(2,devicePixelRatio||1);
+    cv.width=W*dpr; cv.height=H*dpr; cols=Math.ceil(W/C); rows=Math.ceil(H/C);
+    const o=document.createElement("canvas"); o.width=cols; o.height=rows; const g=o.getContext("2d");
+    try{ g.drawImage(img,0,0,cols,rows); const d=g.getImageData(0,0,cols,rows).data; lum=new Float32Array(cols*rows);
+      for(let i=0;i<cols*rows;i++) lum[i]=(d[i*4]*.3+d[i*4+1]*.59+d[i*4+2]*.11)/255; }catch(e){ lum=null; }
+    cur=new Float32Array(cols*rows);
+  };
+  const draw=()=>{
+    raf=0; if(!lum) return; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H); ctx.lineCap="round";
+    const R=Math.max(W,H)*.32; let live=false;
+    for(let y=0;y<rows;y++) for(let x=0;x<cols;x++){ const i=y*cols+x;
+      const d=Math.hypot(x*C+C/2-mx,y*C+C/2-my), tgt=d<R?Math.min(1,(1-d/R)*1.8):0;
+      cur[i]+=(tgt-cur[i])*.14; if(Math.abs(tgt-cur[i])>.01) live=true; const v=cur[i]; if(v<.02) continue;
+      const px=x*C, py=y*C, cx=px+C/2, cy=py+C/2; ctx.globalAlpha=Math.min(1,v); ctx.fillStyle="#F2F2F0"; ctx.fillRect(px,py,C,C);
+      const k=1-lum[i]; if(k<.1) continue;
+      const a=C*.5*Math.min(1,.35+k); ctx.lineWidth=.8+k*1.6;
+      ctx.strokeStyle=k>.75&&((x*3+y)%7===0)?"#3f9b49":"#121211";
+      astr(ctx,cx,cy,a); }
+    ctx.globalAlpha=1; if(live) raf=requestAnimationFrame(draw);
+  };
+  const go=()=>{ prep(); fig.addEventListener("pointermove",e=>{ const r=img.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; if(!raf) raf=requestAnimationFrame(draw); });
+    fig.addEventListener("pointerleave",()=>{ mx=my=-1e4; if(!raf) raf=requestAnimationFrame(draw); });
+    addEventListener("resize",()=>{ if(fig.isConnected){ prep(); draw(); } }); };
+  if(img.complete&&img.naturalWidth) go(); else img.addEventListener("load",go,{once:true});
+}
+/* work covers: the closer the cursor, the more each cover softens into a loose, organic shape.
+   Driven by distance (not hover), eased every frame, so it never snaps back. */
+/* work covers: as the cursor nears, the cover's edge behaves like a thick, sticky oil.
+   The edge pulls in everywhere except where it clings toward the cursor, and slow waves
+   travel along it. Motion is overdamped (pure viscous drag), so nothing ever rebounds. */
+function coverBend(){
+  if(!matchMedia("(hover: hover)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if(!CSS.supports("clip-path",'path("M0 0L1 0L1 1Z")')) return;
+  const els=[...document.querySelectorAll(".plates .pl-img")]; if(!els.length) return;
+  const N=96, RAD=8, REACH=460, MAXIN=20;
+  const st=els.map((el,k)=>({el, cur:new Float32Array(N), seed:k*2.39+1.1, on:false, e:0}));
+  let mx=-1e5,my=-1e5,raf=0;
+  // a point and outward normal at fraction u of a rounded rect's perimeter
+  function perim(w,h,u,rad){
+    const r=Math.min(rad,w/2,h/2), sw=w-2*r, sh=h-2*r, arc=Math.PI*r/2, L=2*sw+2*sh+4*arc; let d=u*L;
+    const seg=[[sw,(t)=>[r+t,0,0,-1]],[arc,(t)=>{const a=-Math.PI/2+t/r;return [w-r+Math.cos(a)*r,r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sh,(t)=>[w,r+t,1,0]],[arc,(t)=>{const a=t/r;return [w-r+Math.cos(a)*r,h-r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sw,(t)=>[w-r-t,h,0,1]],[arc,(t)=>{const a=Math.PI/2+t/r;return [r+Math.cos(a)*r,h-r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}],
+      [sh,(t)=>[0,h-r-t,-1,0]],[arc,(t)=>{const a=Math.PI+t/r;return [r+Math.cos(a)*r,r+Math.sin(a)*r,Math.cos(a),Math.sin(a)];}]];
+    for(const [len,f] of seg){ if(d<=len) return f(d); d-=len; } return seg[0][1](0);
+  }
+  const frame=(now=performance.now())=>{ raf=0; let live=false; const tm=now/1000;
+    for(const s of st){ const b=s.el.getBoundingClientRect(); if(b.bottom<-100||b.top>innerHeight+100) continue;
+      const dx=Math.max(b.left-mx,0,mx-b.right), dy=Math.max(b.top-my,0,my-b.bottom);
+      const t=Math.max(0,1-Math.hypot(dx,dy)/REACH), e=t*t*(3-2*t); s.e+=(e-s.e)*.03; if(Math.abs(e-s.e)>.002) live=true;
+      const lx=mx-b.left, ly=my-b.top, sig=Math.max(b.width,b.height)*.55;
+      const P=[], tgt=new Float32Array(N);
+      const rad=RAD+s.e*30; for(let i=0;i<N;i++){ const q=perim(b.width,b.height,i/N,rad); P.push(q);
+        // edge stays stuck out toward the cursor, sags inward elsewhere
+        const g=Math.exp(-((q[0]-lx)**2+(q[1]-ly)**2)/(2*sig*sig));
+        const u=i/N*6.283, wave=.62+.2*Math.sin(u*2+tm*.32+s.seed)+.18*Math.sin(u*3-tm*.21+s.seed*1.7);
+        tgt[i]=e*MAXIN*wave*(1-.92*g); }
+      for(let i=0;i<N;i++) tgt[i]=Math.min(tgt[i], rad*.9+s.e*2);
+      // viscous: slow first-order follow (no velocity, no overshoot) + neighbour smoothing
+      const c=s.cur, k=.03;
+      for(let i=0;i<N;i++){ const d0=tgt[i]-c[i]; if(Math.abs(d0)>.02) live=true; c[i]+=d0*k; }
+      for(let pass=0;pass<3;pass++){ const sm=new Float32Array(N); for(let i=0;i<N;i++) sm[i]=c[i]*.5+(c[(i+N-1)%N]+c[(i+1)%N])*.25; c.set(sm); }
+      let mxIn=0; for(let i=0;i<N;i++) mxIn=Math.max(mxIn,c[i]);
+      if(mxIn<.05){ if(s.on){ s.el.style.clipPath=""; s.on=false; } continue; }
+      // Catmull-Rom through displaced points -> smooth closed bezier path
+      const X=P.map((q,i)=>[q[0]-q[2]*c[i], q[1]-q[3]*c[i]]);
+      let d=`M${X[0][0].toFixed(1)} ${X[0][1].toFixed(1)}`;
+      for(let i=0;i<N;i++){ const p0=X[(i+N-1)%N],p1=X[i],p2=X[(i+1)%N],p3=X[(i+2)%N];
+        d+=`C${(p1[0]+(p2[0]-p0[0])/6).toFixed(1)} ${(p1[1]+(p2[1]-p0[1])/6).toFixed(1)} ${(p2[0]-(p3[0]-p1[0])/6).toFixed(1)} ${(p2[1]-(p3[1]-p1[1])/6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`; }
+      s.el.style.clipPath=`path("${d}Z")`; s.on=true; if(e>.01) live=true; }
+    if(live) raf=requestAnimationFrame(frame); };
+  const kick=()=>{ if(!raf) raf=requestAnimationFrame(frame); };
+  addEventListener("pointermove",e=>{ mx=e.clientX; my=e.clientY; kick(); },{passive:true});
+  addEventListener("scroll",kick,{passive:true});
+  document.addEventListener("pointerleave",()=>{ mx=my=-1e5; kick(); });
+}
+function homeFx(){ heroFx(); asciiPortrait(); coverBend(); }
+
+(function clock(){ const el=$("#clock"); if(!el) return;
+  const fmt=new Intl.DateTimeFormat("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"});
+  let skew=0; const tick=()=>{ el.textContent=fmt.format(new Date(Date.now()+skew))+" ET"; }; tick();
+  fetch(location.pathname,{method:"HEAD",cache:"no-store"}).then(r=>{ const d=Date.parse(r.headers.get("date")||""); if(d){ skew=d-Date.now(); tick(); } }).catch(()=>{}); setInterval(tick,15000); })();
+</script>
