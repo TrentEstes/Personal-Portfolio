@@ -18,11 +18,12 @@ import datetime
 SU="https://trente.design/"
 person={"@type":"Person","@id":SU+"#trent","name":"Trent Estes","url":SU,
         "jobTitle":"Brand and Packaging Designer",
-        "description":"Brand and packaging designer working in brand identity, packaging systems, lettering and poster design.",
-        "email":"mailto:hello@trente.design",
+        "description":"Brand and packaging designer with in-house CPG experience at PepsiCo and agency work across luxury beverage packaging, art direction and corporate communications. BFA Graphic Design at Virginia Tech.",
         "address":{"@type":"PostalAddress","addressRegion":"VA","addressCountry":"US"},
+        "worksFor":{"@type":"Organization","name":"Limestone Creative"},
+        "affiliation":{"@type":"CollegeOrUniversity","name":"Virginia Tech"},
         "sameAs":["https://www.linkedin.com/in/trent-estes-0a538b300/"],
-        "knowsAbout":["Brand identity","Packaging design","Typography","Lettering","Art direction","Poster design","Consumer packaged goods"]}
+        "knowsAbout":["Brand identity","Packaging design","Structural packaging","Typography","Lettering","Art direction","Poster design","Print production","Consumer packaged goods"]}
 website={"@type":"WebSite","@id":SU+"#site","name":"Trent Estes","url":SU,
          "inLanguage":"en","author":{"@id":SU+"#trent"},"publisher":{"@id":SU+"#trent"}}
 items=[{"@type":"ListItem","position":i+1,"item":{"@type":"CreativeWork","name":q["title"],

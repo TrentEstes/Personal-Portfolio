@@ -401,8 +401,9 @@ body.in-hall .top,body.in-hall .fcard{display:none}
    ============================================================ */
 const SITE = {
   name: "Trent Estes",
-  email: "hello@trente.design",
-  phone: "804-997-1613",
+  // contact details are stored scrambled and assembled in the browser on click,
+  // so they are not sitting in the page source for harvesters to read
+  c: { e: "V1pTU1B/S01aUUtaEVtaTFZYUQ==", p: "Bw8LEgYGCBIOCQ4M" },
   linkedin: "https://www.linkedin.com/in/trent-estes-0a538b300/",
   instagram: "",
   resume: "Trent-Estes-Resume.pdf",
@@ -428,6 +429,15 @@ function img(f, alt, lazy=true, style=""){
 }
 function setImg(el, f){ const [a,...rest]=srcs(f); el.dataset.fb=rest.join("|"); el.onerror=()=>nextSrc(el); el.src=a; }
 const digits = s => s.replace(/[^0-9+]/g,"");
+const unmask = s => atob(s).split("").map(c=>String.fromCharCode(c.charCodeAt(0)^0x3f)).join("");
+document.addEventListener("click", e => {
+  const a = e.target.closest("a.rv"); if(!a) return;
+  e.preventDefault();
+  const k = a.dataset.rv, v = unmask(SITE.c[k]);
+  a.lastElementChild.textContent = v;
+  a.href = k === "e" ? "mailto:"+v : "tel:"+digits(v);
+  a.classList.remove("rv"); a.removeAttribute("data-rv");
+});
 const by = slug => PROJECTS.find(p=>p.slug===slug);
 const FEATURED = SITE.featured.map(by).filter(Boolean);
 const info = p => p.info || (p.rows.find(r=>r.p)||{}).p || "";
@@ -548,8 +558,8 @@ function footer(){
     <div class="f-in pad">
       <figure class="fq"><blockquote><h2>“Look deep into nature, <span>and then you will understand everything better.”</span></h2></blockquote><figcaption class="mono">Albert Einstein</figcaption></figure>
       <ul class="mono">
-        <li><a href="mailto:${esc(SITE.email)}"><span>Email</span><span>${esc(SITE.email)}</span></a></li>
-        <li><a href="tel:${digits(SITE.phone)}"><span>Phone</span><span>${esc(SITE.phone)}</span></a></li>
+        <li><a class="rv" href="#contact" data-rv="e" rel="nofollow"><span>Email</span><span>Click to show</span></a></li>
+        <li><a class="rv" href="#contact" data-rv="p" rel="nofollow"><span>Phone</span><span>Click to show</span></a></li>
         ${SITE.linkedin?`<li><a href="${esc(SITE.linkedin)}" target="_blank" rel="noopener"><span>LinkedIn</span><span>↗</span></a></li>`:""}
         ${SITE.instagram?`<li><a href="${esc(SITE.instagram)}" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a></li>`:""}
         ${SITE.resume?`<li><a href="${esc(SITE.resume)}" target="_blank" rel="noopener"><span>Résumé</span><span>PDF ↗</span></a></li>`:""}
