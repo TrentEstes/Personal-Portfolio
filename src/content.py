@@ -43,7 +43,7 @@ P = [
 
  dict(feature=True, slug="paige-bueckers-court", title="Paige Bueckers Court Design", sub="Lettering", year=2026, size="big",
       tags=["Type","Illustration"], kind="Lettering explorations for “A ball and a basket is all you need”",
-      cover="court-cover.jpg", fit="contain",
+      cover="court-finished-drone.jpg",
       info="A custom basketball court for WNBA player Paige Bueckers at Blackstone Park in St. Louis Park, Minnesota, her hometown. Co-developed with Project Backboard during my Gatorade internship at PepsiCo. I worked on the lettering for her line, “A ball and a basket is all you need.”",
       rows=[["court-finished-drone.jpg"],
             {"cap":"Final design by Joey Ochoa. Photo courtesy of Gatorade."},
